@@ -1,0 +1,55 @@
+<!--
+These define the default logger configuration that can be overriden during startup:
+ - Output File: to override it use the variable defined below (${LOG_FILE}). This can be passed
+   as env variable or as system property (-D) like this: -DLOG_FILE=blah.log
+   This is not a Spring property, you cannot define this in yml or properties file.
+ - To override the logging level, use the Spring Boot names as defined by LoggingApplicationListener. It can be passed
+   as env variable, as system property (-D) or defined in yml/properties files like this:
+   -Dlogging.level.org.apache=DEBUG or -Dlogger.level.root=WARN
+
+You can still replace this file with something else by pointing to a completely another config (xml or groovy) on
+startup: -Dlogback.configurationFile=/path/to/file.xml
+-->
+<!--
+DO NOT PUT LOGGING CONFIGURATION INTO SPRING BOOT CONFIGS:
+ 1. Spring starts after logback is initialized and then it reconfigures it. This means that first logging won't
+    be controlled by any of your Spring configuration. But this file is read by vanilla Logback right when it's
+    initialized.
+ 2. Some runtime configuration can be done via parameters (as with the output file) without Spring
+ 3. Other configuration is going to be overriden by Spring anyway (logging.level.*) even with this file, so the
+    required runtime flexibility provided by Spring Boot is not going anywhere.
+-->
+<configuration>
+    <property name="LOG_FILE" value="${LOG_FILE:-logs/dog.log}" />
+    <property name="LOG_PATTERN" value="${LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss} [%X{user}] [%thread] %-5level %logger{36} - %msg%n}" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder><pattern>${LOG_PATTERN}</pattern></encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder> <pattern>${LOG_PATTERN}</pattern> </encoder>
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%i</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <!--Next two can be changed to TRACE to see what values Hibernate uses when executing queries-->
+    <!--<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="DEBUG"/>-->
+    <!--<logger name="org.hibernate.type.EnumType" level="DEBUG"/>-->
+
+    <logger name="org.springframework" level="INFO" />
+    <!--Outputs info about which config file is used and which profiles are activated. Important stuff.-->
+    <logger name="org.springframework.boot.context.config" level="DEBUG"/>
+    <!--There are issues with serializing Spring MVC errors when we work with ELN XML media type - it silently cannot
+     serialize it. This allows at least to show the error in logs (as a temp solution).-->
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="WARN" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
