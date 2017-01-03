@@ -47,7 +47,11 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
     }
     public void invokesValidationBeforeSaving() {
         Dog invalidDog = Dog.random().setName(nullOrBlank());
-        Dog dog = dogs.createDogAndFailValidation(invalidDog);
+        ValidationRestError[] errors = dogs.createDogAndFailValidation(invalidDog);
+        assertEquals(errors[0].getObjectName(), "dog");
+        assertEquals(errors[0].getField(), "name");
+        assertEquals(errors[0].getErrorCode(), "NotBlankSized");
+        assertEquals(errors[0].getErrorMessage(), "size must be between 1 and 100");
     }
 
     @Test(expectedExceptions = Error404Exception.class)

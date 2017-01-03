@@ -2,6 +2,7 @@ package training.java.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotBlank;
+import training.java.utils.NotBlankSized;
 
 import javax.validation.constraints.Size;
 import java.time.OffsetDateTime;
@@ -12,8 +13,7 @@ import static io.qala.datagen.RandomShortApi.*;
 
 public class Dog {
     private String id = UUID.randomUUID().toString();
-    @Size(min = 1, max = 100)
-    @NotBlank
+    @NotBlankSized(min = 1, max = 100)
     private String name;
     /**
      * To pass the object over network we usually use ISO8601 format. That's where Offset based time is ideal since
