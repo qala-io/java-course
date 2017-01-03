@@ -46,9 +46,4 @@ public class ValidationRestErrorTest {
         validator.validate(dog, errors);
         return errors;
     }
-
-    private static Validator validator() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        return factory.getValidator();
-    }
 }
