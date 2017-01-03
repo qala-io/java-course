@@ -13,6 +13,12 @@ import static io.qala.datagen.RandomShortApi.nullOrBlank;
 import static io.qala.datagen.RandomShortApi.unicodeWithoutBoundarySpaces;
 import static org.testng.Assert.assertEquals;
 
+/**
+ * Usually we try to have 1 logical assertion per test. Otherwise tests become hard to read and they fail due
+ * to multiple reasons. We violated this rule here because: a) these tests are very trivial b) otherwise they would
+ * take much more space and <i>that</i> would make our tests less readable. So we're just trying to balance between
+ * 2 evils.
+ */
 @Test
 public class DogTest {
     public void validName_passesValidation() {
