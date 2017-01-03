@@ -11,6 +11,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import static io.qala.datagen.RandomShortApi.nullOrBlank;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
@@ -43,6 +44,10 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
         Dog dog = dogs.createDog();
         List<Dog> fromDb = dogs.listDogs();
         assertTrue(fromDb.contains(dog), "All Dogs " + fromDb + " didn't contain " + dog);
+    }
+    public void invokesValidationBeforeSaving() {
+        Dog invalidDog = Dog.random().setName(nullOrBlank());
+        Dog dog = dogs.createDogAndFailValidation(invalidDog);
     }
 
     @Test(expectedExceptions = Error404Exception.class)

@@ -52,6 +52,14 @@
             <artifactId>hibernate-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-el</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
@@ -77,18 +85,15 @@
         <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>spring-mock-mvc</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -105,6 +110,7 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
+                <!--Is used by Spring MVC to convert objects to/from JSON or XML-->
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.8.3</version>
@@ -118,6 +124,37 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>5.2.2.Final</version>
+                <exclusions>
+                    <exclusion>
+                        <!--We're not going to use Hibernate annotations in this project-->
+                        <groupId>org.hibernate.common</groupId>
+                        <artifactId>hibernate-commons-annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <!--This dependency is provided by servlet container. And for tests we use Tomcat Embed  implementation-->
+                        <groupId>javax.el</groupId>
+                        <artifactId>el-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <!--This seems to be a very slow way to validate things but it's pretty widespread. In the future we
+                should measure the real performance metrics and replace it with manual validation if it's really slow-->
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.3.4.Final</version>
+            </dependency>
+            <dependency>
+                <!--EL API/Impl is needed at least by Hibernate Validator for message interpolation to work (resolving
+                expressions like "error {0}"-->
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>8.5.4</version>
+                <!--This API and the implementation is provided by the servlet container. We need it here only for tests.
+                Usually Hibernate Validator is configured with the Glassfish implementation (as it's described in the
+                official doc), but since we're going to use Tomcat as the primary App Server using it in the tests too
+                would make the tests more realistic.-->
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -125,11 +162,13 @@
                 <version>1.4.192</version>
             </dependency>
             <dependency>
+                <!--Compile time since we put some randomization methods into production code.-->
                 <groupId>io.qala.datagen</groupId>
                 <artifactId>qala-datagen</artifactId>
                 <version>1.9.3</version>
             </dependency>
             <dependency>
+                <!--Compile time since we put some randomization methods into production code.-->
                 <groupId>io.qala.datagen</groupId>
                 <artifactId>qala-datagen-java8types</artifactId>
                 <version>1.9.3</version>
@@ -195,17 +234,20 @@
                 <groupId>com.jayway.restassured</groupId>
                 <artifactId>rest-assured</artifactId>
                 <version>${rest-assured.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.jayway.restassured</groupId>
                 <artifactId>spring-mock-mvc</artifactId>
                 <version>${rest-assured.version}</version>
+                <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>3.1.0</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,7 +1,9 @@
 package training.java.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Size;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -10,6 +12,8 @@ import static io.qala.datagen.RandomShortApi.*;
 
 public class Dog {
     private String id = UUID.randomUUID().toString();
+    @Size(min = 1, max = 100)
+    @NotBlank
     private String name;
     /**
      * To pass the object over network we usually use ISO8601 format. That's where Offset based time is ideal since
@@ -20,6 +24,7 @@ public class Dog {
      * </p>
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "uuuu-MM-dd'T'HH:mm:ss.SSSXXXX")
+    //todo: add validation
     private OffsetDateTime timeOfBirth;
     private double weight;
     private double height;
@@ -36,40 +41,46 @@ public class Dog {
     public String getId() {
         return id;
     }
-    public void setId(String id) {
+
+    public Dog setId(String id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Dog setName(String name) {
         this.name = name;
+        return this;
     }
 
     public OffsetDateTime getTimeOfBirth() {
         return timeOfBirth;
     }
 
-    public void setTimeOfBirth(OffsetDateTime timeOfBirth) {
+    public Dog setTimeOfBirth(OffsetDateTime timeOfBirth) {
         this.timeOfBirth = timeOfBirth;
+        return this;
     }
 
     public double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public Dog setWeight(double weight) {
         this.weight = weight;
+        return this;
     }
 
     public double getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public Dog setHeight(double height) {
         this.height = height;
+        return this;
     }
 
     @Override public String toString() {

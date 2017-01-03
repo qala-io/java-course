@@ -35,6 +35,9 @@ public class DogEndpoints {
     Dog createDog(Dog dog) {
         return given().body(dog).post("/dog").andReturn().as(Dog.class);
     }
+    Dog createDogAndFailValidation(Dog dog) {
+        return given().body(dog).post("/dog").andReturn().as(Dog.class);
+    }
 
     Dog createDog() {
         return given().body(Dog.random()).post("/dog").andReturn().as(Dog.class);
