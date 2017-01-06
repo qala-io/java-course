@@ -4,8 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import training.java.domain.Dog;
@@ -15,10 +13,8 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
+@SuppressWarnings(/*Most of the methods are used only by Spring MVC*/"unused")
 @RestController
-@RequestMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class DogEndpoint {
     private static ConcurrentMap<String, Dog> ALL_DOGS = new ConcurrentHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(getClass());

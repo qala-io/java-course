@@ -5,9 +5,6 @@ import org.springframework.validation.beanvalidation.CustomValidatorBean;
 import org.testng.annotations.Test;
 import training.java.domain.Dog;
 
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.List;
 
 import static io.qala.datagen.RandomShortApi.nullOrBlank;

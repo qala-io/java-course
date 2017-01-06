@@ -44,6 +44,7 @@ public class Dog {
         return id;
     }
 
+    @SuppressWarnings(/*Used by ORM*/"unused")
     public Dog setId(String id) {
         this.id = id;
         return this;

@@ -6,21 +6,22 @@ import org.springframework.validation.ObjectError;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidationRestError {
+@SuppressWarnings(/*Public get/set methods are needed for Jackson*/"WeakerAccess")
+class ValidationRestError {
     private String objectName;
     private String field;
     private String errorCode;
     private String errorMessage;
 
-    public ValidationRestError() {}
-    public ValidationRestError(FieldError error) {
+    @SuppressWarnings(/*used by Jackson*/"unused") public ValidationRestError() {}
+    ValidationRestError(FieldError error) {
         this.objectName = error.getObjectName();
         this.field = error.getField();
         this.errorCode = error.getCode();
         this.errorMessage = error.getDefaultMessage();
     }
 
-    public ValidationRestError(ObjectError error) {
+    private ValidationRestError(ObjectError error) {
         this.objectName = error.getObjectName();
         this.errorMessage = error.getDefaultMessage();
         this.errorCode = error.getCode();
