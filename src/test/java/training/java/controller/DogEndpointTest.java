@@ -8,18 +8,21 @@ import org.testng.annotations.Test;
 import training.java.domain.Dog;
 
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import static io.qala.datagen.RandomShortApi.negativeDouble;
 import static io.qala.datagen.RandomShortApi.nullOrBlank;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 @WebAppConfiguration
 @ContextConfiguration(locations = {"classpath:/test-context.xml", "classpath:/web-context.xml"})
 @SuppressWarnings("WeakerAccess")
-@Test(invocationCount = 5)
+@Test
 public class DogEndpointTest extends AbstractTestNGSpringContextTests {
     @Autowired DogEndpoints dogs;
 
@@ -46,12 +49,11 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
         assertTrue(fromDb.contains(dog), "All Dogs " + fromDb + " didn't contain " + dog);
     }
     public void invokesValidationBeforeSaving() {
-        Dog invalidDog = Dog.random().setName(nullOrBlank());
+        Dog invalidDog = Dog.random().setName(nullOrBlank()).setHeight(negativeDouble());
         ValidationRestError[] errors = dogs.createDogAndFailValidation(invalidDog);
-        assertEquals(errors[0].getObjectName(), "dog");
-        assertEquals(errors[0].getField(), "name");
-        assertEquals(errors[0].getErrorCode(), "NotBlankSized");
-        assertEquals(errors[0].getErrorMessage(), "size must be between 1 and 100");
+        assertEquals(errors.length, 2);
+        assertHasValidationError(errors, "height", "DecimalMin", "must be greater than 0");
+        assertHasValidationError(errors, "name", "NotBlankSized", "size must be between 1 and 100");
     }
 
     @Test(expectedExceptions = Error404Exception.class)
@@ -72,5 +74,16 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
     private void assertDatesEqual(OffsetDateTime expected, OffsetDateTime actual) {
         if (expected == null) assertEquals(null, actual);
         else                  assertEquals(actual.toInstant(), expected.toInstant());
+    }
+    private void assertHasValidationError(ValidationRestError[] errors, String field, String errorCode, String errorMsg) {
+        for(ValidationRestError error: errors) {
+            if(     error.getObjectName().equals("dog") &&
+                    error.getField().equals(field) &&
+                    error.getErrorCode().equals(errorCode) &&
+                    error.getErrorMessage().equals(errorMsg)) {
+                return;
+            }
+        }
+        fail("Couldn't find error: " + field + ", " + errorCode + ", " + errorMsg + ". Actual errors: " + Arrays.deepToString(errors));
     }
 }

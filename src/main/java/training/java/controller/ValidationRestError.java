@@ -50,4 +50,13 @@ public class ValidationRestError {
         }
         return result;
     }
+
+    @Override public String toString() {
+        return "ValidationRestError{" +
+                "objectName='" + objectName + '\'' +
+                ", field='" + field + '\'' +
+                ", errorCode='" + errorCode + '\'' +
+                ", errorMessage='" + errorMessage + '\'' +
+                '}';
+    }
 }

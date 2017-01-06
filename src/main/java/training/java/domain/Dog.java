@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import training.java.utils.NotBlankSized;
 import training.java.utils.Past;
 
+import javax.validation.constraints.DecimalMin;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -25,7 +26,9 @@ public class Dog {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "uuuu-MM-dd'T'HH:mm:ss.SSSXXXX")
     @Past
     private OffsetDateTime timeOfBirth;
+    @DecimalMin(value = "0", inclusive = false)
     private double weight;
+    @DecimalMin(value = "0", inclusive = false)
     private double height;
 
     public static Dog random() {

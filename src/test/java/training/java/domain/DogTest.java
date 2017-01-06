@@ -11,8 +11,7 @@ import java.util.Set;
 
 import static io.qala.datagen.RandomDate.after;
 import static io.qala.datagen.RandomDate.beforeNow;
-import static io.qala.datagen.RandomShortApi.nullOrBlank;
-import static io.qala.datagen.RandomShortApi.unicodeWithoutBoundarySpaces;
+import static io.qala.datagen.RandomShortApi.*;
 import static java.time.Instant.now;
 import static org.testng.Assert.assertEquals;
 
@@ -40,15 +39,26 @@ public class DogTest {
         Dog dog = Dog.random();
         assertValidationFails(dog.setTimeOfBirth(after(now()).offsetDateTime()), "must be in the past");
     }
-
     public void nullBirthDate_passesValidation() {
         Dog dog = Dog.random();
         assertBirthDateValidationPasses(dog.setTimeOfBirth(null), "null birth date");
     }
-
-    public void BirthDateInPast_passesValidation() {
+    public void birthDateInPast_passesValidation() {
         Dog dog = Dog.random();
         assertBirthDateValidationPasses(dog.setTimeOfBirth(beforeNow().offsetDateTime()), "birth date in the past");
+    }
+
+    public void positiveHeightOrWeight_passesValidation() {
+        assertSizesValidationPasses(Dog.random().setHeight(Double.MIN_VALUE), "positive height");
+        assertSizesValidationPasses(Dog.random().setWeight(Double.MIN_VALUE), "positive weight");
+    }
+    public void zeroHeightOrWeight_failsValidation() {
+        assertValidationFails(Dog.random().setHeight(0), "must be greater than 0");
+        assertValidationFails(Dog.random().setWeight(0), "must be greater than 0");
+    }
+    public void negativeHeightOrWeight_failsValidation() {
+        assertValidationFails(Dog.random().setHeight(negativeDouble()), "must be greater than 0");
+        assertValidationFails(Dog.random().setWeight(negativeDouble()), "must be greater than 0");
     }
 
     private static void assertValidationFails(Dog dog, String expectedError) {
@@ -61,10 +71,14 @@ public class DogTest {
         Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
         assertEquals(errors.size(), 0, "Failed: " + caseName + ", value was: [" + dog.getName() + "].");
     }
-
     private static void assertBirthDateValidationPasses(Dog dog, String caseName) {
         Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
         assertEquals(errors.size(), 0, "Failed: " + caseName + ", value was: [" + dog.getTimeOfBirth() + "].");
+    }
+    private static void assertSizesValidationPasses(Dog dog, String caseName) {
+        Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
+        assertEquals(errors.size(), 0, "Failed: " + caseName + ", height was: [" + dog.getHeight() +
+                "], weight was: [" + dog.getWeight() + "].");
     }
 
     @BeforeClass
