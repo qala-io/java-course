@@ -14,16 +14,11 @@ import java.util.UUID;
 
 import static io.qala.datagen.RandomShortApi.negativeDouble;
 import static io.qala.datagen.RandomShortApi.nullOrBlank;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.fail;
+import static org.testng.Assert.*;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
-@WebAppConfiguration @ContextConfiguration(locations = {"classpath:/test-context.xml", "classpath:/web-context.xml"})
-@Test
-@SuppressWarnings("WeakerAccess")
+@MockMvcTest @Test
 public class DogEndpointTest extends AbstractTestNGSpringContextTests {
-    @Autowired DogEndpoints dogs;
 
     public void createdDog_isReturnedInPostRequest() {
         Dog original = Dog.random();
@@ -42,6 +37,11 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
         assertReflectionEquals(withoutDates(original), withoutDates(fromDb));
     }
 
+    public void returnsEmptyList_ifNoDogsExist() {
+        dogs.deleteAll();
+        List<Dog> dogs = this.dogs.listDogs();
+        assertEquals(dogs.size(), 0);
+    }
     public void createdDogsAppearIn_listOfAllDogs() {
         Dog dog = dogs.createDog();
         List<Dog> fromDb = dogs.listDogs();
@@ -56,8 +56,14 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test(expectedExceptions = Error404Exception.class)
-    public void returns404_ifNotExistingDogIsRequested() {
-        dogs.findDog(UUID.randomUUID().toString());
+    public void returns404_ifDogIsRemoved() {
+        Dog dog = dogs.createDog();
+        dogs.deleteDog(dog.getId());
+        dogs.findDog(dog.getId());
+    }
+    @Test(expectedExceptions = Error404Exception.class)
+    public void returns404_ifDeleteCannotFindDog() {
+        dogs.deleteDog(UUID.randomUUID().toString());
     }
 
     /**
@@ -85,4 +91,6 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
         }
         fail("Couldn't find error: " + field + ", " + errorCode + ", " + errorMsg + ". Actual errors: " + Arrays.deepToString(errors));
     }
+
+    @Autowired private DogEndpoints dogs;
 }

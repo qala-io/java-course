@@ -2,16 +2,19 @@ package training.java.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import training.java.domain.Dog;
+import training.java.domain.ObjectNotFoundException;
 
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @SuppressWarnings(/*Most of the methods are used only by Spring MVC*/"unused")
 @RestController
@@ -38,9 +41,21 @@ public class DogEndpoint {
         ALL_DOGS.put(dog.getId(), dog);
         return dog;
     }
+    @DeleteMapping(value = "/dog/{id}")
+    Dog deleteDog(@PathVariable String id) {
+        logger.info("Deleting a dog: [{}]", id);
+        Dog removed = ALL_DOGS.remove(id);
+        if(removed == null) throw new ObjectNotFoundException(Dog.class, id);
+        return removed;
+    }
+
     //todo: migrate to a separate class
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity processValidationError(MethodArgumentNotValidException e) {
-        return new ResponseEntity<>(ValidationRestError.fromSpringErrors(e.getBindingResult().getAllErrors()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ValidationRestError.fromSpringErrors(e.getBindingResult().getAllErrors()), BAD_REQUEST);
+    }
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity processValidationError(ObjectNotFoundException e) {
+        return new ResponseEntity<>("{}", NOT_FOUND);
     }
 }

@@ -29,7 +29,7 @@ Protocol:
 
 * `POST /dog` - create a new dog. 
 * `GET /dog/{id}` - shows the dog’s props in JSON format
-* `PUT /dog/{id}` - updates the dog (dog JSON is sent in request body)
+* `PUT /dog/{id}` - updates the dog. Whole dog JSON is sent in request body - it overrides all the fields in DB. 
 * `DELETE /dog/{id}` - removes the dog from DB
 
 The app needs to be tested on all levels:

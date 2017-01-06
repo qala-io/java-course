@@ -19,27 +19,40 @@ public class DogEndpoints {
         RestAssuredMockMvc.requestSpecification = new MockMvcRequestSpecBuilder().setContentType(ContentType.JSON).build();
     }
 
-    Dog findDog(String id) {
-        MockMvcResponse response = given().get("/dog/{id}", id);
-        if (response.statusCode() == HttpStatus.NOT_FOUND.value()) throw new Error404Exception(response);
-        if(response.statusCode() >= 300) throw new RuntimeException("Error: " + response.statusLine());
-        return response.andReturn().as(Dog.class);
-    }
-
-    List<Dog> listDogs() {
-        MockMvcResponse response = given().get("/dog/");
-        if (response.statusCode() >= 300) throw new RuntimeException("Error: " + response.statusLine());
-        return asList(response.andReturn().as(Dog[].class));
-    }
-
     Dog createDog(Dog dog) {
         return given().body(dog).post("/dog").andReturn().as(Dog.class);
     }
     ValidationRestError[] createDogAndFailValidation(Dog dog) {
         return given().body(dog).post("/dog").andReturn().as(ValidationRestError[].class);
     }
-
     Dog createDog() {
         return given().body(Dog.random()).post("/dog").andReturn().as(Dog.class);
+    }
+
+    Dog findDog(String id) {
+        MockMvcResponse response = given().get("/dog/{id}", id);
+        throwIfStatusIsNotSuccess(response);
+        return response.andReturn().as(Dog.class);
+    }
+
+    List<Dog> listDogs() {
+        MockMvcResponse response = given().get("/dog/");
+        throwIfStatusIsNotSuccess(response);
+        return asList(response.andReturn().as(Dog[].class));
+    }
+
+    Dog deleteDog(String id) {
+        MockMvcResponse response = given().delete("/dog/{id}", id).andReturn();
+        throwIfStatusIsNotSuccess(response);
+        return response.as(Dog.class);
+    }
+
+    void deleteAll() {
+        for(Dog dog: listDogs()) deleteDog(dog.getId());
+    }
+
+    private void throwIfStatusIsNotSuccess(MockMvcResponse response) {
+        if (response.statusCode() == HttpStatus.NOT_FOUND.value()) throw new Error404Exception(response);
+        if(response.statusCode() >= 300) throw new RuntimeException("Error: " + response.statusLine());
     }
 }
