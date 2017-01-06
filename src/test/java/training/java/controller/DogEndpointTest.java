@@ -19,10 +19,9 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
-@WebAppConfiguration
-@ContextConfiguration(locations = {"classpath:/test-context.xml", "classpath:/web-context.xml"})
-@SuppressWarnings("WeakerAccess")
+@WebAppConfiguration @ContextConfiguration(locations = {"classpath:/test-context.xml", "classpath:/web-context.xml"})
 @Test
+@SuppressWarnings("WeakerAccess")
 public class DogEndpointTest extends AbstractTestNGSpringContextTests {
     @Autowired DogEndpoints dogs;
 
