@@ -25,7 +25,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  *
  * @author Mikhail Stryzhonok
  */
-@Constraint(validatedBy = {NotBlankSizedValidator.class})
+@Constraint(validatedBy = NotBlankSizedValidator.class)
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @ReportAsSingleViolation

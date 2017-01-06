@@ -1,16 +1,19 @@
 package training.java.domain;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import java.util.Set;
 
+import static io.qala.datagen.RandomDate.after;
+import static io.qala.datagen.RandomDate.beforeNow;
 import static io.qala.datagen.RandomShortApi.nullOrBlank;
 import static io.qala.datagen.RandomShortApi.unicodeWithoutBoundarySpaces;
+import static java.time.Instant.now;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -23,9 +26,9 @@ import static org.testng.Assert.assertEquals;
 public class DogTest {
     public void validName_passesValidation() {
         Dog dog = Dog.random();
-        assertValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(1)), "Min boundary");
-        assertValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(100)), "Max boundary");
-        assertValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(2, 99)), "Middle value");
+        assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(1)), "min boundary");
+        assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(100)), "max boundary");
+        assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(2, 99)), "middle value");
     }
     public void invalidName_failsValidation() {
         Dog dog = Dog.random();
@@ -33,17 +36,42 @@ public class DogTest {
         assertValidationFails(dog.setName(unicodeWithoutBoundarySpaces(101)), "size must be between 1 and 100");
     }
 
+    public void futureBirthDate_failsValidation() {
+        Dog dog = Dog.random();
+        assertValidationFails(dog.setTimeOfBirth(after(now()).offsetDateTime()), "must be in the past");
+    }
+
+    public void nullBirthDate_passesValidation() {
+        Dog dog = Dog.random();
+        assertBirthDateValidationPasses(dog.setTimeOfBirth(null), "null birth date");
+    }
+
+    public void BirthDateInPast_passesValidation() {
+        Dog dog = Dog.random();
+        assertBirthDateValidationPasses(dog.setTimeOfBirth(beforeNow().offsetDateTime()), "birth date in the past");
+    }
+
     private static void assertValidationFails(Dog dog, String expectedError) {
-        Set<ConstraintViolation<Dog>> errors = validator().validate(dog);
+        Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
         assertEquals(errors.iterator().next().getMessage(), expectedError);
         assertEquals(errors.size(), 1, "Should've been the only one: " + expectedError);
     }
-    private static void assertValidationPasses(Dog dog, String caseName) {
-        Set<ConstraintViolation<Dog>> errors = validator().validate(dog);
-        assertEquals(errors.size(), 0, "Failed: " + caseName);
+
+    private static void assertNameValidationPasses(Dog dog, String caseName) {
+        Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
+        assertEquals(errors.size(), 0, "Failed: " + caseName + ", value was: [" + dog.getName() + "].");
     }
-    private static Validator validator() {
+
+    private static void assertBirthDateValidationPasses(Dog dog, String caseName) {
+        Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
+        assertEquals(errors.size(), 0, "Failed: " + caseName + ", value was: [" + dog.getTimeOfBirth() + "].");
+    }
+
+    @BeforeClass
+    private static void initValidator() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        return factory.getValidator();
+        VALIDATOR = factory.getValidator();
     }
+
+    private static Validator VALIDATOR;
 }

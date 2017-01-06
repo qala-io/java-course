@@ -2,8 +2,8 @@ package training.java.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import training.java.utils.NotBlankSized;
+import training.java.utils.Past;
 
-import javax.validation.constraints.Past;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -23,7 +23,7 @@ public class Dog {
      * </p>
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "uuuu-MM-dd'T'HH:mm:ss.SSSXXXX")
-    @Past//todo: add validation
+    @Past
     private OffsetDateTime timeOfBirth;
     private double weight;
     private double height;
