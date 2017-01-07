@@ -21,8 +21,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class DogEndpoint {
     private static ConcurrentMap<String, Dog> ALL_DOGS = new ConcurrentHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(getClass());
-
-    //todo: make it work when the collection is empty
+    
     @GetMapping(value = "/dog")
     Collection<Dog> getAllDogs() {
         return ALL_DOGS.values();
