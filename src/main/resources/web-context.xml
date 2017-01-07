@@ -13,4 +13,5 @@
 
     <bean class="io.qala.javatraining.controller.DogEndpoint"/>
     <bean class="io.qala.javatraining.service.DogService"/>
+    <bean class="io.qala.javatraining.dao.InMemoryDogDao"/>
 </beans>
