@@ -1,8 +1,8 @@
-package training.java.domain;
+package io.qala.javatraining.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import training.java.utils.NotBlankSized;
-import training.java.utils.Past;
+import io.qala.javatraining.utils.Past;
+import io.qala.javatraining.utils.NotBlankSized;
 
 import javax.validation.constraints.DecimalMin;
 import java.time.OffsetDateTime;

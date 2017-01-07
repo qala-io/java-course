@@ -1,4 +1,4 @@
-package training.java.utils;
+package io.qala.javatraining.utils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

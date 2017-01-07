@@ -9,5 +9,5 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <bean id="dogEndpoint" class="training.java.controller.DogEndpoint"/>
+    <bean id="dogEndpoint" class="io.qala.javatraining.controller.DogEndpoint"/>
 </beans>

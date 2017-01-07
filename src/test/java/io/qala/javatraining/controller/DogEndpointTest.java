@@ -1,9 +1,9 @@
-package training.java.controller;
+package io.qala.javatraining.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
-import training.java.domain.Dog;
+import io.qala.javatraining.domain.Dog;
 
 import java.time.OffsetDateTime;
 import java.util.Arrays;

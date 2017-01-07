@@ -1,11 +1,10 @@
-package training.java.utils;
+package io.qala.javatraining.utils;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 

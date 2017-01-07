@@ -1,12 +1,12 @@
-package training.java.controller;
+package io.qala.javatraining.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import training.java.domain.Dog;
-import training.java.domain.ObjectNotFoundException;
+import io.qala.javatraining.domain.Dog;
+import io.qala.javatraining.domain.ObjectNotFoundException;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -21,7 +21,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class DogEndpoint {
     private static ConcurrentMap<String, Dog> ALL_DOGS = new ConcurrentHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    
+
     @GetMapping(value = "/dog")
     Collection<Dog> getAllDogs() {
         return ALL_DOGS.values();

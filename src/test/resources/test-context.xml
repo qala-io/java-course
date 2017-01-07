@@ -4,6 +4,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="constructor">
-    <bean id="mockMvc" class="training.java.controller.MockMvcFactoryBean"/>
-    <bean id="dogEndpoints" class="training.java.controller.DogEndpoints"/>
+    <bean id="mockMvc" class="io.qala.javatraining.controller.MockMvcFactoryBean"/>
+    <bean id="dogEndpoints" class="io.qala.javatraining.controller.DogEndpoints"/>
 </beans>

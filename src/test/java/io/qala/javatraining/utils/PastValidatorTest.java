@@ -1,10 +1,8 @@
-package training.java.utils;
+package io.qala.javatraining.utils;
 
+import io.qala.javatraining.utils.PastValidator;
 import org.testng.annotations.Test;
 
-import javax.validation.Payload;
-import javax.validation.Validator;
-import java.lang.annotation.Annotation;
 import java.time.OffsetDateTime;
 
 import static io.qala.datagen.RandomDate.after;

@@ -1,4 +1,4 @@
-package training.java.controller;
+package io.qala.javatraining.controller;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.test.web.servlet.MockMvc;

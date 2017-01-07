@@ -1,4 +1,4 @@
-package training.java.controller;
+package io.qala.javatraining.controller;
 
 import com.jayway.restassured.module.mockmvc.response.MockMvcResponse;
 

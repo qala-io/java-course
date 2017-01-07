@@ -1,4 +1,4 @@
-package training.java.controller;
+package io.qala.javatraining.controller;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;

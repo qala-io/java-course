@@ -1,9 +1,10 @@
-package training.java.controller;
+package io.qala.javatraining.controller;
 
+import io.qala.javatraining.controller.ValidationRestError;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.beanvalidation.CustomValidatorBean;
 import org.testng.annotations.Test;
-import training.java.domain.Dog;
+import io.qala.javatraining.domain.Dog;
 
 import java.util.List;
 

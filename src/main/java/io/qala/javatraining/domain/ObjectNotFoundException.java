@@ -1,4 +1,4 @@
-package training.java.domain;
+package io.qala.javatraining.domain;
 
 public class ObjectNotFoundException extends RuntimeException {
     public ObjectNotFoundException(Class objectType, String id) {

@@ -1,5 +1,7 @@
-package training.java.utils;
+package io.qala.javatraining.utils;
 
+import io.qala.javatraining.utils.NotBlankSized;
+import io.qala.javatraining.utils.NotBlankSizedValidator;
 import org.testng.annotations.Test;
 
 import javax.validation.Payload;

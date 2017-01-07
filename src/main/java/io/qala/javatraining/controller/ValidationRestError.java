@@ -1,4 +1,4 @@
-package training.java.controller;
+package io.qala.javatraining.controller;
 
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;

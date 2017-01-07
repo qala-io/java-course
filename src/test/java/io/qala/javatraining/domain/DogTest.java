@@ -1,5 +1,6 @@
-package training.java.domain;
+package io.qala.javatraining.domain;
 
+import io.qala.javatraining.domain.Dog;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
