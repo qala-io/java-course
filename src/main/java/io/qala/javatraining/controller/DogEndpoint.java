@@ -1,5 +1,6 @@
 package io.qala.javatraining.controller;
 
+import io.qala.javatraining.service.DogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -21,31 +22,30 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class DogEndpoint {
     private static ConcurrentMap<String, Dog> ALL_DOGS = new ConcurrentHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final DogService dogService;
+
+    public DogEndpoint(DogService dogService) {
+        this.dogService = dogService;
+    }
 
     @GetMapping(value = "/dog")
     Collection<Dog> getAllDogs() {
-        return ALL_DOGS.values();
+        return dogService.getAllDogs();
     }
-
     @GetMapping(value = "/dog/{id}")
     ResponseEntity getDog(@PathVariable String id) {
-        Dog found = ALL_DOGS.get(id);
-        if (found != null) return ResponseEntity.ok(found);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(dogService.getDog(id));
     }
 
     @PostMapping(value = "/dog")
     Dog createDog(@RequestBody @Valid Dog dog) {
         logger.info("Creating a dog: [{}]", dog);
-        ALL_DOGS.put(dog.getId(), dog);
-        return dog;
+        return dogService.createDog(dog);
     }
     @DeleteMapping(value = "/dog/{id}")
     Dog deleteDog(@PathVariable String id) {
         logger.info("Deleting a dog: [{}]", id);
-        Dog removed = ALL_DOGS.remove(id);
-        if(removed == null) throw new ObjectNotFoundException(Dog.class, id);
-        return removed;
+        return dogService.deleteDog(id);
     }
 
     //todo: migrate to a separate class
