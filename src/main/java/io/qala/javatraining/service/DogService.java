@@ -1,14 +1,14 @@
 package io.qala.javatraining.service;
 
-import io.qala.javatraining.dao.InMemoryDogDao;
+import io.qala.javatraining.dao.DogDao;
 import io.qala.javatraining.domain.Dog;
 
 import java.util.Collection;
 
 public class DogService {
-    private final InMemoryDogDao dogDao;
+    private final DogDao dogDao;
 
-    public DogService(InMemoryDogDao dogDao) {
+    public DogService(DogDao dogDao) {
         this.dogDao = dogDao;
     }
 
