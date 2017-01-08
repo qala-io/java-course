@@ -5,6 +5,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="constructor">
 
+    <bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
+        <!--Tests create multiple instances of JdbcDogDao which would have table created every time it's instantiated.
+        Which would fail. So we want to separate each instance of DAO by creating different DB every time it's created.-->
+        <property name="url" value="jdbc:h2:mem:#{T(io.qala.datagen.RandomShortApi).alphanumeric(10)};DB_CLOSE_DELAY=-1"/>
+        <property name="user" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
     <!--Spring Profiles are very (very!) bad since they create a condition in the app startup process and make it work
     differently on different environments. They should be used only when you really want to make the app work
     in different modes. That's exactly our case since one implementation uses DB and the other - In Memory data.
@@ -12,7 +19,7 @@
     <beans profile="default,in-memory-dao">
         <bean class="io.qala.javatraining.dao.InMemoryDogDao"/>
     </beans>
-    <beans profile="jdbc-dao">
-        <bean class="io.qala.javatraining.dao.JdbcDogDao"/>
+    <beans profile="jdbc-dao" default-autowire="constructor">
+        <bean class="io.qala.javatraining.dao.JdbcDogDao" init-method="createTables"/>
     </beans>
 </beans>

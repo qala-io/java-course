@@ -65,6 +65,10 @@
             <artifactId>h2</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.qala.datagen</groupId>
             <artifactId>qala-datagen</artifactId>
         </dependency>
@@ -161,6 +165,11 @@
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>1.4.192</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>4.0.3</version>
             </dependency>
             <dependency>
                 <!--Compile time since we put some randomization methods into production code.-->

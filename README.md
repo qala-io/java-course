@@ -95,6 +95,14 @@ Homework - Practice
 * Implement Component REST tests by using Spring’s MockMVC
 * Ensure the test names follow BDD
 
+# Step - JDBC
+
+- Implement a JDBC DAO that creates a DataSource in the constructor and uses it to create connections in DAO
+- Move DataSource creation and configuration to Spring Context and inject it into DAO
+- Implement DB migrations with Flyway
+- Implement transactions that span multiple method calls
+- Add DB Pool
+
 # Step 4
 
 Homework - Maven

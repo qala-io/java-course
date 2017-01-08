@@ -2,34 +2,19 @@ package io.qala.javatraining.dao;
 
 import io.qala.javatraining.domain.Dog;
 import io.qala.javatraining.domain.ObjectNotFoundException;
-import org.h2.jdbcx.JdbcDataSource;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static io.qala.datagen.RandomShortApi.english;
-
 @SuppressWarnings(/*Can't configure datasource for IntelliJ to recognize H2 Tables*/"SqlResolve")
 public class JdbcDogDao implements DogDao {
 
-    public JdbcDogDao() {
-        dataSource = new JdbcDataSource();
-        // Tests create multiple instances of JdbcDogDao which would have table created every time it's instantiated.
-        // Which would fail. So we want to separate each instance of DAO by creating different DB every time it's created.
-        String dbName = english(10);
-        dataSource.setUrl("jdbc:h2:mem:" + dbName + ";DB_CLOSE_DELAY=-1");
-        dataSource.setUser("sa");
-        dataSource.setPassword("");
-        try (Connection connection = dataSource.getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate(CREATE_DOG_TABLE_DDL);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public JdbcDogDao(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     @Override public Collection<Dog> getAllDogs() {
@@ -88,6 +73,17 @@ public class JdbcDogDao implements DogDao {
         }
     }
 
+    @SuppressWarnings(/*Invoked by Spring as init method*/"unused")
+    void createTables() {
+        try (Connection connection = dataSource.getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                statement.executeUpdate(CREATE_DOG_TABLE_DDL);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static Dog createDogFromCurrentRecord(ResultSet rs) throws SQLException {
         Dog dog = new Dog();
         dog.setId(rs.getString("ID"));
@@ -99,7 +95,7 @@ public class JdbcDogDao implements DogDao {
         return dog;
     }
 
-    private final JdbcDataSource dataSource;
+    private final DataSource dataSource;
     private static final String CREATE_DOG_TABLE_DDL = "create table DOG (\n" +
             "  ID varchar(36) primary key,\n" +
             "  NAME nvarchar(1000) not null,\n" +
