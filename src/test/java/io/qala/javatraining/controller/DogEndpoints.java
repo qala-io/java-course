@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static java.util.Arrays.asList;
+import static org.testng.Assert.assertEquals;
 
 public class DogEndpoints {
     DogEndpoints(MockMvc mvc) {
@@ -41,10 +42,11 @@ public class DogEndpoints {
         return asList(response.andReturn().as(Dog[].class));
     }
 
-    Dog deleteDog(String id) {
+    void deleteDog(String id) {
         MockMvcResponse response = given().delete("/dog/{id}", id).andReturn();
         throwIfStatusIsNotSuccess(response);
-        return response.as(Dog.class);
+        assertEquals(response.body().asString(), "");
+        assertEquals(response.statusCode(), HttpStatus.NO_CONTENT.value());
     }
 
     void deleteAll() {

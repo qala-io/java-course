@@ -43,9 +43,10 @@ public class DogEndpoint {
         return dogService.createDog(dog);
     }
     @DeleteMapping(value = "/dog/{id}")
-    Dog deleteDog(@PathVariable String id) {
+    ResponseEntity deleteDog(@PathVariable String id) {
         logger.info("Deleting a dog: [{}]", id);
-        return dogService.deleteDog(id);
+        dogService.deleteDog(id);
+        return ResponseEntity.noContent().build();
     }
 
     //todo: migrate to a separate class

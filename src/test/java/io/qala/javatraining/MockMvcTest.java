@@ -1,5 +1,6 @@
-package io.qala.javatraining.controller;
+package io.qala.javatraining;
 
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -22,5 +23,6 @@ import java.lang.annotation.Target;
  */
 @WebAppConfiguration @ContextConfiguration(
         {"classpath:/test-context.xml", "classpath:/dao-context.xml", "classpath:/web-context.xml"})
+@ActiveProfiles("jdbc-dao")
 @Target(ElementType.TYPE) @Retention(RetentionPolicy.RUNTIME)
-@interface MockMvcTest {}
+public @interface MockMvcTest {}

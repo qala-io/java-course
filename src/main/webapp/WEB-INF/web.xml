@@ -10,6 +10,10 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:/web-context.xml classpath:/dao-context.xml</param-value>
         </init-param>
+        <init-param>
+            <param-name>spring.profiles.active</param-name>
+            <param-value>jdbc-dao</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>

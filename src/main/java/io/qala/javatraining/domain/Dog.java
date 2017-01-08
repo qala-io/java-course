@@ -5,10 +5,13 @@ import io.qala.javatraining.utils.Past;
 import io.qala.javatraining.utils.NotBlankSized;
 
 import javax.validation.constraints.DecimalMin;
+import java.time.Instant;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.UUID;
 
 import static io.qala.datagen.RandomDate.beforeNow;
+import static io.qala.datagen.RandomDate.between;
 import static io.qala.datagen.RandomShortApi.*;
 
 public class Dog {
@@ -34,7 +37,11 @@ public class Dog {
     public static Dog random() {
         Dog dog = new Dog();
         dog.name = alphanumeric(1, 100);
-        dog.timeOfBirth = nullOr(beforeNow().offsetDateTime());
+        // Java8 Time API goes beyond of what DBs can hold so we explicitly generate the dates in the boundaries
+        // that a DB can hold. Which looks like in boundaries of long type.
+        Instant randomInstant = Instant.ofEpochMilli(Long(Long.MIN_VALUE, System.currentTimeMillis()));
+        dog.timeOfBirth = nullOr(OffsetDateTime.ofInstant(randomInstant, ZoneId.systemDefault()));
+
         dog.weight = positiveDouble();
         dog.height = positiveInteger();
         return dog;

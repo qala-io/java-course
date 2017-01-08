@@ -5,7 +5,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="constructor">
 
-    <beans profile="default,in-memory">
+    <!--Spring Profiles are very (very!) bad since they create a condition in the app startup process and make it work
+    differently on different environments. They should be used only when you really want to make the app work
+    in different modes. That's exactly our case since one implementation uses DB and the other - In Memory data.
+    But in general we should eliminate profiles if possible.-->
+    <beans profile="default,in-memory-dao">
         <bean class="io.qala.javatraining.dao.InMemoryDogDao"/>
+    </beans>
+    <beans profile="jdbc-dao">
+        <bean class="io.qala.javatraining.dao.JdbcDogDao"/>
     </beans>
 </beans>

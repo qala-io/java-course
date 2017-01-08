@@ -24,7 +24,7 @@ public class DogService {
         return dogDao.createDog(dog);
     }
 
-    public Dog deleteDog(String id) {
+    public boolean deleteDog(String id) {
         return dogDao.deleteDog(id);
     }
 }

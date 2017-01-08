@@ -1,19 +1,19 @@
 package io.qala.javatraining.controller;
 
+import io.qala.javatraining.MockMvcTest;
+import io.qala.javatraining.domain.Dog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
-import io.qala.javatraining.domain.Dog;
 
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 import static io.qala.datagen.RandomShortApi.negativeDouble;
 import static io.qala.datagen.RandomShortApi.nullOrBlank;
+import static io.qala.javatraining.TestUtils.assertReflectionEquals;
 import static org.testng.Assert.*;
-import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 @MockMvcTest @Test
 public class DogEndpointTest extends AbstractTestNGSpringContextTests {
@@ -21,9 +21,7 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
     public void createdDog_isReturnedInPostRequest() {
         Dog original = Dog.random();
         Dog fromDb = dogs.createDog(original);
-
-        assertDatesEqual(original.getTimeOfBirth(), fromDb.getTimeOfBirth());
-        assertReflectionEquals(withoutDates(original), withoutDates(fromDb));
+        assertReflectionEquals(original, fromDb);
     }
 
     public void getsTheSameDogAsWasSaved() {
@@ -31,19 +29,13 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
         dogs.createDog(original);
         Dog fromDb = dogs.findDog(original.getId());
 
-        assertDatesEqual(original.getTimeOfBirth(), fromDb.getTimeOfBirth());
-        assertReflectionEquals(withoutDates(original), withoutDates(fromDb));
+        assertReflectionEquals(original, fromDb);
     }
 
     public void returnsEmptyList_ifNoDogsExist() {
         dogs.deleteAll();
         List<Dog> dogs = this.dogs.listDogs();
         assertEquals(dogs.size(), 0);
-    }
-    public void createdDogsAppearIn_listOfAllDogs() {
-        Dog dog = dogs.createDog();
-        List<Dog> fromDb = dogs.listDogs();
-        assertTrue(fromDb.contains(dog), "All Dogs " + fromDb + " didn't contain " + dog);
     }
     public void invokesValidationBeforeSaving() {
         Dog invalidDog = Dog.random().setName(nullOrBlank()).setHeight(negativeDouble());
@@ -54,30 +46,16 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test(expectedExceptions = Error404Exception.class)
-    public void returns404_ifDogIsRemoved() {
+    public void gettingReturns404_ifDogIsRemoved() {
         Dog dog = dogs.createDog();
         dogs.deleteDog(dog.getId());
         dogs.findDog(dog.getId());
     }
-    @Test(expectedExceptions = Error404Exception.class)
-    public void returns404_ifDeleteCannotFindDog() {
-        dogs.deleteDog(UUID.randomUUID().toString());
+    @Test
+    public void deleteDoesNothing_ifDogDoesNotExist() {
+        dogs.deleteDog(UUID.randomUUID().toString());//doesn't throw anything
     }
 
-    /**
-     * reflectionEquals can't handle the dates since a lot of crazy stuff happens with dates when saving/retrieving:
-     * e.g. Offsets turn into ZoneIds. So we have to check the dates separately and then let reflectionEquals handle
-     * the rest of the fields.
-     */
-    private Dog withoutDates(Dog dog) {
-        dog.setTimeOfBirth(null);
-        return dog;
-    }
-
-    private void assertDatesEqual(OffsetDateTime expected, OffsetDateTime actual) {
-        if (expected == null) assertEquals(null, actual);
-        else                  assertEquals(actual.toInstant(), expected.toInstant());
-    }
     private void assertHasValidationError(ValidationRestError[] errors, String field, String errorCode, String errorMsg) {
         for(ValidationRestError error: errors) {
             if(     error.getObjectName().equals("dog") &&

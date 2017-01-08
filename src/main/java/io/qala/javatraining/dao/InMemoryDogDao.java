@@ -25,9 +25,8 @@ public class InMemoryDogDao implements DogDao {
         return dog;
     }
 
-    @Override public Dog deleteDog(String id) {
+    @Override public boolean deleteDog(String id) {
         Dog removed = ALL_DOGS.remove(id);
-        if (removed == null) throw new ObjectNotFoundException(Dog.class, id);
-        return removed;
+        return removed == null;
     }
 }
