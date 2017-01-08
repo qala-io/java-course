@@ -5,7 +5,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="constructor">
 
-    <bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
+    <bean class="io.qala.javatraining.dao.ConnectionHolder"/>
+    <bean class="org.h2.jdbcx.JdbcDataSource">
         <!--Tests create multiple instances of JdbcDogDao which would have table created every time it's instantiated.
         Which would fail. So we want to separate each instance of DAO by creating different DB every time it's created.-->
         <property name="url" value="jdbc:h2:mem:#{T(io.qala.datagen.RandomShortApi).alphanumeric(10)};DB_CLOSE_DELAY=-1"/>

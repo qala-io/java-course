@@ -13,17 +13,17 @@ import java.util.Collection;
 @SuppressWarnings(/*Can't configure datasource for IntelliJ to recognize H2 Tables*/"SqlResolve")
 public class JdbcDogDao implements DogDao {
 
-    public JdbcDogDao(DataSource dataSource) {
+    public JdbcDogDao(ConnectionHolder connections, DataSource dataSource) {
+        this.connections = connections;
         this.dataSource = dataSource;
     }
 
     @Override public Collection<Dog> getAllDogs() {
         Collection<Dog> result = new ArrayList<>();
-        try (Connection connection = dataSource.getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                ResultSet rs = statement.executeQuery("select * from DOG");
-                while (rs.next()) result.add(createDogFromCurrentRecord(rs));
-            }
+        Connection connection = connections.getCurrentConnection();
+        try (Statement statement = connection.createStatement()) {
+            ResultSet rs = statement.executeQuery("SELECT * FROM DOG");
+            while (rs.next()) result.add(createDogFromCurrentRecord(rs));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -31,13 +31,12 @@ public class JdbcDogDao implements DogDao {
     }
 
     @Override public Dog getDog(String id) {
-        try (Connection connection = dataSource.getConnection()) {
-            Dog dog = null;
-            try (PreparedStatement statement = connection.prepareStatement("select * from DOG where ID = ?")) {
-                statement.setString(1, id);
-                ResultSet rs = statement.executeQuery();
-                if (rs.next()) dog = createDogFromCurrentRecord(rs);
-            }
+        Connection connection = connections.getCurrentConnection();
+        Dog dog = null;
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM DOG WHERE ID = ?")) {
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) dog = createDogFromCurrentRecord(rs);
             if (dog != null) return dog;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -46,16 +45,16 @@ public class JdbcDogDao implements DogDao {
     }
 
     @Override public Dog createDog(Dog dog) {
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("insert into DOG values(?, ?, ?, ?, ?)")) {
-                statement.setString(1, dog.getId());
-                statement.setString(2, dog.getName());
-                if (dog.getTimeOfBirth() != null)   statement.setTimestamp(3, Timestamp.from(dog.getTimeOfBirth().toInstant()));
-                else                                statement.setTimestamp(3, null);
-                statement.setDouble(4, dog.getHeight());
-                statement.setDouble(5, dog.getWeight());
-                statement.executeUpdate();
-            }
+        Connection connection = connections.getCurrentConnection();
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO DOG VALUES(?, ?, ?, ?, ?)")) {
+            statement.setString(1, dog.getId());
+            statement.setString(2, dog.getName());
+            if (dog.getTimeOfBirth() != null)   statement.setTimestamp(3, Timestamp.from(dog.getTimeOfBirth().toInstant()));
+            else                                statement.setTimestamp(3, null);
+            statement.setDouble(4, dog.getHeight());
+            statement.setDouble(5, dog.getWeight());
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -63,11 +62,10 @@ public class JdbcDogDao implements DogDao {
     }
 
     @Override public boolean deleteDog(String id) {
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("delete from DOG where ID = ?")) {
-                statement.setString(1, id);
-                return statement.executeUpdate() > 0;
-            }
+        Connection connection = connections.getCurrentConnection();
+        try (PreparedStatement statement = connection.prepareStatement("DELETE FROM DOG WHERE ID = ?")) {
+            statement.setString(1, id);
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -95,6 +93,7 @@ public class JdbcDogDao implements DogDao {
         return dog;
     }
 
+    private final ConnectionHolder connections;
     private final DataSource dataSource;
     private static final String CREATE_DOG_TABLE_DDL = "create table DOG (\n" +
             "  ID varchar(36) primary key,\n" +

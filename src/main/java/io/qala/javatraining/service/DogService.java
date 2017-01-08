@@ -1,30 +1,15 @@
 package io.qala.javatraining.service;
 
-import io.qala.javatraining.dao.DogDao;
 import io.qala.javatraining.domain.Dog;
 
 import java.util.Collection;
 
-public class DogService {
-    private final DogDao dogDao;
+public interface DogService {
+    Collection<Dog> getAllDogs();
 
-    public DogService(DogDao dogDao) {
-        this.dogDao = dogDao;
-    }
+    Dog getDog(String id);
 
-    public Collection<Dog> getAllDogs() {
-        return dogDao.getAllDogs();
-    }
+    Dog createDog(Dog dog);
 
-    public Dog getDog(String id) {
-        return dogDao.getDog(id);
-    }
-
-    public Dog createDog(Dog dog) {
-        return dogDao.createDog(dog);
-    }
-
-    public boolean deleteDog(String id) {
-        return dogDao.deleteDog(id);
-    }
+    boolean deleteDog(String id);
 }
