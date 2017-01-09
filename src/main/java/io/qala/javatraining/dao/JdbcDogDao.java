@@ -3,7 +3,6 @@ package io.qala.javatraining.dao;
 import io.qala.javatraining.domain.Dog;
 import io.qala.javatraining.domain.ObjectNotFoundException;
 
-import javax.sql.DataSource;
 import java.sql.*;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -13,9 +12,8 @@ import java.util.Collection;
 @SuppressWarnings(/*Can't configure datasource for IntelliJ to recognize H2 Tables*/"SqlResolve")
 public class JdbcDogDao implements DogDao {
 
-    public JdbcDogDao(ConnectionHolder connections, DataSource dataSource) {
+    public JdbcDogDao(ConnectionHolder connections) {
         this.connections = connections;
-        this.dataSource = dataSource;
     }
 
     @Override public Collection<Dog> getAllDogs() {
@@ -71,17 +69,6 @@ public class JdbcDogDao implements DogDao {
         }
     }
 
-    @SuppressWarnings(/*Invoked by Spring as init method*/"unused")
-    void createTables() {
-        try (Connection connection = dataSource.getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate(CREATE_DOG_TABLE_DDL);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static Dog createDogFromCurrentRecord(ResultSet rs) throws SQLException {
         Dog dog = new Dog();
         dog.setId(rs.getString("ID"));
@@ -94,12 +81,4 @@ public class JdbcDogDao implements DogDao {
     }
 
     private final ConnectionHolder connections;
-    private final DataSource dataSource;
-    private static final String CREATE_DOG_TABLE_DDL = "create table DOG (\n" +
-            "  ID varchar(36) primary key,\n" +
-            "  NAME nvarchar(1000) not null,\n" +
-            "  BIRTH_TIME timestamp default sysdate,\n" +
-            "  HEIGHT double,\n" +
-            "  WEIGHT double\n" +
-            ");";
 }
