@@ -2,7 +2,10 @@
 <!--suppress AutowiredDependenciesInspection -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
        default-autowire="constructor">
 
     <bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate">
@@ -52,5 +55,22 @@
     </beans>
     <beans profile="jdbc-dao" default-autowire="constructor">
         <bean class="io.qala.javatraining.dao.JdbcDogDao"/>
+    </beans>
+    <beans profile="hibernate-dao" default-autowire="constructor">
+        <bean class="io.qala.javatraining.dao.HibernateDogDao"/>
+        <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="mappingDirectoryLocations" value="io.qala.javatraining.domain" />
+            <property name="hibernateProperties">
+                <props>
+                    <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto:validate}</prop>
+                </props>
+            </property>
+        </bean>
+
+        <tx:annotation-driven/>
+        <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
     </beans>
 </beans>

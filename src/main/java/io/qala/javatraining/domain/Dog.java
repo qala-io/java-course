@@ -39,7 +39,11 @@ public class Dog {
         dog.name = alphanumeric(1, 100);
         // Java8 Time API goes beyond of what DBs can hold so we explicitly generate the dates in the boundaries
         // that a DB can hold. Which looks like in boundaries of long type.
-        Instant randomInstant = Instant.ofEpochMilli(Long(Long.MIN_VALUE, System.currentTimeMillis()));
+        // Also 808 comes presumably from the bug somewhere around Timestamp, Date, Calendar.. For some reason
+        // dates near Long.MIN_VALUE underflow when we convert them to Timestamp. Starting from MIN + 808 they start
+        // to work fine. Looks like another instance of http://bugs.java.com/view_bug.do?bug_id=7000693 Will need to
+        // research at some point. Why don't they use randomized testing in Sun/Oracle..
+        Instant randomInstant = Instant.ofEpochMilli(Long(Long.MIN_VALUE + 808, System.currentTimeMillis()));
         dog.timeOfBirth = nullOr(OffsetDateTime.ofInstant(randomInstant, ZoneId.systemDefault()));
 
         dog.weight = positiveDouble();

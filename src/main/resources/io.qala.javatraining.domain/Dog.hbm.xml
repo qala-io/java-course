@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="io.qala.javatraining.domain.Dog" table="DOG">
+        <id name="id">
+            <generator class="assigned"/>
+        </id>
+        <property name="name" />
+        <property name="timeOfBirth" column="BIRTH_TIME" />
+        <property name="height" />
+        <property name="weight" />
+    </class>
+    <query name="getAllDogs">from Dog</query>
+</hibernate-mapping>

@@ -41,6 +41,10 @@
             <artifactId>spring-orm</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
@@ -119,6 +123,11 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
                 <!--Is used by Spring MVC to convert objects to/from JSON or XML-->
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
@@ -134,11 +143,6 @@
                 <artifactId>hibernate-core</artifactId>
                 <version>5.2.2.Final</version>
                 <exclusions>
-                    <exclusion>
-                        <!--We're not going to use Hibernate annotations in this project-->
-                        <groupId>org.hibernate.common</groupId>
-                        <artifactId>hibernate-commons-annotations</artifactId>
-                    </exclusion>
                     <exclusion>
                         <!--This dependency is provided by servlet container. And for tests we use Tomcat Embed  implementation-->
                         <groupId>javax.el</groupId>

@@ -6,8 +6,7 @@ import io.qala.javatraining.domain.ObjectNotFoundException;
 import java.sql.*;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 @SuppressWarnings(/*Can't configure datasource for IntelliJ to recognize H2 Tables*/"SqlResolve")
 public class JdbcDogDao implements DogDao {

@@ -1,12 +1,10 @@
 package io.qala.javatraining.dao;
 
-import io.qala.javatraining.JdbcDaoTest;
+import io.qala.javatraining.HibernateDaoTest;
 import io.qala.javatraining.domain.Dog;
 import io.qala.javatraining.domain.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 import java.time.Instant;
@@ -18,17 +16,14 @@ import static io.qala.datagen.RandomShortApi.unicode;
 import static io.qala.datagen.RandomValue.length;
 import static io.qala.datagen.StringModifier.Impls.suffix;
 import static io.qala.javatraining.TestUtils.assertReflectionEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
-@JdbcDaoTest @Test
-public class JdbcDogDaoTest extends AbstractTestNGSpringContextTests {
-    @BeforeMethod void beginTransaction() { connections.beginTransaction(); }
-    @AfterMethod void rollbackTransaction() { connections.rollback(); }
-
+@Test @HibernateDaoTest
+public class HibernateDogDaoTest extends AbstractTransactionalTestNGSpringContextTests {
     public void getsTheSameDogAsWasSaved() {
         Dog original = Dog.random();
         dao.createDog(original);
+        dao.flushAndClear();
         Dog fromDb = dao.getDog(original.getId());
         assertReflectionEquals(original, fromDb);
     }
@@ -36,6 +31,7 @@ public class JdbcDogDaoTest extends AbstractTestNGSpringContextTests {
     public void createdDogsAppearIn_listOfAllDogs() {
         Dog original = Dog.random();
         dao.createDog(original);
+        dao.flushAndClear();
         Collection<Dog> allDogs = dao.getAllDogs();
         assertTrue(allDogs.contains(original));
     }
@@ -44,19 +40,24 @@ public class JdbcDogDaoTest extends AbstractTestNGSpringContextTests {
     public void findingDogThrows_ifDogWasRemoved() {
         Dog original = Dog.random();
         dao.createDog(original);
+        dao.flushAndClear();
         dao.deleteDog(original.getId());
+        dao.flushAndClear();
         dao.getDog(original.getId());
     }
 
     public void deletingDogConfirms_ifDogIsRemoved() {
         Dog original = Dog.random();
         dao.createDog(original);
+        dao.flushAndClear();
         assertTrue(dao.deleteDog(original.getId()));
     }
     public void deletingDogConfirms_ifDogDidNotExist() {
         Dog original = Dog.random();
         dao.createDog(original);
+        dao.flushAndClear();
         dao.deleteDog(original.getId());
+        dao.flushAndClear();
         assertFalse(dao.deleteDog(original.getId()));
     }
 
@@ -68,6 +69,7 @@ public class JdbcDogDaoTest extends AbstractTestNGSpringContextTests {
                 .setName(unicode(100))
                 .setHeight(Double.MAX_VALUE).setWeight(Double.MAX_VALUE);
         dao.createDog(original);
+        dao.flushAndClear();
         Dog fromDb = dao.getDog(original.getId());
         assertReflectionEquals(original, fromDb);
     }
@@ -86,6 +88,5 @@ public class JdbcDogDaoTest extends AbstractTestNGSpringContextTests {
         dao.deleteDog(sqlInjection);//place #3
     }
 
-    @Autowired private DogDao dao;
-    @Autowired private JdbcConnectionHolder connections;
+    @Autowired private HibernateDogDao dao;
 }

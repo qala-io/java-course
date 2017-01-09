@@ -103,7 +103,10 @@ Homework - Practice
 - Read about ThreadLocal and now implement these using it
 - See emerging patterns? Looks like the code is cluttered with a lot of repeating code. How can we separate our logic 
 from the transaction management using a Proxy Pattern?
+- Make sure your DAO tests begin and rollback transactions. Otherwise your DAO are still working in autoCommit mode.
 - Add AOP to make transactions declarative
+- Use Spring Tx and Spring AOP to implement transactions
+- Read about Transaction Propagation
 - Implement DB migrations with Flyway
 - Add DB Pool
 
@@ -128,11 +131,6 @@ Homework - Practice
 
 # Step 5
 
-Homework
-
-* Read about ThreadLocal variables in Java
-* Read Spring AOP chapter
-* Read Spring Declarative Transactions - you should understand how ThreadLocals and AOP is used to implement transactions.
 
 Homework - Practice
 
