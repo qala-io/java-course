@@ -5,6 +5,8 @@ import io.qala.javatraining.domain.Dog;
 import io.qala.javatraining.domain.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Instant;
@@ -21,6 +23,9 @@ import static org.testng.Assert.assertTrue;
 
 @JdbcDaoTest @Test
 public class JdbcDogDaoTest extends AbstractTestNGSpringContextTests {
+    @BeforeMethod void beginTransaction() { connections.beginTransaction(); }
+    @AfterMethod void rollbackTransaction() { connections.rollback(); }
+
     public void getsTheSameDogAsWasSaved() {
         Dog original = Dog.random();
         dao.createDog(original);
@@ -81,4 +86,5 @@ public class JdbcDogDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Autowired private DogDao dao;
+    @Autowired private ConnectionHolder connections;
 }
