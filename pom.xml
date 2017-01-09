@@ -69,6 +69,10 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.qala.datagen</groupId>
             <artifactId>qala-datagen</artifactId>
         </dependency>
@@ -170,6 +174,11 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-core</artifactId>
                 <version>4.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mchange</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>0.9.5.2</version>
             </dependency>
             <dependency>
                 <!--Compile time since we put some randomization methods into production code.-->

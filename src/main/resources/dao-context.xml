@@ -11,13 +11,38 @@
         <property name="table" value="schema_version"/>
     </bean>
     <bean class="io.qala.javatraining.dao.JdbcConnectionHolder" depends-on="flyway"/>
-    <bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <!--Tests create multiple instances of JdbcDogDao which would have table created every time it's instantiated.
         Which would fail. So we want to separate each instance of DAO by creating different DB every time it's created.-->
-        <property name="url" value="jdbc:h2:mem:#{T(io.qala.datagen.RandomShortApi).alphanumeric(10)};DB_CLOSE_DELAY=-1"/>
+        <property name="jdbcUrl" value="jdbc:h2:mem:#{T(io.qala.datagen.RandomShortApi).alphanumeric(10)};DB_CLOSE_DELAY=-1"/>
         <property name="user" value="sa"/>
         <property name="password" value=""/>
+        <!--Should be close to the size of the web server thread pool in order not to let threads wait for connections-->
+        <property name="maxPoolSize" value="10"/>
+        <!--We don't expect our DB not to create connections for 1st N of attempts. It has to create the connection right away-->
+        <property name="acquireRetryAttempts" value="1"/>
+        <!--Every hour we'll be hitting DB to make sure a real connection is still alive. Connections can die due
+         to many reasons:
+         - DB can kill it because of inactivity (by default if connection is idle for 8 hrs, MySQL kills it)
+         - DB Server was down for some time and it doesn't know anymore about our client connections
+         - Firewall between our app and the DB server decided that it should drop/reject packages going forward because
+         of inactivity or because of misconfiguration
+
+         When we work with in-memory DBs this is probably not important, but usually we work with remote DBs and this
+         is a demonstration of DB Pools in action.
+         -->
+        <property name="idleConnectionTestPeriod" value="3600"/>
+        <!--This is required because if all the connections are taken and threads are waiting, they might be blocked
+        forever. But if we specify this timeout, an exception will be raised in case of threads being blocked for too
+        long. This allows the app not to eat all the threads rendering it not working.
+        Note, that we can't make this value too low either (e.g. 100ms) because if DB Pool actually needs to go to DB
+        to create connections it may take longer than that.-->
+        <property name="checkoutTimeout" value="10000"/>
+        <!-- This also checks the connections when they are returned to the Pool in case they are actually broken.
+        In contrast to testing the connection on checkout this will not block the request-processing thread.-->
+        <property name="testConnectionOnCheckin" value="true"/>
     </bean>
+
     <!--Spring Profiles are very (very!) bad since they create a condition in the app startup process and make it work
     differently on different environments. They should be used only when you really want to make the app work
     in different modes. That's exactly our case since one implementation uses DB and the other - In Memory data.
