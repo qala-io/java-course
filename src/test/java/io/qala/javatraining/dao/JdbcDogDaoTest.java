@@ -86,5 +86,5 @@ public class JdbcDogDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Autowired private DogDao dao;
-    @Autowired private ConnectionHolder connections;
+    @Autowired private JdbcConnectionHolder connections;
 }

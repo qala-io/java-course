@@ -12,7 +12,7 @@ import java.util.Collection;
 @SuppressWarnings(/*Can't configure datasource for IntelliJ to recognize H2 Tables*/"SqlResolve")
 public class JdbcDogDao implements DogDao {
 
-    public JdbcDogDao(ConnectionHolder connections) {
+    public JdbcDogDao(JdbcConnectionHolder connections) {
         this.connections = connections;
     }
 
@@ -80,5 +80,5 @@ public class JdbcDogDao implements DogDao {
         return dog;
     }
 
-    private final ConnectionHolder connections;
+    private final JdbcConnectionHolder connections;
 }

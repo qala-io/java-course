@@ -10,7 +10,7 @@
         <property name="locations" value="migrations"/>
         <property name="table" value="schema_version"/>
     </bean>
-    <bean class="io.qala.javatraining.dao.ConnectionHolder" depends-on="flyway"/>
+    <bean class="io.qala.javatraining.dao.JdbcConnectionHolder" depends-on="flyway"/>
     <bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
         <!--Tests create multiple instances of JdbcDogDao which would have table created every time it's instantiated.
         Which would fail. So we want to separate each instance of DAO by creating different DB every time it's created.-->

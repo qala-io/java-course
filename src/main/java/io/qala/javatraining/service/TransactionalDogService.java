@@ -1,12 +1,12 @@
 package io.qala.javatraining.service;
 
-import io.qala.javatraining.dao.ConnectionHolder;
+import io.qala.javatraining.dao.JdbcConnectionHolder;
 import io.qala.javatraining.domain.Dog;
 
 import java.util.Collection;
 
 public class TransactionalDogService implements DogService {
-    public TransactionalDogService(ConnectionHolder connections, DogService toWrapWithTransactions) {
+    public TransactionalDogService(JdbcConnectionHolder connections, DogService toWrapWithTransactions) {
         this.connections = connections;
         this.toWrapWithTransactions = toWrapWithTransactions;
     }
@@ -59,6 +59,6 @@ public class TransactionalDogService implements DogService {
         return result;
     }
 
-    private final ConnectionHolder connections;
+    private final JdbcConnectionHolder connections;
     private final DogService toWrapWithTransactions;
 }

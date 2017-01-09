@@ -5,8 +5,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @SuppressWarnings(/*This class has public methods but they are used only in current package as for now*/"WeakerAccess")
-public class ConnectionHolder {
-    public ConnectionHolder(DataSource dataSource) {
+public class JdbcConnectionHolder {
+    public JdbcConnectionHolder(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
