@@ -37,7 +37,8 @@ It should take 1-3 months - all is up to you.
 
 There will be times when you're less interested in a specific topic - feel free to skip it and return later.
 
-# Misc
+# [Course Programme](docs/programme.md)
 
-* [App Requirements](docs/reqs.md)
-* [Course Programme](docs/programme.md)
+# Contact Info
+
+Should you have questions or suggestions please [file them here](https://github.com/qala-io/qala-java-course/issues/new).
