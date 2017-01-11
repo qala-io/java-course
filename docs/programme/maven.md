@@ -57,5 +57,32 @@ Effective POM?
 *Pro*: Note that `maven-compiler-plugin` is declared with `default-compile` execution for `packaging=war`. You inherit
 it, but can you cancel it in your POM? Hint: you can, but find out how.
 
-# Step 3 - Advanced Dependencies
+# Step 3 - Inheritance and Aggregation
 
+* Create 3 modules - 1 is parent and the other 2 are included as `<modules>`. Child1 needs to have Child2 as a 
+dependency.
+* Read about aggregator in Maven
+* Play with `<parent>` tag - what difference does it make?
+* Find a way to override dependencies and plugins in child modules
+* Research mvn flags like `-pl`, `-am`, `-amd`
+
+*Check yourself*. You must be able to:
+
+* Explain the difference between Inheritance and Aggregation in Maven.
+* Invoke phases and plugins against one child but not the other
+* Explain what does "aggregator" term mean in Maven 
+
+# Step 4 - Advanced Dependencies
+
+* Find out which scopes can dependency have
+* Read about `dependencyManagement`
+* Get acquainted with classifiers and types - last parts of dependency coordinates
+* Find your local maven repository, learn which phase and plugin delivers the artifacts there
+* Read about maven repositories and what plugin and phase deploy artifacts there
+* Try to deploying artifacts of the projects to the local maven repo on file system (not install, but deploy)
+
+*Check yourself*. You must be able to:
+
+* Override a version of transitive dependency
+* Install and deploy multiple artifacts built from *single* maven module
+* Create 

@@ -35,8 +35,6 @@ fits you:
 It should take 1-3 months - all is up to you.
 * Advanced - for most topics there will be references to the books. You'll read them to fully grasp the topic.
 
-There will be times when you're less interested in a specific topic - feel free to skip it and return later.
-
 # [Course Programme](docs/programme.md)
 
 # Contact Info
