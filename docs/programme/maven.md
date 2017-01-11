@@ -85,4 +85,21 @@ dependency.
 
 * Override a version of transitive dependency
 * Install and deploy multiple artifacts built from *single* maven module
-* Create 
+
+# Step 5 - Debugging
+
+* Create a unit test with `assertTrue(true)` statement. Put a breakpoint on this line. Find a way to debug the tests
+that are run by `maven-surefire-plugin` (hint: look for info about forks in Surefire).
+* Download the source code of any of the Maven plugins that you see in Effective POM. Use `mvnDebug` utility to debug 
+that plugin.
+
+*Tip*: How does Remote Debugging work? This is a client-server interaction where server (JVM that's debugged) 
+communicates with the client (IDE) sending the information like current line of code executed in every thread, 
+variables, etc. Client (IDE) can ask the server to stop the execution of the program and receive some alternatives
+commands. Note, that if the binary that you debug is built not from the code that you look at - the lines of code won't
+match and the IDE won't stop at the places where you would expect but will stop at lines with JavaDocs for instance. 
+So make sure your binary was built from the sources at hand. 
+
+*Tip*: Often if we don't understand how things work instead of googling and guessing it's much (much!) easier to read 
+the source code of the tool. Often the code is not simple and debugging is a real life saver. Have it as a habit to work
+with the sources of the tools instead of googling - you'll have a much better grip on the technologies.
