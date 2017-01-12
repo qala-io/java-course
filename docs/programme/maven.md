@@ -41,16 +41,17 @@ shortcuts, you'll need this often.
 
 # Step 2 - lifecycles, phases, plugins
 
-* Explore file [maven-compose.xml] - this file contains the defaults that any project would have
 * Read and learn what is a lifecycle and which lifecycles Maven has. Explore which phases each of the lifecycle has.
 * Learn what Plugins are and what is a `goal`
 * Declare `maven-surefire-plugin` and bind its `test` goal to a `test` phase
-* Ensure that what you see in `maven-compose.xml` is what's listed in your Effective POM
+* Explore file [default-bindings.xml](https://git-wip-us.apache.org/repos/asf?p=maven.git;a=blob;f=maven-core/src/main/resources/META-INF/plexus/default-bindings.xml) 
+- this file contains the default plugins 
+* Ensure that what you see in `default-bindings.xml` is what's listed in your Effective POM
 
 *Check yourself*. You must be able to:
 
 * Find a connection between packaging and the default plugins that are declared for it
-* Find packaging and its configuration in `maven-compose.xml`
+* Find packaging and its configuration in `default-bindings.xml`
 * Inspect in console which plugins and executions are run during `mvn install`. Does this match to what you see in 
 Effective POM?
 
