@@ -1,9 +1,10 @@
 Java Professionals Course
 -----------------
 
-Unfortunately many Java engineers don't really get programming even after several years of experience. 
-This course intends to open eyes on what software engineering actually is and how to write high quality
-software. It's for you if:
+Welcome to a self paced course for Java Engineers. It's created for engineers who already have some experience but
+don't understand how the code that they copy-paste works. We'll learn how to build a balanced Test Pyramid to ensure 
+quick and effective testing, how to troubleshoot different sorts of problems, how to efficiently build apps, etc.
+It's for you if:
  
 - You've written at least 1 app with HTTP and DB (even if it's a pet project)
 - You use HTTP but you don't know what verbs are idempotent
