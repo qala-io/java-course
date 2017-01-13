@@ -2,11 +2,6 @@
 
 On the first meeting we cover all the technologies - their purpose and general overview.
 
-Homework - Maven:
-
-* Read about dependencies, transitive dependencies
-* Read about Super POM, Effective POM
-* Should be able to run diagnostics (mvn dependency:tree, mvn help:effective-pom)
 * Build war file with Maven
 
 Homework - Web:
