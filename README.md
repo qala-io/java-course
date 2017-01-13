@@ -1,17 +1,14 @@
 Java Professionals Course
 -----------------
 
-Welcome to a self paced course for Java Engineers. It's created for engineers who already have some experience but
-don't understand how the code that they copy-paste works. We'll learn how to build a balanced Test Pyramid to ensure 
-quick and effective testing, how to troubleshoot different sorts of problems, how to efficiently build apps, etc.
-It's for you if:
+Welcome to a self paced course for Java Engineers. It's created for developers who already have some experience but
+don't understand how the code that they copy-paste works. It's for you if:
  
-- You've written at least 1 app with HTTP and DB (even if it's a pet project)
-- You use HTTP but you don't know what verbs are idempotent
-- You don't know what thread pools are and how to configure them
-- You use declarative transactions but don't know what AOP is
-- You work with DB but don't know what connection testing is
-- You still write tests that use mocking frameworks
+- You've written at least 1 app with HTTP and DB
+- You don't know which HTTP verbs are idempotent
+- Configuration of your Thread/DB Pool is based on a guess 
+- For you `@Transactional` is magic that hopefully works
+- Most of your tests use mocking frameworks
 
 # What you should expect
 
@@ -25,7 +22,7 @@ Throughout the course we'll implement a tiny REST app using:
 * HibernateValidator
 * Spring IoC
 * Tomcat, Spring MVC, Jackson2
-* Testing: TestNG, Unitils, Qala Datagen, MockMvc, RestAssured
+* TestNG, Unitils, Qala Datagen, MockMvc, RestAssured
 
 # How much efforts will it take
 
