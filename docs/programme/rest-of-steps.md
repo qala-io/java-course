@@ -1,22 +1,5 @@
 # Step 1
 
-On the first meeting we cover all the technologies - their purpose and general overview.
-
-* Build war file with Maven
-
-Homework - Web:
-
-* Purpose of web.xml, Spring MVC
-* Deploy a WAR file on Tomcat
-* Add Hello World servlet that accepts name from parameters and prints it on the screen
-
-# Step 2
-
-Homework - Maven
-
-* Read about Maven Lifecycles, Phases, Plugins
-* Read about dependency scopes
-
 Homework - Spring IoC:
 
 * Read Spring Reference docs on Container Overview.
