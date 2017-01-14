@@ -34,3 +34,32 @@ method - in this case this method is located inside App Server. There are 3 kind
 Application Servers support some of the features of the HTTP Servers like routing, SSL certificates, handling static 
 resources but in practice we mostly rely on the HTTP Servers for that as it's their niche. They are more flexible and 
 performant for this kind of job.
+
+# Step 1 - Servlets API core
+
+* Learn what a Servlet is and write a Hello World example
+* Learn what `web.xml` is and declare your servlet there
+* Read about `Filter` and create 2 (not one!) simple filters yourself. They should write something to console before 
+the request is coming and after Servlet responds.
+* Read about `Listener` and create one yourself
+
+# Step 2 - Thread Pools
+
+* Read what BlockingQueue is, try out some examples
+* Read about [States of Threads](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.State.html)
+* Read about ThreadPools, Executors. Try to write some sample tasks and submit them to the pool for execution.
+* Dig into Thread Pools source code and find out how they work internally.
+
+# Step 3 - Application Servers
+
+* Find out how to configure a Thread Pool for Tomcat
+* Read about how this pool is used by App Servers
+* Read about `acceptCount` configuration in Tomcat's [Http Connectors](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)
+* Think about what value we should set for thread pool's options: max size and accept count?
+
+# Step 4 - App Server Memory Leaks
+
+* Read about the difference between daemon and non-daemon threads
+* Read about how threads spawn by your code can lead to memory leads in App Servers
+* Read about how ClassLoaders work and their hierarchy in Java apps
+* Read about ClassLoader Memory Leaks in App Servers

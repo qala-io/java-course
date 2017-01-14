@@ -11,7 +11,7 @@ There will be times when you're less interested in a specific topic - feel free 
 parts are connected so it's better to move more or less stepwise.
 
 * [Part I: Maven](./programme/maven.md)
-* Servlets and Thread Pools
+* [Part II: Web and Application Servers](./programme/web-apps.md)
 * Spring & REST
 * JDBC
 * DB Pools
