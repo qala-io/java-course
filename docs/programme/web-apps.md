@@ -60,7 +60,8 @@ aspects by heart and then forgetting and then re-learning them again.
 * Find out how to configure a Thread Pool for Tomcat
 * Read about how this pool is used by App Servers
 * Read about `acceptCount` configuration in Tomcat's [Http Connectors](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)
-* Think about what value we should set for thread pool's options: max size and accept count?
+* Think & research: what types of the applications we write in regards to CPU and IO load.
+* Think & research: what value we should set for thread pool's options: max size and accept count?
 
 # Step 4 - Memory Leaks
 
