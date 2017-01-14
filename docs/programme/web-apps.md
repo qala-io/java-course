@@ -50,6 +50,11 @@ the request is coming and after Servlet responds.
 * Read about ThreadPools, Executors. Try to write some sample tasks and submit them to the pool for execution.
 * Dig into Thread Pools source code and find out how they work internally.
 
+*Tip*: concurrency is a very complicated topic. Problem is - people often learn it as users not as engineers. To really 
+grasp the topic you would need to dive much deeper - to the architecture of modern CPUs and Operating Systems. If you
+dig into these topics you would find yourself truly understanding multi-threading instead of just learning its
+aspects by heart and then forgetting and then re-learning them again. 
+
 # Step 3 - Application Servers
 
 * Find out how to configure a Thread Pool for Tomcat
@@ -63,3 +68,14 @@ the request is coming and after Servlet responds.
 * Read about how threads spawn by your code can lead to memory leads in App Servers
 * Read about how ClassLoaders work and their hierarchy in Java apps
 * Read about ClassLoader Memory Leaks in App Servers
+
+# Literature
+
+[Head First Servlets & JSP](http://shop.oreilly.com/product/9780596516680.do) - is a pretty old book but it's still 
+actual. That's the beauty of basic technologies and specifications - even if time passes they don't change a lot. Since
+that book is written couple of major versions of Servlets API were released but they don't obsolete the information in 
+the book. In the end a framework called Struts is going to be demoed - that one was outranked by Spring MVC which we're 
+going to use down the road.
+
+[Java Concurrency in Practice](http://amzn.to/1jyE5Kx) - one of the most fundamental books on concurrency in Java. 
+One of the "must read" for Java developers.
