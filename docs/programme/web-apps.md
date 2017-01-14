@@ -10,7 +10,7 @@ Almost any web application would have at least these components:
 |______|     |_____________|      |____________________|     |____|
 ```
 
-* HTTP Server a.k.a. httpd a.k.a. Web Server (Nginx, Apache HTTPD) is the 1st software that would receive requests 
+* **HTTP Server** a.k.a. httpd a.k.a. Web Server (Nginx, Apache HTTPD) is the 1st software that would receive requests 
 from users. HTTP Server would look at the user request and can do things like:
    * Route the requests to the right app (multiple application can be hosted at the same machine - someone needs to 
    decide which request goes where)
@@ -22,7 +22,7 @@ from users. HTTP Server would look at the user request and can do things like:
    * Configure SSL certificates to support HTTPS
    * Load balancing. If we run multiple instances of the same app on different machines (for horizontal scaling or 
    failover) we may use HTTP Server to choose to which instance this or that request should go. 
-* Application Server is a Java software that initializes and runs your web app. Any Java program has to have `main()` 
+* **Application Server** is a Java software that initializes and runs your web app. Any Java program has to have `main()` 
 method - in this case this method is located inside App Server. There are 3 kinds of them:
    * J2EE compatible (GlassFish, WildFly, WebLogic, WebSphere). They implement the full J2EE stack including 
    Servlets API, EJB, Distributed Transactions, JMS, etc.
@@ -57,7 +57,7 @@ the request is coming and after Servlet responds.
 * Read about `acceptCount` configuration in Tomcat's [Http Connectors](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)
 * Think about what value we should set for thread pool's options: max size and accept count?
 
-# Step 4 - App Server Memory Leaks
+# Step 4 - Memory Leaks
 
 * Read about the difference between daemon and non-daemon threads
 * Read about how threads spawn by your code can lead to memory leads in App Servers
