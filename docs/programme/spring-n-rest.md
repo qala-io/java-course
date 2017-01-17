@@ -46,3 +46,46 @@ implements this spec and recognizes CDI annotations.
 
 # REST
 
+REST is an architecture based on several simple principles:
+
+* Application provides resources - client can invoke simple operations on them like creating, getting, deleting, 
+updating.
+* It leverages HTTP methods (strictly saying it can be based on other protocols, but I haven't seen it in the wild) to
+trigger those operations
+* It tries to be as stateless as possible
+* It uses hypermedia to guide clients to the API instead of making clients guess
+
+There are 2 kinds of frameworks in Java for REST - JAX-RS spec implementations (Jersey, RestEasy) and others (Spring MVC). 
+Due to its popularity and integration with Spring IoC we will use Spring MVC framework for the course.
+ 
+# Step 1 - HTTP
+
+* Learn the most widespread HTTP methods: GET, POST, PUT, DELETE, PATCH, HEAD.
+* Learn what's the Mime Type
+* Read about `Content-Type` and `Accept` headers
+* Get a general idea of 2xx, 3xx, 4xx and 5xx response codes (we'll dive deeper into them later)
+
+# Step 2 - REST Basics
+
+* Learn what a Resource is and how it's identified
+* Use a pen and paper to draft URIs and methods for creating, fetching single, listing many, deleting and updating dogs.
+* Take a closer look at PUT and POST - what's the difference between them? How would you apply that difference for the
+Dogs API?
+* Take a closer look at PUT and PATCH - what's the difference between them? How would you apply that difference for the
+Dogs API?
+
+*Tip*: make sure you know by heart which of the popular HTTP methods are idempotent. Usually when you don't know which 
+method to choose for operations - idempotency solves it for you. 
+
+# Step 3 - Spring IoC
+
+
+
+# Step 4 - Spring MVC
+
+* Learn what Front Controller design pattern is
+
+# Literature
+
+[REST in Practice](http://shop.oreilly.com/product/9780596805838.do) - a great book that shows how to build a high 
+quality REST API with caching, events, hypermedia, black jack, hookers.
