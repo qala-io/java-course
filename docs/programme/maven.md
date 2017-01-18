@@ -61,7 +61,7 @@ it, but can you cancel it in your POM? Hint: you can, but find out how.
 
 * Create 3 modules - 1 is parent and the other 2 are included as `<modules>`. Child1 needs to have Child2 as a 
 dependency.
-* Read about aggregator in Maven
+* Read about reactor in Maven
 * Play with `<parent>` tag - what difference does it make?
 * Find a way to override dependencies and plugins in child modules
 * Research mvn flags like `-pl`, `-am`, `-amd`
@@ -70,7 +70,7 @@ dependency.
 
 * Explain the difference between Inheritance and Aggregation in Maven.
 * Invoke phases and plugins against one child but not the other
-* Explain what does "aggregator" term mean in Maven 
+* Explain what does "reactor" term mean in Maven 
 
 # Step 4 - Advanced Dependencies
 
