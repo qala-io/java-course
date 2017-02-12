@@ -69,9 +69,9 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
 
 * Learn what a Resource is and how it's identified
 * Use a pen and paper to draft URIs and methods for creating, fetching single, listing many, deleting and updating dogs.
-* Take a closer look at PUT and POST - what's the difference between them? How would you apply that difference for the
+* Take a closer look at PUT and POST - what's the difference between them? How would you apply that difference to the
 Dogs API?
-* Take a closer look at PUT and PATCH - what's the difference between them? How would you apply that difference for the
+* Take a closer look at PUT and PATCH - what's the difference between them? How would you apply that difference to the
 Dogs API?
 
 *Tip*: make sure you know by heart which of the popular HTTP methods are idempotent. Usually when you don't know which 
@@ -79,11 +79,30 @@ method to choose for operations - idempotency solves it for you.
 
 # Step 3 - Spring IoC
 
-
+- Learn different bean scopes (singleton, prototype, thread, request, session)
+- Try to create Spring Contexts via XML and Java configuration
+- Learn what autowired is and how it's defined in XML and Java configurations
+- Read about package-scan and annotation-marked beans
+- Try creating multiple contexts and importing one in another
+- Learn about profiles. Research and think about why this is typically a bad practice to use them. Compare them to 
+importing contexts.
 
 # Step 4 - Spring MVC
 
 * Learn what Front Controller design pattern is
+* Learn what `org.springframework.web.servlet.DispatcherServlet` is and how it's defined in web.xml
+* Make sure you understand the difference between `DispatcherServlet` and 
+`org.springframework.web.context.ContextLoaderListener`
+* Learn the difference between `@RestController` and `@Controller`
+* Define `DispatcherServlet`, create a class that's going to be your `@RestController`, create an XML Spring context 
+with a bean of that class
+
+# Step 5 - Advanced REST
+
+- Read about cache and the respective headers
+- Read about Publish-Subscribe notifications
+- Read about Atom Syndicate Protocol and how it solves Pub-Sub architecture for REST
+- Learn what HATEOAS is and think of how this can be used in your app
 
 # Literature
 
