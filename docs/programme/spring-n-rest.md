@@ -94,10 +94,25 @@ importing contexts.
 * Make sure you understand the difference between `DispatcherServlet` and 
 `org.springframework.web.context.ContextLoaderListener`
 * Learn the difference between `@RestController` and `@Controller`
+
+# Step 5 - Create REST app 
+
 * Define `DispatcherServlet`, create a class that's going to be your `@RestController`, create an XML Spring context 
 with a bean of that class
+* Create methods for creating, getting, updating, deleting dogs. All the messages must be in JSON.
+* Write TestNG + RestAssured tests that cover all straight forward and corner cases
 
-# Step 5 - Advanced REST
+# Step 6 - Validation
+
+* Read about Bean Validation and HibernateValidator
+* Add validation rules to your classes, make sure your API returns correct error codes (see previous steps)
+* Write unit tests to check that validation rules are set up correctly
+* Write RestAssured tests to check that validation rules are getting invoked
+* Write MockMvc tests - these should duplicate your RestAssured tests
+* Think about the difference between RestAssured and MockMvc - which tests should test what. Can we eliminate the 
+duplication?
+
+# Step 7 - Advanced REST
 
 - Read about cache and the respective headers
 - Read about Publish-Subscribe notifications
