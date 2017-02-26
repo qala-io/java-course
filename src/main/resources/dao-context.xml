@@ -18,6 +18,16 @@
         <!--Tests create multiple instances of JdbcDogDao which would have table created every time it's instantiated.
         Which would fail. So we want to separate each instance of DAO by creating different DB every time it's created.-->
         <property name="jdbcUrl" value="jdbc:h2:mem:#{T(io.qala.datagen.RandomShortApi).alphanumeric(10)};DB_CLOSE_DELAY=-1"/>
+        <!--Starting from Java6 and introduction of JDBC4 driver it's not necessary anymore to load the JDBC Drivers
+        manually - they will be detected via SPI (service provider interface) which is going to scan classpath, find
+        all the files `META-INF/services/java.sql.Driver` and then ask each driver if the URL matches its expectations.
+        The one that says "yes" is used to connect to DB. More info: http://www.onjava.com/2006/08/02/jjdbc-4-enhancements-in-java-se-6.html
+        But this mechanism is broken for App Servers since the scanning happens only once - and that probably is done
+        when the App Server itself is started - not when the app is deployed. This is an issue if the driver is located
+        within the WAR file itself (not if it's in TOMCAT/lib). More info:
+        http://tomcat.apache.org/tomcat-8.0-doc/jndi-datasource-examples-howto.html#DriverManager,_the_service_provider_mechanism_and_memory_leaks
+        -->
+        <property name="driverClass" value="org.h2.Driver"/>
         <property name="user" value="sa"/>
         <property name="password" value=""/>
         <!--Should be close to the size of the web server thread pool in order not to let threads wait for connections-->
@@ -60,7 +70,7 @@
         <bean class="io.qala.javatraining.dao.HibernateDogDao"/>
         <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
             <property name="dataSource" ref="dataSource"/>
-            <property name="mappingDirectoryLocations" value="io.qala.javatraining.domain" />
+            <property name="mappingLocations" value="classpath*:/io/qala/javatraining/domain/*.hbm.xml"/>
             <property name="hibernateProperties">
                 <props>
                     <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto:validate}</prop>
@@ -69,7 +79,7 @@
         </bean>
 
         <tx:annotation-driven/>
-        <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
             <property name="sessionFactory" ref="sessionFactory"/>
         </bean>
     </beans>

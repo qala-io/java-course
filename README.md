@@ -4,11 +4,11 @@ Java Professionals Course
 Welcome to a self paced course for Java Engineers. It's created for developers who already have some experience but
 don't understand how the code that they copy-paste works. It's for you if:
  
-- You've written at least 1 app with HTTP and DB
-- You don't know which HTTP verbs are idempotent
-- Configuration of your Thread/DB Pool is based on a guess 
-- For you `@Transactional` is magic that hopefully works
-- Most of your tests use mocking frameworks
+* You've written at least 1 app with HTTP and DB
+* You don't know which HTTP verbs are idempotent
+* Configuration of your Thread/DB Pool is based on a guess 
+* For you `@Transactional` is magic that hopefully works
+* Most of your tests use mocking frameworks
 
 # What you should expect
 
