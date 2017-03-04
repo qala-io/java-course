@@ -13,7 +13,7 @@ don't understand how the code that they copy-paste works. It's for you if:
 # What you should expect
 
 There are so many libraries and frameworks around that it's impossible to learn them all. Fortunately you don't need to.
-We'll be learning basic principles that you can reuse no matter what implementation you choose.
+We'll be learning fundamental principles that you can reuse no matter what implementation you choose.
 
 Throughout the course we'll implement a tiny REST app using:
 
