@@ -26,10 +26,6 @@ Homework - Testing
 
 Homework - Practice
 
-* Add a unique integer identifier to Dog
-* Create DAO layer and move all static collections into that layer. Inject DAO objects into services with Spring IoC.
-* Implement a unit test for DAO layer - it checks static collections against expected result
-* Implement Component REST tests by using Spring’s MockMVC
 * Ensure the test names follow BDD
 
 # Step - JDBC
@@ -45,10 +41,6 @@ from the transaction management using a Proxy Pattern?
 - Add DB Pool
 
 # Step 4
-
-Homework - Maven
-
-* Read and start using dependencyManagement
 
 Homework - Hibernate
 

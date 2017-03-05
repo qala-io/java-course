@@ -129,7 +129,7 @@ locking.
 - Start, commit and rollback transactions where needed in your DAO methods. In our small dog app proper transaction
 management is not as crucial because every operation is atomic already. But we pretend as if we were working
 with lots of SQL statements in every method.
-- Make sure you utilize `finally` to close the connections and rollback transactions
+- Make sure you utilize `try-catch-finally` to close the connections and rollback transactions
 
 Now the transaction management looks pretty cumbersome - this is called Programmatic Transaction Management.
 We'll return back to this problem and introduce Declarative Transaction Management to simplify the code.
