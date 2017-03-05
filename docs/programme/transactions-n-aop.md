@@ -1,5 +1,5 @@
 Transactions & AOP
------------------
+------------------
 
 By now your transaction management looks pretty cumbersome, should be something like this:
 
@@ -61,4 +61,22 @@ in the Controller from now on.
 See how simple the service became now? This helps a lot since services often have a lot of logic - cluttering it with
 try-catch-finally won't help with readability.
 
-# Step 3 - DynamicProxy
+# Step 3 - JDK Dynamic Proxy
+
+While we separated our business-related logic of service from transaction-related logic there is still a lot of 
+repeating code in `TransactionalDogService` that would be nice to get rid of. But it gets worse when you have many
+services that need to be wrapped with transactions. So the amount of duplication is going to increase with time.
+
+- Read about JDK Dynamic `Proxy` and try some of code for fun before continuing.
+- Implement a `TransactionalProxy` class that has the repeating logic from the `TransactionalDogService`. Wrap
+`DogService` with this proxy.
+- Now make sure that this proxy gets initialized and is injected into Controller and your test instead of previous 
+(static) proxy. Feel free to remove it.
+
+# Step 4 - Class Proxy with CGLIB
+
+JDK Proxy is good but it works only when your classes have interfaces. What if they're not?
+
+- Research how to create dynamic proxies with CGLIB
+- Add CGLIB to your classpath and create a new `CglibTransactionalDogService`. Try removing your interface and use 
+the new proxy for transaction management.
