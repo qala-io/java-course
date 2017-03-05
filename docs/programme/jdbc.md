@@ -23,8 +23,53 @@ of databases - NoSQL DBs. These include:
 - Graph-oriented DBs that can store relations between lots of interconnected objects. 
 - ... 
 
-For several years (somewhere around 2010-2015) there was a lot of hubbub around NoSQL storage but eventually it all 
+For several years (somewhere around 2012-2015) there was a lot of hubbub around NoSQL storage but eventually it all 
 calmed down. Today most companies utilize both traditional RDBMS and NoSQL. So JDBC continues to play a major role in 
 most of the modern apps.
 
 # Step 1
+
+- Read about DAO (Data Access Object) concept. Create a DAO called InMemoryDao.
+- Add same static collections defined in your Controllers layer to DAO and create all necessary CRUD (create, 
+read, update, delete) methods there
+- Use Spring IoC to inject DAO into Controller
+- Change the Controller to use DAO instead of its own internal collection and remove the old collection. Make sure that
+no tests are failing.
+
+*Tip*: You've probably heard a term "Design Pattern" - this is a broad technique/approach to implement some particular
+behaviour. Each of these techniques has to have a name. It simplifies and standardizes the communication as we don't 
+need to explain the concept over and over again - we just tell our colleagues "Hey, let's create a DAO for this" and 
+they already know what we're talking about. DAO is one of the examples. The problem is - there are many classifications 
+and author of Design Patterns:
+- Gang of Four (GoF) Design Patterns - are classical patterns that are known and used in every programming environment
+be it Java, .Net or Python. Examples: MVC, Singleton, Listener, Proxy.
+- Fowler's Enterprise Application Patterns (EAP) - these include more of architecture-level patterns. Examples are: 
+Transaction Script, Value Object, Repository.
+- Java EE Patterns - a set of design patterns Sun Microsystems came up with when they owned Java. Include terms 
+like DAO, Value Object, DTO.
+- Domain Driven Design (DDD) Patterns - came from the book "Domain Driven Design" written by Eric Evans. These include
+Service, Repository, etc.
+- Enterprise Integration Patterns (EIP) - those include techniques of building software that communicates with other
+applications via MOMs (Messaging Oriented Middleware that leverages async communication). These are not relevant to
+the current course as we use synchronous RESTful API.
+- ...
+
+Note, that some of the names (Value Object, Repository) are repeated in different classifications. Authors made their
+best to come up with the terms that make sense. Unfortunately for different people terms still meant different
+things. So while the names are the same they most often mean different things. The DAO class that we just implemented
+can also bear names like DAL (Data Access Layer) and DDD's Repository.
+
+*Tip*: Note how we changed our implementation step-by-step - first creating an alternative implementation and then
+migrating the code to that implementation. This is how proper refactoring works. During refactoring there should be no
+point in time when application doesn't work. E.g. instead of _moving_ the collection from the Controller to DAO we first
+copied it and then slowly migrated to DAO. This kind of proper refactoring is described in Fowler's 
+[Refactoring](https://martinfowler.com/books/refactoring.html) book. These are complicated techniques as they often
+require extra small steps which programmers don't like to do. But this is how professionals work - it's very (!)
+important to ensure that the app always works and that you can interrupt your refactoring in favour of high priority
+tasks without breaking anything.
+
+*Tip*: Note how tests ensure that we refactor without breaking anything. Having a solid set of tests gives us courage
+to do refactoring - without them it's very dangerous. This is partially how Test Driven Development (TDD) works - 
+you implement a quick dirty code which is well tested, and then you improve it. Tests make sure you don't break it
+while improving. To dig deeper read [Test Driven Development](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
+by Kent Beck.
