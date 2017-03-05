@@ -1,32 +1,7 @@
 # Step 1
 
-Homework - Spring IoC:
-
-* Read Spring Reference docs on Container Overview.
-* Homework - Practice:
-* Spring MVC GET, DELETE, POST, PUT /dogs
-* Create a static collection of dogs that is shown in JSON format when we access /dog URL
-* Create a TestNG + RestAssured tests that accesses those endpoints, parses JSON and compares expected to the actual
 * Set up Jenkins and configure job that kicks off the tests
-
-# Step 3
-
-Homework - Maven
-
-* Repeat Super/Effective POM
-* Lifecycles, Phases, Plugins
-* Dependencies and their scopes, transitive dependencies, etc.
-
-Homework - Testing
-
 * Read about TDD, BDD
-* Read Spring Reference docs on 
-[Bean Overview](http://docs.spring.io/spring/docs/4.3.0.BUILD-SNAPSHOT/spring-framework-reference/htmlsingle/#beans-definition), 
-[Dependency Injection](http://docs.spring.io/spring/docs/4.3.0.BUILD-SNAPSHOT/spring-framework-reference/htmlsingle/#beans-dependencies).
-
-Homework - Practice
-
-* Ensure the test names follow BDD
 
 # Step - JDBC
 
