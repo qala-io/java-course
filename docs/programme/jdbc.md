@@ -27,9 +27,9 @@ For several years (somewhere around 2012-2015) there was a lot of hubbub around 
 calmed down. Today most companies utilize both traditional RDBMS and NoSQL. So JDBC continues to play a major role in 
 most of the modern apps.
 
-# Step 1
+# Step 1 - Preparations before working with DB
 
-- Read about DAO (Data Access Object) concept. Create a DAO called InMemoryDao.
+- Read about DAO (Data Access Object) concept. Create a DAO called InMemoryDogDao.
 - Add same static collections defined in your Controllers layer to DAO and create all necessary CRUD (create, 
 read, update, delete) methods there
 - Use Spring IoC to inject DAO into Controller
@@ -73,3 +73,18 @@ to do refactoring - without them it's very dangerous. This is partially how Test
 you implement a quick dirty code which is well tested, and then you improve it. Tests make sure you don't break it
 while improving. To dig deeper read [Test Driven Development](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
 by Kent Beck.
+
+
+# Step 2
+
+- Add H2 JDBC Driver as a compile-time dependency - for the sake of this course we'll be using an in-memory DB
+- Create a `JdbcDogDao` - this is going to store DB-related logic for your Dogs.
+- Create an instance of `DataSource` in the constructor, run DDL statements to create `DOG` table with the columns to
+fit all your Dog-related data.
+- Implement all the CRUD methods that insert, update, select and delete your dogs
+- Migrate `DataSource` creation to Spring's XML context and just inject it into your `JdbcDogDao` constructor
+- Make it possible in your Controller to switch between InMemory and JDBC DAOs (think about interfaces). 
+- Try switching to `JdbcDogDao` and run all the tests to ensure that the app still works.
+
+*Think & research*: Constructor or Setter injection? Spring IoC allows you to inject dependencies both in constructors 
+and in `setXxx(xxx)` methods. So why did we chose to inject DataSource into DAO constructor?
