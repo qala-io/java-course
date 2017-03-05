@@ -44,7 +44,7 @@ and author of Design Patterns:
 - Gang of Four (GoF) Design Patterns - are classical patterns that are known and used in every programming environment
 be it Java, .Net or Python. Examples: MVC, Singleton, Listener, Proxy.
 - Fowler's Enterprise Application Patterns (EAP) - these include more of architecture-level patterns. Examples are: 
-Transaction Script, Value Object, Repository.
+Transaction Script, Value Object, Repository, Active Record.
 - Java EE Patterns - a set of design patterns Sun Microsystems came up with when they owned Java. Include terms 
 like DAO, Value Object, DTO.
 - Domain Driven Design (DDD) Patterns - came from the book "Domain Driven Design" written by Eric Evans. These include
@@ -129,7 +129,4 @@ locking.
 - Start, commit and rollback transactions where needed in your DAO methods. In our small dog app proper transaction
 management is not as crucial because every operation is atomic already. But we pretend as if we were working
 with lots of SQL statements in every method.
-- Make sure you utilize `try-catch-finally` to close the connections and rollback transactions
-
-Now the transaction management looks pretty cumbersome - this is called Programmatic Transaction Management.
-We'll return back to this problem and introduce Declarative Transaction Management to simplify the code.
+- Make sure you utilize `try-catch-finally` to close the connections and rollback transactions in case of errors

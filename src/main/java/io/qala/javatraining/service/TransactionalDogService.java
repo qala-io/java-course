@@ -14,6 +14,7 @@ public class TransactionalDogService implements DogService {
     @Override public Collection<Dog> getAllDogs() {
         Collection<Dog> result;
         try {
+            connections.beginTransaction();
             result = toWrapWithTransactions.getAllDogs();
             connections.commit();
         } catch (Throwable e) {
@@ -26,6 +27,7 @@ public class TransactionalDogService implements DogService {
     @Override public Dog getDog(String id) {
         Dog result;
         try {
+            connections.beginTransaction();
             result = toWrapWithTransactions.getDog(id);
             connections.commit();
         } catch (Throwable e) {
@@ -38,6 +40,7 @@ public class TransactionalDogService implements DogService {
     @Override public Dog createDog(Dog dog) {
         Dog result;
         try {
+            connections.beginTransaction();
             result = toWrapWithTransactions.createDog(dog);
             connections.commit();
         } catch (Throwable e) {
@@ -50,6 +53,7 @@ public class TransactionalDogService implements DogService {
     @Override public boolean deleteDog(String id) {
         boolean result;
         try {
+            connections.beginTransaction();
             result = toWrapWithTransactions.deleteDog(id);
             connections.commit();
         } catch (Throwable e) {
