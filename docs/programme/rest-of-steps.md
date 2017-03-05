@@ -34,8 +34,6 @@ Homework - Practice
 
 # Step - JDBC
 
-- Implement a JDBC DAO that creates a DataSource in the constructor and uses it to create connections in DAO
-- Move DataSource creation and configuration to Spring Context and inject it into DAO
 - Implement transactions that span multiple method calls
 - Read about ThreadLocal and now implement these using it
 - See emerging patterns? Looks like the code is cluttered with a lot of repeating code. How can we separate our logic 
@@ -44,7 +42,6 @@ from the transaction management using a Proxy Pattern?
 - Add AOP to make transactions declarative
 - Use Spring Tx and Spring AOP to implement transactions
 - Read about Transaction Propagation
-- Implement DB migrations with Flyway
 - Add DB Pool
 
 # Step 4

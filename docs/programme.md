@@ -13,7 +13,7 @@ parts are connected so it's better to move more or less stepwise.
 * [Part I: Maven](./programme/maven.md)
 * [Part II: Web and Application Servers](./programme/web-apps.md)
 * [Spring & REST](./programme/spring-n-rest.md)
-* JDBC
+* [JDBC & Co.](./programme/jdbc.md)
 * DB Pools
 * Transactions
 * AOP

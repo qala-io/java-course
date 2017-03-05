@@ -93,22 +93,43 @@ and in `setXxx(xxx)` methods. So why did we chose to inject DataSource into DAO 
 
 - Write tests for `JdbcDogDao`. Include tests that:
    - Check the constraints - use max possible values (e.g. name with 100 symbols) and try saving them. This will ensure
-   that your DB constraints will fit all the possible values.
+   that your DB constraints can fit all the possible values.
    - Check for SQL Injections. E.g. store a dog with name `"' blah`. Every string property or method that accepts a
    string needs be tested for this attack. If you implemented _Step 2_ as it stated your tests should fail. This means
    that the app is currently vulnerable to one of the most dangerous and primitive attacks existing.
 - Read about `PreparedStatement`. Change methods that pass data to SQL to use `PreparedStatement` instead of `Statement`
 - Explain how `PreparedStatement` works under the hood ([this article](http://articles.javatalks.ru/articles/34) can help)
-- Think and research: in which situations does `PreparedStatement` can improve performance comparing to `Statement`. 
+- Think and research: in which situations can `PreparedStatement` improve performance comparing to `Statement`. 
 In which situations it can worsen the performance?
 
-# Step 4 - DB Pool
+# Step 4 - DB Migrations
 
-# Step 1 - Transactions
+In real life we don't put DDL statements in DAO (it's in your constructor at the moment). We use specialized libs
+that load them and execute one by one. Such libs are Flyway and Liquibase. 
+
+- Add Flyway as a compile time dependency
+- Add an SQL migration that's currently in your DAO
+- Instruct Flyway to apply the migrations during application & test startup, remove the DDL from the constructor.
+Make sure that tests are still passing.
+- Think and research: what if we need to update `DOG` table - are we going to modify the same migration or have 2 
+migrations - one that creates the initial structure and the one that modifies it? What are the pros and cons of each
+approach? Which one can be used in real life?
+- Think and research. Here is a situation:
+   - We wrote a migration that changes a column name
+   - A new version of the software is released (and the migration is applied)
+   - We found a critical bug in the software and want to roll it back to the previous version
+   - When we roll back it appears that our old code doesn't recognize the new name of the column. It expects the old 
+   column.
+   - Question: How can we change the column name to support rollback?
+
+# Step 5 - Basic Transactions
 
 - Read about Transactions, understand each letter of ACID, read about Transaction Isolation Levels, record and table
 locking.
 - Start, commit and rollback transactions where needed in your DAO methods. In our small dog app proper transaction
 management is not as crucial because every operation is atomic already. But we pretend as if we were working
 with lots of SQL statements in every method.
-- 
+- Make sure you utilize `finally` to close the connections and rollback transactions
+
+Now the transaction management looks pretty cumbersome - this is called Programmatic Transaction Management.
+We'll return back to this problem and introduce Declarative Transaction Management to simplify the code.
