@@ -74,17 +74,41 @@ you implement a quick dirty code which is well tested, and then you improve it. 
 while improving. To dig deeper read [Test Driven Development](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
 by Kent Beck.
 
-
-# Step 2
+# Step 2 - Basic JDBC
 
 - Add H2 JDBC Driver as a compile-time dependency - for the sake of this course we'll be using an in-memory DB
 - Create a `JdbcDogDao` - this is going to store DB-related logic for your Dogs.
 - Create an instance of `DataSource` in the constructor, run DDL statements to create `DOG` table with the columns to
 fit all your Dog-related data.
-- Implement all the CRUD methods that insert, update, select and delete your dogs
+- Implement all the CRUD methods that insert, update, select and delete your dogs. In every method use `Statement` class
+to execute SQL.
 - Migrate `DataSource` creation to Spring's XML context and just inject it into your `JdbcDogDao` constructor
 - Make it possible in your Controller to switch between InMemory and JDBC DAOs (think about interfaces). 
 - Try switching to `JdbcDogDao` and run all the tests to ensure that the app still works.
 
 *Think & research*: Constructor or Setter injection? Spring IoC allows you to inject dependencies both in constructors 
 and in `setXxx(xxx)` methods. So why did we chose to inject DataSource into DAO constructor?
+
+# Step 3 - PreparedStatement
+
+- Write tests for `JdbcDogDao`. Include tests that:
+   - Check the constraints - use max possible values (e.g. name with 100 symbols) and try saving them. This will ensure
+   that your DB constraints will fit all the possible values.
+   - Check for SQL Injections. E.g. store a dog with name `"' blah`. Every string property or method that accepts a
+   string needs be tested for this attack. If you implemented _Step 2_ as it stated your tests should fail. This means
+   that the app is currently vulnerable to one of the most dangerous and primitive attacks existing.
+- Read about `PreparedStatement`. Change methods that pass data to SQL to use `PreparedStatement` instead of `Statement`
+- Explain how `PreparedStatement` works under the hood ([this article](http://articles.javatalks.ru/articles/34) can help)
+- Think and research: in which situations does `PreparedStatement` can improve performance comparing to `Statement`. 
+In which situations it can worsen the performance?
+
+# Step 4 - DB Pool
+
+# Step 1 - Transactions
+
+- Read about Transactions, understand each letter of ACID, read about Transaction Isolation Levels, record and table
+locking.
+- Start, commit and rollback transactions where needed in your DAO methods. In our small dog app proper transaction
+management is not as crucial because every operation is atomic already. But we pretend as if we were working
+with lots of SQL statements in every method.
+- 
