@@ -88,14 +88,36 @@ the new proxy for transaction management.
 # Step 5 - AspectJ AOP
 
 Aspect Oriented Programming is a way of introducing cross-cutting (not related to the core logic) aspects to the code.
-Some of it case use proxies like Spring AOP, others can change the bytecode of the classes (like AspectJ).
+Some of the approaches can use proxies like Spring AOP, others can change the bytecode of the classes (like AspectJ).
 
-- Research terminology and get a firm grip on terms: Pointcut, Join Point, Advise, Aspect.
+- Get a firm grip on terms: Pointcut, Join Point, Advise, Aspect.
+- Find the difference between compile-time and load-time weaving.
+- Create your own compile-time annotation. Create an aspect that logs the method invocation if annotation is placed on
+the invoked method.
 
 # Step 6 - Spring AOP
 
-Spring AOP is a wrapper over JDK Dynamic Proxy and CGLIB. It can use both and in terms of Spring one is called 
-_Interface Proxy_ and the other is _Class Proxy_.
+Spring AOP is a wrapper over JDK Dynamic Proxy and CGLIB. It can use both types of dynamic proxies. In terms of Spring 
+one is called _Interface Proxy_ and the other is _Class Proxy_. Spring AOP borrowed the pointcut expressions from
+AspectJ and therefore their syntax are similar. But AspectJ provides load-time or compile-time AOP while SpringAOP 
+provides runtime AOP. 
 
-- 
+- Add Spring AOP as a dependency
+- Create an aspect for DogService that adds transactional support. First try Class Proxy and then move to Interface 
+Proxy.
+- Think & research: when would you pick Spring AOP vs. AspectJ?
 
+# Step 7 - Spring Tx & Spring JDBC
+
+Spring has a lib that adds transaction support via Spring AOP. It already implements a logic around ThreadLocal to share
+both Connection as well as information about currently running transactions. It support more than what we implemented
+in our holder.
+
+- Use Spring AOP & Sprint Tx to define methods that should be transactional
+- Replace custom `JdbcConnectionHolder` with `org.springframework.jdbc.datasource.DataSourceUtils`. Debug and find
+how it gets the Connections created by `TransactionManager`
+- Remove `TransactionalDogService` proxy as you don't need it anymore 
+- Prove that Sprint Tx actually is applied and it works in the app
+- Replace Spring AOP config for transactions with `@Transactional` annotations - this is an alternative way of marking 
+methods transactional
+- Replace pure JDBC code with SpringJDBC (`JdbcTemplate`). Look through its code and find how it gets the connections.
