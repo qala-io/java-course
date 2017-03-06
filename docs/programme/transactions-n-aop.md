@@ -72,11 +72,30 @@ services that need to be wrapped with transactions. So the amount of duplication
 `DogService` with this proxy.
 - Now make sure that this proxy gets initialized and is injected into Controller and your test instead of previous 
 (static) proxy. Feel free to remove it.
+- Puzzle: without changing any of the code find a way to prove that your class is really proxied.
+- Puzzle: find a way to exclude some methods from being proxied.
 
 # Step 4 - Class Proxy with CGLIB
 
-JDK Proxy is good but it works only when your classes have interfaces. What if they're not?
+JDK Proxy is good but it works only when your classes have interfaces. What if they don't?
 
 - Research how to create dynamic proxies with CGLIB
 - Add CGLIB to your classpath and create a new `CglibTransactionalDogService`. Try removing your interface and use 
 the new proxy for transaction management.
+- Think & research: how is the CGLIB mechanism different from JDK Proxy?
+- Think & research: what are the pros and cons of JDK Proxy vs. CGLIB Proxy? When would you prefer one over another?
+
+# Step 5 - AspectJ AOP
+
+Aspect Oriented Programming is a way of introducing cross-cutting (not related to the core logic) aspects to the code.
+Some of it case use proxies like Spring AOP, others can change the bytecode of the classes (like AspectJ).
+
+- Research terminology and get a firm grip on terms: Pointcut, Join Point, Advise, Aspect.
+
+# Step 6 - Spring AOP
+
+Spring AOP is a wrapper over JDK Dynamic Proxy and CGLIB. It can use both and in terms of Spring one is called 
+_Interface Proxy_ and the other is _Class Proxy_.
+
+- 
+
