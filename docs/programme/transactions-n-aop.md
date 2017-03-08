@@ -125,4 +125,15 @@ methods transactional
 
 # Puzzles
 
+*Tip*: in real life one of the top skills that a programmer needs is troubleshooting. Too often people spend days
+finding a problem in the code and trying to fix it while others could do that within minutes. Among others being a good 
+troubleshooter means:
+
+- You understand how things work. If you don't - you learn how they work before guessing where the problems reside.
+- You know tools. Most important are: search & grep, git blame, Debug, Thread Dump, Profiler, 
+JMX, Heap Dump & Analyzers (e.g. MAT), Wireshark, various Linux utilities.
+
+Learning tools doesn't come naturally - you have to explicitly spend time to get acquainted with them. For the next 
+puzzle you'll need Debug and Thread Dumps. Please learn how to use them before approaching the task.
+
 - There is a failing test in branch `puzzle-e3829782`. Find out why it's failing and fix it.
