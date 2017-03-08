@@ -122,3 +122,7 @@ how it gets the Connections created by `TransactionManager`
 methods transactional
 - Replace pure JDBC code with SpringJDBC (`JdbcTemplate`). Look through its code and find how it gets the connections.
 - Read about Transaction Propagation in Spring Tx.
+
+# Puzzles
+
+- There is a failing test in branch `puzzle-e3829782`. Find out why it's failing and fix it.
