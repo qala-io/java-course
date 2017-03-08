@@ -121,3 +121,4 @@ how it gets the Connections created by `TransactionManager`
 - Replace Spring AOP config for transactions with `@Transactional` annotations - this is an alternative way of marking 
 methods transactional
 - Replace pure JDBC code with SpringJDBC (`JdbcTemplate`). Look through its code and find how it gets the connections.
+- Read about Transaction Propagation in Spring Tx.

@@ -14,6 +14,6 @@ parts are connected so it's better to move more or less stepwise.
 * [Part II: Web and Application Servers](./programme/web-apps.md)
 * [Part III: Spring & REST](./programme/spring-n-rest.md)
 * [Part IV: JDBC & Co.](./programme/jdbc.md)
-* Declarative Transactions & AOP
+* [Part V: Declarative Transactions & AOP](./programme/transactions-n-aop.md)
 * DB Pools
 * Hibernate
