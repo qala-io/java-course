@@ -42,6 +42,7 @@ public class JdbcDogDao implements DogDao {
     }
 
     @Override public Dog createDog(Dog dog) {
+        dog.setId(UUID.randomUUID().toString());
         Connection connection = connections.getCurrentConnection();
         try (PreparedStatement statement = connection.prepareStatement("INSERT INTO DOG VALUES(?, ?, ?, ?, ?)")) {
             statement.setString(1, dog.getId());

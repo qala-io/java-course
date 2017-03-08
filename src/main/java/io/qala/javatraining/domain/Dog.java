@@ -15,7 +15,7 @@ import static io.qala.datagen.RandomDate.between;
 import static io.qala.datagen.RandomShortApi.*;
 
 public class Dog {
-    private String id = UUID.randomUUID().toString();
+    private String id;
     @NotBlankSized(min = 1, max = 100)
     private String name;
     /**
