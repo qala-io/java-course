@@ -106,9 +106,10 @@ as a lib for testing and create it there or.. get rid of DataSource JNDI :)
 
 The fact that you don't use JNDI doesn't mean you can't use Tomcat's DB Pool - it's in the classpath of Tomcat so 
 your app has access to those classes. But only if it's deployed and not if you're running tests. To fix this you can
-add a to `org.apache.tomcat:tomcat-jdbc`. This way it's going to be accessible both to tests and deployed app. But
-we don't want to duplicate the same classes and jar's - it's present in Tomcat itself and it's present in war file.
-Find a way to add so that the code compiles, tests pass but extra lib is not included into war file.
+add a dependency `org.apache.tomcat:tomcat-jdbc`. This way it's going to be accessible both to tests and deployed app. 
+But we don't want to duplicate the same classes - they're present in Tomcat itself and also are present in the war file.
+Find a way to add the dependency so that the code compiles and the tests pass but extra lib is not included into the 
+war file.
 
 # Literature
 
