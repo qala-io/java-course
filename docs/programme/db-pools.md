@@ -23,7 +23,6 @@ talked before?
 
 - Configure `maxPoolSize`, `minPoolSize`. What values would be most appropriate here? How can you correlate them with 
 the thread pool configuration?
-- What's going to happen when the pool is exhausted but you asked for yet another Connection from it?
 - Configure `maxStatements` and `maxStatementsPerConnection`. Why do you need these? How do you decide which values
 to put there? How do these correlate with the number of dynamically generated SQL statements and static SQL statements?
  
@@ -61,20 +60,53 @@ writing? Would the choice be the same for apps that require low latency? Would i
 zero tolerance to errors?
 - Think & research: how does idle connection testing work? Wouldn't a pool require separate thread to do some 
 background work?
+- Research: `Connection#isValid()` - will that work for all the JDBC Drivers? If not, what are other options?
 
 *Tip:* some DB Pools actually recognize death specific SQLExceptions (after all you work with pool's `Statement` that 
 can catch exceptions first) and can remove the connection even without testing. C3P0 is one these smart pools. Though
 client code would receive exception anyway.
 
-# Step 4 - Timing
+# Step 4 - Timeouts
 
 - Think & research: what are `Deny` and `Reject` policies of the network firewalls? How do they differ and do clients 
   recognize the the connection cannot be established? _When_ do clients find that out in case of each of the policy? 
+- Think & research: what's going to happen when the pool is exhausted but you asked for yet another Connection from it?
+- Read about and configure `checkoutTimeout`. Can this value be large like 10min? Can it be small like 100ms?
+- Think & research: if you borrow the connection from the pool and don't return it back, what does it mean?
+- Read about and configure `unreturnedConnectionTimeout`
+- Find an option in C3P0 to debug which code borrowed and didn't return the connection back?
 
+# Step 5 - DB Pools in App Servers
 
+App Servers come with their own DB Pool implementation. Tomcat is not an exception. But to configure it
+we would need to use JNDI. 
 
-*Tip*: most App Servers come with their own DB Pool implementation. Tomcat is not an exception. But to configure it
-we would need to use JNDI
+JNDI (java naming & directory interface) is a way to place objects and data into directory-like manner and retrieve it.
+E.g. a dataSource object could be configured and created by AppServer itself and then placed under `db/dataSource` name. 
+Our code can then get this through JNDI.
 
+Why don't you simply configure DataSource inside the app like we did it before? In some organizations separate
+people (Operations a.k.a. Ops) prefer to manage things like DB Connections. They can change the settings in runtime 
+and publish the changes to our apps. This is not too common, but it's not too rare either.
+
+- Configure a Tomcat's DataSource via JNDI
+- Write a code that gets the DataSource via JNDI. For this you will need to use Spring's FactoryBean approach. Read 
+about it if you don't know it.
+- Replace C3P0 DataSource with the Tomcat's one. Deploy the app to Tomcat and make sure everything works.
+- Research Tomcat Pool options - could you find all the options that you configured in C3P0? The names are different, 
+but it's very similar.
+- Replace your FactoryBean with Spring's `<jee:jndi-lookup>` utility
+
+Try running tests. Now they fail because in tests nothing starts up a JNDI Context. So there is no DataSource 
+configured that can be looked up. So what can we do? There are 2 choices: either hook up some simple JNDI implementation
+as a lib for testing and create it there or.. get rid of DataSource JNDI :) 
+
+The fact that you don't use JNDI doesn't mean you can't use Tomcat's DB Pool - it's in the classpath of Tomcat so 
+your app has access to those classes. But only if it's deployed and not if you're running tests. To fix this you can
+add a to `org.apache.tomcat:tomcat-jdbc`. This way it's going to be accessible both to tests and deployed app. But
+we don't want to duplicate the same classes and jar's - it's present in Tomcat itself and it's present in war file.
+Find a way to add so that the code compiles, tests pass but it's not included into war file.
+
+# Step 6 - Wrapping up
 
 - LazyConnectionDataSourceProxy
