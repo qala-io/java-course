@@ -19,5 +19,5 @@ quick and shallow.
 * [Part III: Spring & REST](./programme/spring-n-rest.md)
 * [Part IV: JDBC & Co.](./programme/jdbc.md)
 * [Part V: Declarative Transactions & AOP](./programme/transactions-n-aop.md)
-* DB Pools
+* [Part VI: DB Pools](./programme/db-pools.md)
 * Hibernate

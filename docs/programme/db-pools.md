@@ -76,14 +76,17 @@ client code would receive exception anyway.
 - Read about and configure `unreturnedConnectionTimeout`
 - Find an option in C3P0 to debug which code borrowed and didn't return the connection back?
 
+*Tip*: issues related to firewalls `reject`ing packages are valid not only for databases but for any integration that
+collaborates over network. Read about Connection Timeout and Socket Timeout to dive into the topic. 
+
 # Step 5 - DB Pools in App Servers
 
 App Servers come with their own DB Pool implementation. Tomcat is not an exception. But to configure it
 we would need to use JNDI. 
 
-JNDI (java naming & directory interface) is a way to place objects and data into directory-like manner and retrieve it.
-E.g. a dataSource object could be configured and created by AppServer itself and then placed under `db/dataSource` name. 
-Our code can then get this through JNDI.
+JNDI (java naming & directory interface) is a way to place objects and data into directory-like manner and retrieve 
+them. E.g. a dataSource object could be configured and created by AppServer itself and then placed under 
+`db/dataSource` name. Our code can then get this through JNDI.
 
 Why don't you simply configure DataSource inside the app like we did it before? In some organizations separate
 people (Operations a.k.a. Ops) prefer to manage things like DB Connections. They can change the settings in runtime 
@@ -105,8 +108,10 @@ The fact that you don't use JNDI doesn't mean you can't use Tomcat's DB Pool - i
 your app has access to those classes. But only if it's deployed and not if you're running tests. To fix this you can
 add a to `org.apache.tomcat:tomcat-jdbc`. This way it's going to be accessible both to tests and deployed app. But
 we don't want to duplicate the same classes and jar's - it's present in Tomcat itself and it's present in war file.
-Find a way to add so that the code compiles, tests pass but it's not included into war file.
+Find a way to add so that the code compiles, tests pass but extra lib is not included into war file.
 
-# Step 6 - Wrapping up
+# Literature
 
-- LazyConnectionDataSourceProxy
+Yet another best-of-breed book that covers architectural questions is 
+[Release it!](https://www.amazon.com/Release-Production-Ready-Software-Pragmatic-Programmers/dp/0978739213). It
+explains many approaches and hazzards related to building distributed systems. 
