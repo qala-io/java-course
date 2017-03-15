@@ -69,7 +69,7 @@ impact the way it responds to the load. Experiment with both - configuration of 
 # Step 4 - Memory Leaks
 
 * Read about the difference between daemon and non-daemon threads
-* Read about how threads spawn by your code can lead to memory leads in App Servers
+* Read about how threads spawn by your code can lead to memory leaks in App Servers
 * Read about how ClassLoaders work and their hierarchy in Java apps
 * Read about ClassLoader Memory Leaks in App Servers
 
