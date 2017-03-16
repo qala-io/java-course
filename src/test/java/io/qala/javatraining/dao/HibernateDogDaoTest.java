@@ -82,10 +82,12 @@ public class HibernateDogDaoTest extends AbstractTransactionalTestNGSpringContex
         String sqlInjection = length(20).with(suffix("'\"")).english();
         Dog original = Dog.random().setId(sqlInjection).setName(sqlInjection);//place #1
         dao.createDog(original);
+        dao.flushAndClear();
         Dog fromDb = dao.getDog(sqlInjection);//place #2
         assertReflectionEquals(original, fromDb);
 
         dao.deleteDog(sqlInjection);//place #3
+        dao.flushAndClear();
     }
 
     @Autowired private HibernateDogDao dao;
