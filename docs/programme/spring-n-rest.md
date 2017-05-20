@@ -100,13 +100,13 @@ importing contexts.
 * Define `DispatcherServlet`, create a class that's going to be your `@RestController`, create an XML Spring context 
 with a bean of that class
 * Create methods for creating, getting, updating, deleting dogs. All the messages must be in JSON. All the data is kept 
-in static collection in the controller itself.
+in static collection in the controller itself. See the [list of fields](../reqs.md).
 * Write TestNG + RestAssured tests that cover all straight forward and corner cases
 
 # Step 6 - Validation
 
 * Read about Bean Validation and HibernateValidator
-* Add validation rules to your classes, make sure your API returns correct error codes (see previous steps)
+* Add [validation rules](../reqs.md) to your classes, make sure your API returns correct error codes (see previous steps)
 * Write unit tests to check that validation rules are set up correctly
 * Write RestAssured tests to check that validation rules are getting invoked
 * Write MockMvc tests - these should duplicate your RestAssured tests
