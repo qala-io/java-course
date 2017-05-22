@@ -66,8 +66,9 @@ Hibernate XML:
 
 * Read about Hibernate Proxies
 * Read about Entity Lifecycle in Hibernate (PERSISTED, DETACHED, etc)
-* Read about Identity Generators (ways to generate IDs)
-* Add Hibernate dependencies and look into classes `Session` and `StatefulPersistenceContext`
+* Read about Identity Generators (ways to generate IDs). Which one would you prefer and why? Which of them require 
+communication with DB and which don't?
+* Add Hibernate dependencies and look into classes `SessionImpl` and `StatefulPersistenceContext`
 
 # Step 2 - Re-write DAO
 
@@ -75,9 +76,18 @@ Hibernate XML:
 implemented both by JDBC DAO and by Hibernate DAO. It should be possible to switch between DAO implementations 
 between startups via Spring means (there are multiple ways of doing this - which one do you choose?).
 * Implement Hibernate Dao Tests - they need to import spring context and start the embedded H2 DB
-* Play with `get()` vs `load()` methods and explore how Hibernate Proxy looks
+* Play with `get()` vs `load()` methods and explore in debug how Hibernate Proxy looks
 
-# Step - Alternatives
+# Step 3 - Persisting Entities
+
+* Read about Flush Mode. When in the app do you think the SQL statements are flushed? Configure SQL logging and check 
+your guess.
+* After the entity is persisted it must have an ID. Return to the ID Generation Strategies and find those that require
+`INSERT` statements for the ID to be generated. Will Flush Mode impact these `INSERT` statements in any way? Would that
+change if you choose a different strategy?
+
+
+# Alternatives
 
 While Hibernate is a full blown ORM that both generates SQL statements and keeps track of Persisted entities, there are
 some lightweight alternatives. They implement ORM only partially and therefore move the balance between low-level and
@@ -87,6 +97,11 @@ Another framework to mention is *Spring Data*. It's an even higher level of abst
 same mapping, but instead of manually creating EntityManager/Session, creating Query object and casting the results you
 simply create interfaces and mark them with the appropriate annotations. And the rest is done for you. But before 
 rushing into using it remember - the higher the level of abstraction the more you have to know and the slower it works.
+
+# Puzzles
+
+- There is a bug in Hibernate mapping in branch `puzzle-wG3JaxG4`. But the test actually passes. Find the reason and fix
+the test.
 
 # Literature
 
