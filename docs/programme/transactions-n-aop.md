@@ -122,6 +122,9 @@ how it gets the Connections created by `TransactionManager`
 methods transactional
 - Replace pure JDBC code with SpringJDBC (`JdbcTemplate`). Look through its code and find how it gets the connections.
 - Read about Transaction Propagation in Spring Tx.
+- Since transactions are now started at the Service layer your DAO tests are failing. Find a way of starting the
+transactions in tests. As well as rolling them back after the tests.
+
 
 # Puzzles
 
