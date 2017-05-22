@@ -10,7 +10,7 @@
         <property name="name" />
         <property name="timeOfBirth" column="BIRTH_TIME" />
         <property name="height" />
-        <property name="weight" />
+        <!--Nasty bug, the line is commented out: <property name="weight" />-->
     </class>
     <query name="getAllDogs">from Dog</query>
 </hibernate-mapping>
