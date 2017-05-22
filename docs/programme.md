@@ -20,4 +20,4 @@ quick and shallow.
 * [Part IV: JDBC & Co.](./programme/jdbc.md)
 * [Part V: Declarative Transactions & AOP](./programme/transactions-n-aop.md)
 * [Part VI: DB Pools](./programme/db-pools.md)
-* Hibernate
+* [Part VII: Hibernate](./programme/hibernate.md)
