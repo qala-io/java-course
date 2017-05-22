@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="io.qala.javatraining.domain.Dog" table="DOG">
         <id name="id">
-            <generator class="assigned"/>
+            <generator class="uuid"/>
         </id>
         <property name="name" />
         <property name="timeOfBirth" column="BIRTH_TIME" />
