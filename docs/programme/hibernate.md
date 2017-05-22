@@ -39,9 +39,28 @@ So instead of using ORMs as a universal solution you should understand where it'
 beginning of the project with ORM since a lot of changes and refactorings are expected at that stage. And then if the
 app is being developed long enough you'll probably start moving towards native SQL.
 
-# JPA, Hibernate
+# Hibernate vs JPA
 
-Amongst different ORMs historically Hibernate won the battle and became the most used one 
+Among different ORMs historically Hibernate won the battle and became the most used one. Its success impacted the way
+further ORMs were implemented in Java community. Hibernate developers participated in the development of JPA (Java 
+Persistence API) standard and effectively made Hibernate its reference implementation. So now we have different ways of
+working with Hibernate:
+
+* Hibernate XML
+* Hibernate Annotations - most of these were deprecated in favour of JPA Annotations but some are still in 
+use when a more fine-grained control is required.
+* JPA Annotations
+* JPA XML (haven't seen these in practice at all)
+
+All these approaches do the same and they operate with the same basic principles so if you know one it's not hard to
+switch to another. The terminology though could be different. E.g. you can work with things like Session, Components 
+when you work with Hibernate, but they are going to be called EntityManager and Embedded Object in JPA.
+
+JPA Annotations currently is the most widespread way of working with Hibernate. My personal preference though is
+Hibernate XML:
+
+* This is the most functionally-rich way of mapping
+* It doesn't bloat Entity classes with lots of persistence annotations
 
 # Step 1 - How it works
 
@@ -60,4 +79,19 @@ between startups via Spring means (there are multiple ways of doing this - which
 
 # Step - Alternatives
 
-MyBatis, Spring JDBC, JOOG
+While Hibernate is a full blown ORM that both generates SQL statements and keeps track of Persisted entities, there are
+some lightweight alternatives. They implement ORM only partially and therefore move the balance between low-level and
+high-level control over the DB-related code. Take a look at these: Spring JDBC (we've touched it already), JOOQ, MyBatis.
+
+Another framework to mention is *Spring Data*. It's an even higher level of abstraction than JPA - you use the very
+same mapping, but instead of manually creating EntityManager/Session, creating Query object and casting the results you
+simply create interfaces and mark them with the appropriate annotations. And the rest is done for you. But before 
+rushing into using it remember - the higher the level of abstraction the more you have to know and the slower it works.
+
+# Literature
+
+* [POJOs in Action](https://www.manning.com/books/pojos-in-action) - one of the fundamental books on ORMs. Explains
+the principles instead of just going through the feature list of ORMs.
+* [Java Persistence with Hibernate](https://www.manning.com/books/java-persistence-with-hibernate) - a deep book that
+goes over the features of Hibernate and the reasons it works that way. It's better to be read after POJOs in Action as
+it's pretty complicated.
