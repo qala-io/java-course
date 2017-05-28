@@ -39,12 +39,14 @@ explicitly write.
 an issue these 2 tools are there to help. Your IDE probably has means to generate both of them - try to find the 
 shortcuts, you'll need this often.
 
-# Step 2 - lifecycles, phases, plugins
+# Step 2 - Lifecycles, phases, plugins
 
+* Learn what Plugins are and what is a `goal` ([link](./articles/maven-plugins.md))
 * Read and learn what is a lifecycle and which lifecycles Maven has. Explore which phases each of the lifecycle has.
-* Learn what Plugins are and what is a `goal`
+([link](./articles/maven-lifecycles-n-phases.md))
 * Declare `maven-surefire-plugin` and bind its `test` goal to a `test` phase
-* Explore file [default-bindings.xml](https://git-wip-us.apache.org/repos/asf?p=maven.git;a=blob;f=maven-core/src/main/resources/META-INF/plexus/default-bindings.xml) - this file contains the default plugins 
+* Explore file [default-bindings.xml](https://git-wip-us.apache.org/repos/asf?p=maven.git;a=blob;f=maven-core/src/main/resources/META-INF/plexus/default-bindings.xml) - 
+this file contains the default plugins 
 * Ensure that what you see in `default-bindings.xml` is what's listed in your Effective POM
 
 *Check yourself*. You must be able to:
