@@ -5,7 +5,7 @@ be:
 
 ```
 mvn resources:resources compiler:compile \
-    resources:testResources compiler:testCompile
+    resources:testResources compiler:testCompile \
     surefire:test
 ```
 
@@ -41,7 +41,7 @@ What makes phases even more useful is the fact that they are grouped in Lifecycl
 are 3 lifecycles: 
 
 * default - has phases like `compile`, `test`, `package`, `install` and many more. These phases are used to build 
-something. 
+stuff. 
 * clean consists of 3 phases `pre-clean`, `clean`, `post-clean`. These almost always are just deleting `target`
 directory.
 * site has phases to create some static HTML pages (e.g. javadocs files or test reports)
