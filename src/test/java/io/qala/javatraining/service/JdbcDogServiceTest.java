@@ -17,8 +17,10 @@ import static org.junit.Assert.fail;
 public class JdbcDogServiceTest extends AbstractTestNGSpringContextTests {
 
     /**
-     * The task is to fix this test and find out the underlying reasons of the failure -
-     * why is the behaviour is what it is?
+     * The test checks whether {@code @Tansactional} works. If exception happens in the service Spring Tx has to
+     * rollback the transaction along with all the SQL statements that happened in it. But looks like something's
+     * wrong - one of the objects gets actually `INSERT`ed and.. committed? So what's up with our transactions, is
+     * there is a bug somewhere?
      */
     @Test(expectedExceptions = ObjectNotFoundException.class)
     public void ifTransactionFails_thenNoneOfDogsGetSaved() {
@@ -29,7 +31,8 @@ public class JdbcDogServiceTest extends AbstractTestNGSpringContextTests {
             dogService.createNewDogsAndIgnoreAlreadySaved(dogs);
             fail("Invalid Dog should've failed constraint.");
         } catch (Exception e) {
-            dogService.getDog(validDog.getId());//this throws ObjectNotFoundException
+            //this should throw ObjectNotFoundException since Spring Tx rolls back transactions if exceptions happen
+            dogService.getDog(validDog.getId());
         }
     }
 
