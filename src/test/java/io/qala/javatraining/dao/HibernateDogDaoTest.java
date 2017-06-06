@@ -20,6 +20,7 @@ import static org.testng.Assert.*;
 
 @Test @HibernateDaoTest
 public class HibernateDogDaoTest extends AbstractTransactionalTestNGSpringContextTests {
+    /** Find the description of the puzzle in the root README.md */
     public void getsTheSameDogAsWasSaved() {
         Dog original = Dog.random();
         dao.createDog(original);
