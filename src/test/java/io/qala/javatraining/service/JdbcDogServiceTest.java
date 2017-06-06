@@ -16,12 +16,7 @@ import static org.junit.Assert.fail;
 @ServiceLayerTest @Test
 public class JdbcDogServiceTest extends AbstractTestNGSpringContextTests {
 
-    /**
-     * The test checks whether {@code @Tansactional} works. If exception happens in the service Spring Tx has to
-     * rollback the transaction along with all the SQL statements that happened in it. But looks like something's
-     * wrong - one of the objects gets actually `INSERT`ed and.. committed? So what's up with our transactions, is
-     * there is a bug somewhere?
-     */
+    /** Find the description of the puzzle in the root README.md */
     @Test(expectedExceptions = ObjectNotFoundException.class)
     public void ifTransactionFails_thenNoneOfDogsGetSaved() {
         Dog invalidDog = Dog.random().setName(unicode(1001));
