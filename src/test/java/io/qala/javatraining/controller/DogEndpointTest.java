@@ -11,6 +11,7 @@ import static io.qala.javatraining.TestUtils.assertReflectionEquals;
 @MockMvcTest @Test
 public class DogEndpointTest extends AbstractTestNGSpringContextTests {
 
+    /** Read the description of the puzzle in the root README.md */
     public void getsTheSameDogAsWasSaved() {
         Dog original = Dog.random();
         dogs.createDog(original);
