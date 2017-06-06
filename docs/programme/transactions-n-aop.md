@@ -139,4 +139,6 @@ JMX, Heap Dump & Analyzers (e.g. MAT), Wireshark, various Linux utilities.
 Learning tools doesn't come naturally - you have to explicitly spend time to get acquainted with them. For the next 
 puzzle you'll need Debug and Thread Dumps. Please learn how to use them before approaching the task.
 
-- There is a failing test in branch `puzzle-e3829782`. Find out why it's failing and fix it.
+In each branch there is a failing test. Your task is to find _the exact reasons_ of why they fail and fix the problems:
+- Puzzle#1 is in branch `puzzle-e3829782`
+- Puzzle#2 is in branch `puzzle-KkwqAIIQ`
