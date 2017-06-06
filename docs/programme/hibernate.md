@@ -113,7 +113,8 @@ rushing into using it remember - the higher the level of abstraction the more yo
 
 - There is a bug in Hibernate mapping in branch `puzzle-wG3JaxG4`. But the test actually passes. Find the reason and fix
 the test.
-- There is a failing tests in branch `puzzle-TsomSH6a`, find the reason it fails and fix it.
+- Next puzzle is in branch `puzzle-TsomSH6a`. There is a failing test that checks that if we violate a DB constraint, 
+an exception is raised. But that doesn't happen. Looks like the DB constraints don't work. Or do they?
 
 # Literature
 

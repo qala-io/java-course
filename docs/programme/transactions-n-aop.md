@@ -140,5 +140,10 @@ Learning tools doesn't come naturally - you have to explicitly spend time to get
 puzzle you'll need Debug and Thread Dumps. Please learn how to use them before approaching the task.
 
 In each branch there is a failing test. Your task is to find _the exact reasons_ of why they fail and fix the problems:
-- Puzzle#1 is in branch `puzzle-e3829782`
-- Puzzle#2 is in branch `puzzle-KkwqAIIQ`
+- Puzzle#1 is in branch `puzzle-e3829782`. There is a test checks whether `@Tansactional` works. If exception happens 
+in the service Spring Tx has to rollback the transaction along with all the SQL statements that happened in it. But 
+looks like something's wrong - one of the objects gets actually `INSERT`ed and.. committed? So what's up with our 
+transactions, is there is a bug somewhere? 
+- Puzzle#2 is in branch `puzzle-KkwqAIIQ`. The test uses MockMvc to simulate HTTP requests to the app, but for some 
+reason NPE happens. The exception happens in the place where we wouldn't expect it to be - at the first glance it would
+appear that Spring Bean didn't get its dependency injected. Find out if this is true.
