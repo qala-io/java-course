@@ -13,7 +13,6 @@
         <property name="locations" value="migrations"/>
         <property name="table" value="schema_version"/>
     </bean>
-    <bean class="io.qala.javatraining.dao.JdbcConnectionHolder" depends-on="flyway"/>
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <!--Tests create multiple instances of JdbcDogDao which would have table created every time it's instantiated.
         Which would fail. So we want to separate each instance of DAO by creating different DB every time it's created.-->
@@ -56,31 +55,20 @@
         <property name="testConnectionOnCheckin" value="true"/>
     </bean>
 
-    <!--Spring Profiles are very (very!) bad since they create a condition in the app startup process and make it work
-    differently on different environments. They should be used only when you really want to make the app work
-    in different modes. That's exactly our case since one implementation uses DB and the other - In Memory data.
-    But in general we should eliminate profiles if possible.-->
-    <beans profile="default,in-memory-dao">
-        <bean class="io.qala.javatraining.dao.InMemoryDogDao"/>
-    </beans>
-    <beans profile="jdbc-dao" default-autowire="constructor">
-        <bean class="io.qala.javatraining.dao.JdbcDogDao"/>
-    </beans>
-    <beans profile="hibernate-dao" default-autowire="constructor">
-        <bean class="io.qala.javatraining.dao.HibernateDogDao"/>
-        <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-            <property name="dataSource" ref="dataSource"/>
-            <property name="mappingLocations" value="classpath*:/io/qala/javatraining/domain/*.hbm.xml"/>
-            <property name="hibernateProperties">
-                <props>
-                    <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto:validate}</prop>
-                </props>
-            </property>
-        </bean>
 
-        <tx:annotation-driven/>
-        <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-            <property name="sessionFactory" ref="sessionFactory"/>
-        </bean>
-    </beans>
+    <bean class="io.qala.javatraining.dao.HibernateDogDao"/>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingLocations" value="classpath*:/io/qala/javatraining/domain/*.hbm.xml"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto:validate}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <tx:annotation-driven proxy-target-class="true"/>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

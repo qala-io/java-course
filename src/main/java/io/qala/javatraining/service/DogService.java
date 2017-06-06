@@ -1,15 +1,31 @@
 package io.qala.javatraining.service;
 
+import io.qala.javatraining.dao.DogDao;
 import io.qala.javatraining.domain.Dog;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
-public interface DogService {
-    Collection<Dog> getAllDogs();
+public class DogService {
+    public DogService(DogDao dogDao) {
+        this.dogDao = dogDao;
+    }
 
-    Dog getDog(String id);
+    @Transactional public final Collection<Dog> getAllDogs() {
+        return dogDao.getAllDogs();
+    }
 
-    Dog createDog(Dog dog);
+    @Transactional public final Dog getDog(String id) {
+        return dogDao.getDog(id);
+    }
 
-    boolean deleteDog(String id);
+    @Transactional public final Dog createDog(Dog dog) {
+        return dogDao.createDog(dog);
+    }
+
+    @Transactional public final boolean deleteDog(String id) {
+        return dogDao.deleteDog(id);
+    }
+
+    private final DogDao dogDao;
 }
