@@ -114,6 +114,8 @@ both Connection as well as information about currently running transactions. It 
 in our holder.
 
 - Use Spring AOP & Sprint Tx to define methods that should be transactional
+- Read about Spring Tx ([link1](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/transaction.html),
+[link2](https://www.ibm.com/developerworks/java/library/j-ts1/index.html))
 - Replace custom `JdbcConnectionHolder` with `org.springframework.jdbc.datasource.DataSourceUtils`. Debug and find
 how it gets the Connections created by `TransactionManager`
 - Remove `TransactionalDogService` proxy as you don't need it anymore 
@@ -121,7 +123,7 @@ how it gets the Connections created by `TransactionManager`
 - Replace Spring AOP config for transactions with `@Transactional` annotations - this is an alternative way of marking 
 methods transactional
 - Replace pure JDBC code with SpringJDBC (`JdbcTemplate`). Look through its code and find how it gets the connections.
-- Read about Transaction Propagation in Spring Tx.
+- Make sure you understand what Transaction Propagation in Spring Tx.
 - Since transactions are now started at the Service layer your DAO tests are failing. Find a way of starting the
 transactions in tests. As well as rolling them back after the tests.
 
