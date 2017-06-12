@@ -1,7 +1,11 @@
 package io.qala.javatraining.domain;
 
+import io.qala.datagen.junit5.BlankString;
+import io.qala.datagen.junit5.Unicode;
+import io.qala.datagen.junit5.seed.DatagenSeedExtension;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -21,17 +25,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * take much more space and <i>that</i> would make our tests less readable. So we're just trying to balance between
  * 2 evils.
  */
+@ExtendWith(DatagenSeedExtension.class)
 class DogTest {
-    @Test void validName_passesValidation() {
-        Dog dog = Dog.random();
-        assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(1)), "min boundary");
-        assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(100)), "max boundary");
-        assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(2, 99)), "middle value");
+    @Unicode(length = 1, name = "min boundary")
+    @Unicode(min = 2, max = 99, name = "middle value")
+    @Unicode(length = 100, name = "max boundary")
+    void validName_passesValidation(String dogName, String caseName) {
+        Dog dog = Dog.random().setName(dogName);
+        Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
+        assertEquals(errors.size(), 0, "Failed: " + caseName + ", value was: [" + dog.getName() + "].");
     }
-    @Test void invalidName_failsValidation() {
-        Dog dog = Dog.random();
-        assertValidationFails(dog.setName(nullOrBlank()), "size must be between 1 and 100");
-        assertValidationFails(dog.setName(unicodeWithoutBoundarySpaces(101)), "size must be between 1 and 100");
+
+    @BlankString(name = "size must be between 1 and 100")
+    @Unicode(length = 101, name = "size must be between 1 and 100")
+    void invalidName_failsValidation(String value, String expectedError) {
+        Dog dog = Dog.random().setName(value);
+        Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
+        assertEquals(expectedError, errors.iterator().next().getMessage());
+        assertEquals(1, errors.size(), "Should've been the only one: " + expectedError);
     }
 
     @Test void futureBirthDate_failsValidation() {
@@ -66,10 +77,6 @@ class DogTest {
         assertEquals(errors.size(), 1, "Should've been the only one: " + expectedError);
     }
 
-    private static void assertNameValidationPasses(Dog dog, String caseName) {
-        Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
-        assertEquals(errors.size(), 0, "Failed: " + caseName + ", value was: [" + dog.getName() + "].");
-    }
     private static void assertBirthDateValidationPasses(Dog dog, String caseName) {
         Set<ConstraintViolation<Dog>> errors = VALIDATOR.validate(dog);
         assertEquals(errors.size(), 0, "Failed: " + caseName + ", value was: [" + dog.getTimeOfBirth() + "].");
