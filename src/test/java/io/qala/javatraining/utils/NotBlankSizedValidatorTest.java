@@ -1,36 +1,32 @@
 package io.qala.javatraining.utils;
 
-import io.qala.javatraining.utils.NotBlankSized;
-import io.qala.javatraining.utils.NotBlankSizedValidator;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.validation.Payload;
 import java.lang.annotation.Annotation;
 
-import static io.qala.datagen.RandomShortApi.alphanumeric;
 import static io.qala.datagen.RandomShortApi.unicode;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Test
-public class NotBlankSizedValidatorTest {
+class NotBlankSizedValidatorTest {
 
-    public void validValuesPassValidation() {
+    @Test void validValuesPassValidation() {
         assertTrue(validator(1, 3).isValid(unicode(1, 3), null));
     }
-    public void nullFailsValidation() {
+    @Test void nullFailsValidation() {
         assertFalse(new NotBlankSizedValidator().isValid(null, null));
     }
-    public void greaterThanMax_failsValidation() {
+    @Test void greaterThanMax_failsValidation() {
         assertFalse(validator(1, 10).isValid(unicode(11), null));
     }
-    public void shorterThanMin_failsValidation() {
+    @Test void shorterThanMin_failsValidation() {
         assertFalse(validator(2, 3).isValid(unicode(1), null));
     }
-    public void minValue_passesValidation() {
+    @Test void minValue_passesValidation() {
         assertTrue(validator(1, 10).isValid(unicode(1), null));
     }
-    public void maxValue_passesValidation() {
+    @Test void maxValue_passesValidation() {
         assertTrue(validator(1, 3).isValid(unicode(3), null));
     }
 

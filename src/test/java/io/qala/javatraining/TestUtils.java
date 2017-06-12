@@ -5,7 +5,7 @@ import org.unitils.reflectionassert.ReflectionAssert;
 
 import java.time.OffsetDateTime;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUtils {
 

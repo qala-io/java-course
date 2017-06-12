@@ -1,7 +1,9 @@
 package io.qala.javatraining;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.lang.annotation.ElementType;
@@ -21,6 +23,7 @@ import java.lang.annotation.Target;
  * </ul>
  * </p>
  */
+@ExtendWith(SpringExtension.class)
 @WebAppConfiguration @ContextConfiguration(
         {"classpath:/test-context.xml", "classpath:/dao-context.xml", "classpath:/web-context.xml"})
 @ActiveProfiles("jdbc-dao")

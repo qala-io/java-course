@@ -1,24 +1,19 @@
 package io.qala.javatraining.domain;
 
-import io.qala.javatraining.domain.Dog;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.io.IOException;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Set;
 
 import static io.qala.datagen.RandomDate.after;
 import static io.qala.datagen.RandomDate.beforeNow;
 import static io.qala.datagen.RandomShortApi.*;
 import static java.time.Instant.now;
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Usually we try to have 1 logical assertion per test. Otherwise tests become hard to read and they fail due
@@ -26,42 +21,41 @@ import static org.testng.Assert.assertEquals;
  * take much more space and <i>that</i> would make our tests less readable. So we're just trying to balance between
  * 2 evils.
  */
-@Test
-public class DogTest {
-    public void validName_passesValidation() {
+class DogTest {
+    @Test void validName_passesValidation() {
         Dog dog = Dog.random();
         assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(1)), "min boundary");
         assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(100)), "max boundary");
         assertNameValidationPasses(dog.setName(unicodeWithoutBoundarySpaces(2, 99)), "middle value");
     }
-    public void invalidName_failsValidation() {
+    @Test void invalidName_failsValidation() {
         Dog dog = Dog.random();
         assertValidationFails(dog.setName(nullOrBlank()), "size must be between 1 and 100");
         assertValidationFails(dog.setName(unicodeWithoutBoundarySpaces(101)), "size must be between 1 and 100");
     }
 
-    public void futureBirthDate_failsValidation() {
+    @Test void futureBirthDate_failsValidation() {
         Dog dog = Dog.random();
         assertValidationFails(dog.setTimeOfBirth(after(now()).offsetDateTime()), "must be in the past");
     }
-    public void nullBirthDate_passesValidation() {
+    @Test void nullBirthDate_passesValidation() {
         Dog dog = Dog.random();
         assertBirthDateValidationPasses(dog.setTimeOfBirth(null), "null birth date");
     }
-    public void birthDateInPast_passesValidation() {
+    @Test void birthDateInPast_passesValidation() {
         Dog dog = Dog.random();
         assertBirthDateValidationPasses(dog.setTimeOfBirth(beforeNow().offsetDateTime()), "birth date in the past");
     }
 
-    public void positiveHeightOrWeight_passesValidation() {
+    @Test void positiveHeightOrWeight_passesValidation() {
         assertSizesValidationPasses(Dog.random().setHeight(Double.MIN_VALUE), "positive height");
         assertSizesValidationPasses(Dog.random().setWeight(Double.MIN_VALUE), "positive weight");
     }
-    public void zeroHeightOrWeight_failsValidation() {
+    @Test void zeroHeightOrWeight_failsValidation() {
         assertValidationFails(Dog.random().setHeight(0), "must be greater than 0");
         assertValidationFails(Dog.random().setWeight(0), "must be greater than 0");
     }
-    public void negativeHeightOrWeight_failsValidation() {
+    @Test void negativeHeightOrWeight_failsValidation() {
         assertValidationFails(Dog.random().setHeight(negativeDouble()), "must be greater than 0");
         assertValidationFails(Dog.random().setWeight(negativeDouble()), "must be greater than 0");
     }
@@ -86,8 +80,8 @@ public class DogTest {
                 "], weight was: [" + dog.getWeight() + "].");
     }
 
-    @BeforeClass
-    private static void initValidator() {
+    @BeforeAll
+    static void initValidator() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         VALIDATOR = factory.getValidator();
     }

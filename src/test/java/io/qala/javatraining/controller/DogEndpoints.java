@@ -12,7 +12,7 @@ import java.util.List;
 
 import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static java.util.Arrays.asList;
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DogEndpoints {
     DogEndpoints(MockMvc mvc) {

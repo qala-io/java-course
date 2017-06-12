@@ -2,9 +2,8 @@ package io.qala.javatraining.controller;
 
 import io.qala.javatraining.MockMvcTest;
 import io.qala.javatraining.domain.Dog;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,18 +12,20 @@ import java.util.UUID;
 import static io.qala.datagen.RandomShortApi.negativeDouble;
 import static io.qala.datagen.RandomShortApi.nullOrBlank;
 import static io.qala.javatraining.TestUtils.assertReflectionEquals;
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
-@MockMvcTest @Test
-public class DogEndpointTest extends AbstractTestNGSpringContextTests {
+@MockMvcTest
+class DogEndpointTest {
 
-    public void createdDog_isReturnedInPostRequest() {
+    @Test void createdDog_isReturnedInPostRequest() {
         Dog original = Dog.random();
         Dog fromDb = dogs.createDog(original);
         assertReflectionEquals(original, fromDb);
     }
 
-    public void getsTheSameDogAsWasSaved() {
+    @Test void getsTheSameDogAsWasSaved() {
         Dog original = Dog.random();
         dogs.createDog(original);
         Dog fromDb = dogs.findDog(original.getId());
@@ -32,12 +33,12 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
         assertReflectionEquals(original, fromDb);
     }
 
-    public void returnsEmptyList_ifNoDogsExist() {
+    @Test void returnsEmptyList_ifNoDogsExist() {
         dogs.deleteAll();
         List<Dog> dogs = this.dogs.listDogs();
         assertEquals(dogs.size(), 0);
     }
-    public void invokesValidationBeforeSaving() {
+    @Test void invokesValidationBeforeSaving() {
         Dog invalidDog = Dog.random().setName(nullOrBlank()).setHeight(negativeDouble());
         ValidationRestError[] errors = dogs.createDogAndFailValidation(invalidDog);
         assertEquals(errors.length, 2);
@@ -45,14 +46,12 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
         assertHasValidationError(errors, "name", "NotBlankSized", "size must be between 1 and 100");
     }
 
-    @Test(expectedExceptions = Error404Exception.class)
-    public void gettingReturns404_ifDogIsRemoved() {
+    @Test void gettingReturns404_ifDogIsRemoved() {
         Dog dog = dogs.createDog();
         dogs.deleteDog(dog.getId());
-        dogs.findDog(dog.getId());
+        assertThrows(Error404Exception.class, ()->dogs.findDog(dog.getId()));
     }
-    @Test
-    public void deleteDoesNothing_ifDogDoesNotExist() {
+    @Test void deleteDoesNothing_ifDogDoesNotExist() {
         dogs.deleteDog(UUID.randomUUID().toString());//doesn't throw anything
     }
 

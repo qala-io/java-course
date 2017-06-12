@@ -1,21 +1,20 @@
 package io.qala.javatraining.controller;
 
-import io.qala.javatraining.controller.ValidationRestError;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.beanvalidation.CustomValidatorBean;
-import org.testng.annotations.Test;
 import io.qala.javatraining.domain.Dog;
 
 import java.util.List;
 
 import static io.qala.datagen.RandomShortApi.nullOrBlank;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-@Test
-public class ValidationRestErrorTest {
+class ValidationRestErrorTest {
 
-    public void convertsFieldError_intoRestError() {
+    @Test void convertsFieldError_intoRestError() {
         BeanPropertyBindingResult errors = validate(Dog.random().setName(nullOrBlank()));
         ValidationRestError restError = new ValidationRestError(errors.getFieldError());
         assertEquals(restError.getObjectName(), "dog");
@@ -23,19 +22,19 @@ public class ValidationRestErrorTest {
         assertEquals(restError.getErrorCode(), "NotBlankSized");
         assertEquals(restError.getErrorMessage(), "size must be between 1 and 100");
     }
-    public void convertsAllErrors_intoRestError() {
+    @Test void convertsAllErrors_intoRestError() {
         BeanPropertyBindingResult errors = validate(Dog.random().setName(nullOrBlank()));
         List<ValidationRestError> restErrors = ValidationRestError.fromSpringErrors(errors.getAllErrors());
         assertEquals(restErrors.size(), 1);
     }
-    public void resultsInEmptyErrorList_ifValidationIsNotFailed() {
+    @Test void resultsInEmptyErrorList_ifValidationIsNotFailed() {
         BeanPropertyBindingResult errors = validate(Dog.random());
         List<ValidationRestError> restErrors = ValidationRestError.fromSpringErrors(errors.getAllErrors());
         assertEquals(restErrors.size(), 0);
     }
 
-    @Test(enabled = false)//there are no global (class-level) validation so far, so nothing to test yet
-    public void convertsObjectErrors_intoRestError() { fail(); }
+    //there are no global (class-level) validation so far, so nothing to test yet
+    @Test @Disabled void convertsObjectErrors_intoRestError() { fail(""); }
 
     private BeanPropertyBindingResult validate(Dog dog) {
         CustomValidatorBean validator = new CustomValidatorBean();

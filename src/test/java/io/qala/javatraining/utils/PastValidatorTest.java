@@ -1,25 +1,25 @@
 package io.qala.javatraining.utils;
 
-import io.qala.javatraining.utils.PastValidator;
-import org.testng.annotations.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
 
 import static io.qala.datagen.RandomDate.after;
 import static io.qala.datagen.RandomDate.beforeNow;
 import static java.time.Instant.now;
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Test
-public class PastValidatorTest {
+class PastValidatorTest {
 
-    public void futureDatesFailValidation() {
+    @Test void futureDatesFailValidation() {
         assertFalse(isValid(after(now()).offsetDateTime()));
     }
-    public void pastDatesPassValidation() {
+    @Test void pastDatesPassValidation() {
         assertTrue(isValid(beforeNow().offsetDateTime()));
     }
-    public void nullDatesPassValidation_becauseTheyAreIgnored() {
+    @Test void nullDatesPassValidation_becauseTheyAreIgnored() {
         assertTrue(isValid(null));
     }
 
