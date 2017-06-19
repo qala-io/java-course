@@ -105,3 +105,8 @@ So make sure your binary was built from the sources at hand.
 *Tip*: Often if we don't understand how things work instead of googling and guessing it's much (much!) easier to read 
 the source code of the tool. If the code is not simple - debugging becomes a real life saver. Have it as a habit to work
 with the sources of the tools instead of googling - you'll have a much better grip on the technologies.
+
+# Puzzles
+
+There is a problematic test in branch `puzzle-nBZyIqbL` - it passes in IDE and when you run `mvn test`. But strangely
+it fails when `mvn package` is run. Figure out why.
