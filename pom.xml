@@ -7,7 +7,11 @@
     <groupId>io.qala.java-training</groupId>
     <artifactId>java-training</artifactId>
     <version>1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>module1</module>
+        <module>module2</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <properties>
         <sourceJdk>1.8</sourceJdk>
