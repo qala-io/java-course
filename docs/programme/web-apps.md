@@ -63,7 +63,7 @@ aspects by heart and then forgetting and then re-learning them again.
 * Think & research: what types of the applications we write in regards to CPU and IO load.
 * Think & research: what value we should set for thread pool's options: max size and accept count?
 * Practice: Write a custom load test for your servlet and Tomcat. The test should submit multiple tasks to a Thread 
-Pool. Each task hits your server at multiple times in a separate thread. Find how your configuration changes in Tomcat 
+Pool. Each task hits your server multiple times in a separate thread. Find how your configuration changes in Tomcat
 impact the way it responds to the load. Experiment with both - configuration of the test and Tomcat. 
 
 # Step 4 - Memory Leaks
