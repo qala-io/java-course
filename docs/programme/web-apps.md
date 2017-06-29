@@ -46,7 +46,8 @@ the request is coming and after Servlet responds.
 # Step 2 - Thread Pools
 
 * Read what BlockingQueue is, try out some examples
-* Read about [States of Threads](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.State.html)
+* Read about states of threads [link1](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.State.html),
+[link2](./articles/threads.md)
 * Read about ThreadPools, Executors. Try to write some sample tasks and submit them to the pool for execution.
 * Dig into Thread Pools source code and find out how they work internally.
 
