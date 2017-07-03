@@ -1,6 +1,5 @@
 package io.qala.javatraining.domain;
 
-import io.qala.javatraining.domain.Dog;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -8,10 +7,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.io.IOException;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Set;
 
 import static io.qala.datagen.RandomDate.after;
