@@ -29,28 +29,10 @@ to put there? How do these correlate with the number of dynamically generated SQ
 # Step 3 - Testing Connections
 
 We've been working with embedded DB so far - it doesn't use network and instead JDBC Driver invokes Java classes
-of the DB Server directly. But in the majority of cases we use standalone DBs like MySQL, Postgre, Oracle that are 
-located on remote hosts. To communicate with them a client-server interaction must happen. 
+of the DB Server directly. But remote DBs involves network.
 
-When such an interaction is initiated multiple things happen:
-
-- A TCP connection is established
-- A Server Connection (a.k.a. Session) is created on DB Side (in this case it's the server side). Such 
-connections have settings, user information, they begin and end transactions, etc. 
-- A Client Connection (`java.sql.Connection`) object is created in your code.
-
-So what would happen if any of these die (e.g. TCP connection is interrupted or Server Connection closed)?
-
-1. Client side does _not_ get notified. And even if it would, how could it remove itself from the DB Pool? Thus DB Pool 
-can't know that the connection died and will return the broken `java.sql.Connection` to your code.
-2. When your code receives a `java.sql.Connection` from the pool, it tries to execute some statement and it fails
-with a generic `SQLException`. 
-3. You can't do much with it so you invoke `close()` which _returns it back to the pool_. 
-4. And the cycle repeats again. Even worse - only 1 connection of 50 could die so it's only 1/50 times when user gets 
-an error. So it may be hard to notice and debug the problem.
-
-To handle broken connections gracefully we need to configure the pool to test them.
- 
+- Research how JDBC Connections work over the network and what happens if the underlying TCP connection breaks
+([link](./articles/db-pools-breaking-physical-connections.md))
 - Experiment: what happens if the DB is forcibly restarted? Would the already established connections be valid after 
 that?
 - Think & research: what do network firewalls do with a stalled connection when there is no traffic for some time?
