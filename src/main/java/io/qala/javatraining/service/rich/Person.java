@@ -1,4 +1,6 @@
-package io.qala.javatraining.service.person;
+package io.qala.javatraining.service.rich;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
@@ -6,6 +8,13 @@ class Person {
     private List projects;
     private List relatives;
     private long id;
+
+    PersonStatistics buildStatistics() {
+        PersonStatistics result = new PersonStatistics(this);
+        if(CollectionUtils.isNotEmpty(getRelatives())) result.setNumOfRelatives(getRelatives().size());
+        if(CollectionUtils.isNotEmpty(getProjects( ))) result.setNumOfProjects(getProjects().size());
+        return result;
+    }
 
     List getProjects() {
         return projects;

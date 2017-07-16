@@ -1,4 +1,4 @@
-package io.qala.javatraining.service.person;
+package io.qala.javatraining.service.anaemic;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

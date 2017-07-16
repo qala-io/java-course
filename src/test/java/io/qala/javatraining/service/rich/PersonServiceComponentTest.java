@@ -1,4 +1,4 @@
-package io.qala.javatraining.service.person;
+package io.qala.javatraining.service.rich;
 
 import io.qala.javatraining.domain.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,32 +23,15 @@ public class PersonServiceComponentTest extends AbstractTestNGSpringContextTests
     @Autowired StatisticsDao statsDao;
     @Autowired PersonDao     personDao;
 
-    public void returnsProjectCount_ifProjectArePresent() {
-        Person p = save(new Person()
-                .setProjects(projects())
-                .setRelatives(sample(emptyList(), relatives(), null)));
-
-        PersonStatistics statistics = service.getStatistics(p.getId());
-        assertEquals(statistics.getNumOfProjects(), (Integer) p.getProjects().size());
-    }
-    public void returnsRelativesCount_ifRelativesArePresent() {
-        Person p = save(new Person()
-                .setRelatives(relatives())
-                .setProjects(sample(emptyList(), projects(), null)));
-
-        PersonStatistics statistics = service.getStatistics(p.getId());
-        assertEquals(statistics.getNumOfRelatives(), (Integer) p.getRelatives().size());
-    }
-    public void savesStatistics_ifAnyOfFieldsAreNotNull() {
+    public void savesStatistics_ifNotEmpty() {
         List projects = sample(emptyList(), projects(), null);
-        Person p = save(new Person()
-                .setProjects(projects)
-                .setRelatives(isEmpty(projects) ? relatives() : sample(emptyList(), relatives(), null)));
+        List relatives = isEmpty(projects) ? relatives() : sample(emptyList(), relatives(), null);
+        Person p = save(new Person().setProjects(projects).setRelatives(relatives));
 
         service.getStatistics(p.getId());
         assertNotNull(statsDao.getPersonStats(p.getId()));
     }
-    public void doesNotSaveStats_ifAllFieldsAreEmpty() {
+    public void doesNotSaveStats_ifEmpty() {
         Person p = save(new Person()
             .setProjects(nullOr(emptyList()))
             .setRelatives(nullOr(emptyList())));

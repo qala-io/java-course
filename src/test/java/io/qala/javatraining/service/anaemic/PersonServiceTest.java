@@ -1,4 +1,4 @@
-package io.qala.javatraining.service.person;
+package io.qala.javatraining.service.anaemic;
 
 import io.qala.javatraining.domain.ObjectNotFoundException;
 import org.testng.annotations.BeforeMethod;
@@ -27,7 +27,7 @@ public class PersonServiceTest {
         service = new PersonService(personDao, statsDao);
     }
 
-    public void returnsProjectCount_ifProjectArePresent() {
+    public void returnsProjectCount_ifProjectsArePresent() {
         Person p = new Person()
                 .setProjects(projects())
                 .setRelatives(sample(emptyList(), relatives(), null));
@@ -47,9 +47,8 @@ public class PersonServiceTest {
     }
     public void savesStatistics_ifAnyOfFieldsAreNotNull() {
         List projects = sample(emptyList(), projects(), null);
-        Person p = new Person()
-                .setProjects(projects)
-                .setRelatives(isEmpty(projects) ? relatives() : sample(emptyList(), relatives(), null));
+        List relatives = isEmpty(projects) ? relatives() : sample(emptyList(), relatives(), null);
+        Person p = new Person().setProjects(projects).setRelatives(relatives);
         doReturn(p).when(personDao).get(1L);
 
         service.getStatistics(1L);

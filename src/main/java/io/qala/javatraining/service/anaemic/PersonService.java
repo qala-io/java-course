@@ -1,4 +1,4 @@
-package io.qala.javatraining.service.person;
+package io.qala.javatraining.service.anaemic;
 
 import org.apache.commons.collections4.CollectionUtils;
 

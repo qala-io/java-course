@@ -1,4 +1,4 @@
-package io.qala.javatraining.service.person;
+package io.qala.javatraining.service.anaemic;
 
 class PersonStatistics {
     private Person person;
@@ -29,5 +29,8 @@ class PersonStatistics {
     PersonStatistics setNumOfRelatives(Integer numOfRelatives) {
         this.numOfRelatives = numOfRelatives;
         return this;
+    }
+    boolean isNotEmpty() {
+        return !((numOfProjects == null || numOfProjects == 0) && (numOfRelatives == null || numOfRelatives == 0));
     }
 }

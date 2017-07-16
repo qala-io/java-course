@@ -1,4 +1,4 @@
-package io.qala.javatraining.service.person;
+package io.qala.javatraining.service.rich;
 
 import io.qala.javatraining.domain.ObjectNotFoundException;
 
