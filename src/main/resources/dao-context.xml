@@ -14,46 +14,59 @@
         <property name="table" value="schema_version"/>
     </bean>
     <bean class="io.qala.javatraining.dao.JdbcConnectionHolder" depends-on="flyway"/>
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <!--Tests create multiple instances of JdbcDogDao which would have table created every time it's instantiated.
-        Which would fail. So we want to separate each instance of DAO by creating different DB every time it's created.-->
-        <property name="jdbcUrl" value="jdbc:h2:mem:#{T(io.qala.datagen.RandomShortApi).alphanumeric(10)};DB_CLOSE_DELAY=-1"/>
-        <!--Starting from Java6 and introduction of JDBC4 driver it's not necessary anymore to load the JDBC Drivers
-        manually - they will be detected via SPI (service provider interface) which is going to scan classpath, find
-        all the files `META-INF/services/java.sql.Driver` and then ask each driver if the URL matches its expectations.
-        The one that says "yes" is used to connect to DB. More info: http://www.onjava.com/2006/08/02/jjdbc-4-enhancements-in-java-se-6.html
-        But this mechanism is broken for App Servers since the scanning happens only once - and that probably is done
-        when the App Server itself is started - not when the app is deployed. This is an issue if the driver is located
-        within the WAR file itself (not if it's in TOMCAT/lib). More info:
-        http://tomcat.apache.org/tomcat-8.0-doc/jndi-datasource-examples-howto.html#DriverManager,_the_service_provider_mechanism_and_memory_leaks
-        -->
-        <property name="driverClass" value="org.h2.Driver"/>
-        <property name="user" value="sa"/>
-        <property name="password" value=""/>
-        <!--Should be close to the size of the web server thread pool in order not to let threads wait for connections-->
-        <property name="maxPoolSize" value="10"/>
-        <!--We don't expect our DB not to create connections for 1st N of attempts. It has to create the connection right away-->
-        <property name="acquireRetryAttempts" value="1"/>
-        <!--Every hour we'll be hitting DB to make sure a real connection is still alive. Connections can die due
-         to many reasons:
-         - DB can kill it because of inactivity (by default if connection is idle for 8 hrs, MySQL kills it)
-         - DB Server was down for some time and it doesn't know anymore about our client connections
-         - Firewall between our app and the DB server decided that it should drop/reject packages going forward because
-         of inactivity or because of misconfiguration
 
-         When we work with in-memory DBs this is probably not important, but usually we work with remote DBs and this
-         is a demonstration of DB Pools in action.
-         -->
-        <property name="idleConnectionTestPeriod" value="3600"/>
-        <!--This is required because if all the connections are taken and threads are waiting, they might be blocked
-        forever. But if we specify this timeout, an exception will be raised in case of threads being blocked for too
-        long. This allows the app not to eat all the threads rendering it not working.
-        Note, that we can't make this value too low either (e.g. 100ms) because if DB Pool actually needs to go to DB
-        to create connections it may take longer than that.-->
-        <property name="checkoutTimeout" value="10000"/>
-        <!-- This also checks the connections when they are returned to the Pool in case they are actually broken.
-        In contrast to testing the connection on checkout this will not block the request-processing thread.-->
-        <property name="testConnectionOnCheckin" value="true"/>
+    <!--Usually connection is retrieved from the pool when transactional method is invoked. The lazy proxy makes
+    sure it's retrieved only when actually needed - when SQL queries are run. This allows the connection to stay in the
+    pool and potentially be used by another thread. Especially this is useful when service mthods invoke other services
+    which may take seconds - we'd rather leave the connection in the pool for these extra seconds.-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource">
+            <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+                <!--Tests create multiple instances of JdbcDogDao which would have table created every time it's
+                instantiated. Which would fail. So we want to separate each instance of DAO by creating different DB
+                every time it's created.-->
+                <property name="jdbcUrl"
+                          value="jdbc:h2:mem:#{T(io.qala.datagen.RandomShortApi).alphanumeric(10)};DB_CLOSE_DELAY=-1"/>
+                <!--Starting from Java6 and introduction of JDBC4 driver it's not necessary anymore to load the JDBC
+                Drivers manually - they will be detected via SPI (service provider interface) which is going to scan
+                classpath, find all the files `META-INF/services/java.sql.Driver` and then ask each driver if the URL
+                matches its expectations. The one that says "yes" is used to connect to DB. More info:
+                http://www.onjava.com/2006/08/02/jjdbc-4-enhancements-in-java-se-6.html
+
+                But this mechanism is broken for App Servers since the scanning happens only once - and that probably
+                is done when the App Server itself is started - not when the app is deployed. This is an issue if the
+                driver is located within the WAR file itself (not if it's in TOMCAT/lib). More info:
+                http://tomcat.apache.org/tomcat-8.0-doc/jndi-datasource-examples-howto.html#DriverManager,_the_service_provider_mechanism_and_memory_leaks
+                -->
+                <property name="driverClass" value="org.h2.Driver"/>
+                <property name="user" value="sa"/>
+                <property name="password" value=""/>
+                <!--Should be close to the size of the web server thread pool in order not to let threads wait for connections-->
+                <property name="maxPoolSize" value="10"/>
+                <!--We don't expect our DB not to create connections for 1st N of attempts. It has to create the connection right away-->
+                <property name="acquireRetryAttempts" value="1"/>
+                <!--Every hour we'll be hitting DB to make sure a real connection is still alive. Connections can die
+                 due to many reasons:
+                 - DB can kill it because of inactivity (by default if connection is idle for 8 hrs, MySQL kills it)
+                 - DB Server was down for some time and it doesn't know anymore about our client connections
+                 - Firewall between our app and the DB server decided that it should drop/reject packages going forward
+                  because of inactivity or because of misconfiguration
+
+                 When we work with in-memory DBs this is probably not important, but usually we work with remote DBs
+                  and this is a demonstration of DB Pools in action.
+                 -->
+                <property name="idleConnectionTestPeriod" value="3600"/>
+                <!--This is required because if all the connections are taken and threads are waiting, they might be
+                blocked forever. But if we specify this timeout, an exception will be raised in case of threads being
+                blocked for too long. This allows the app not to eat all the threads rendering it not working.
+                Note, that we can't make this value too low either (e.g. 100ms) because if DB Pool actually needs to
+                go to DB to create connections it may take longer than that.-->
+                <property name="checkoutTimeout" value="10000"/>
+                <!-- This also checks the connections when they are returned to the Pool in case they are actually broken.
+                In contrast to testing the connection on checkout this will not block the request-processing thread.-->
+                <property name="testConnectionOnCheckin" value="true"/>
+            </bean>
+        </property>
     </bean>
 
     <!--Spring Profiles are very (very!) bad since they create a condition in the app startup process and make it work

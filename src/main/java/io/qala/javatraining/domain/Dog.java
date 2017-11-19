@@ -10,8 +10,6 @@ import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.UUID;
 
-import static io.qala.datagen.RandomDate.beforeNow;
-import static io.qala.datagen.RandomDate.between;
 import static io.qala.datagen.RandomShortApi.*;
 
 public class Dog {
