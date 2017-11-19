@@ -37,4 +37,6 @@ It should take 1-3 months - all is up to you.
 
 # Contact Info
 
-Should you have questions or suggestions please [file them here](https://github.com/qala-io/java-course/issues/new).
+* Should you have questions or suggestions please [file them here](https://github.com/qala-io/java-course/issues/new).
+* Occasional updates are posted in [Twitter](https://twitter.com/Qala_io)
+* [Our blog](http://qala.io/blog.html)
