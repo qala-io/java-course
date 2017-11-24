@@ -115,6 +115,7 @@ rushing into using it remember - the higher the level of abstraction the more yo
 the test.
 - Next puzzle is in branch `puzzle-TsomSH6a`. There is a failing test that checks that if we violate a DB constraint, 
 an exception is raised. But that doesn't happen. Looks like the DB constraints don't work. Or do they?
+- Another one: `puzzle-BS7MrHNE`. There is a failing test - our Dog cannot find its owner, you need to help it.
 
 # Literature
 
