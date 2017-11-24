@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-    <class name="io.qala.javatraining.domain.Dog" table="DOG">
+<hibernate-mapping package="io.qala.javatraining.domain">
+    <class name="Dog" table="DOG">
         <id name="id">
             <generator class="assigned"/>
         </id>
@@ -11,6 +11,16 @@
         <property name="timeOfBirth" column="BIRTH_TIME" />
         <property name="height" />
         <property name="weight" />
+        <set name="owners" cascade="save-update">
+            <key column="DOG_ID"/>
+            <one-to-many class="Human"/>
+        </set>
+    </class>
+    <class name="Human" table="HUMAN">
+        <id name="id">
+            <generator class="increment"/>
+        </id>
+        <property name="name" />
     </class>
     <query name="getAllDogs">from Dog</query>
 </hibernate-mapping>

@@ -8,6 +8,8 @@ import javax.validation.constraints.DecimalMin;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import static io.qala.datagen.RandomShortApi.*;
@@ -31,6 +33,7 @@ public class Dog {
     private double weight;
     @DecimalMin(value = "0", inclusive = false)
     private double height;
+    private Set<Human> owners;
 
     public static Dog random() {
         Dog dog = new Dog();
@@ -46,6 +49,9 @@ public class Dog {
 
         dog.weight = positiveDouble();
         dog.height = positiveInteger();
+        dog.owners = new HashSet<>();
+        dog.owners.add(new Human().setName(alphanumeric(1, 100)));
+        dog.owners.add(new Human().setName(alphanumeric(1, 100)));
         return dog;
     }
 
@@ -56,6 +62,15 @@ public class Dog {
     @SuppressWarnings(/*Used by ORM*/"unused")
     public Dog setId(String id) {
         this.id = id;
+        return this;
+    }
+
+    public Set<Human> getOwners() {
+        return owners;
+    }
+
+    public Dog setOwners(Set<Human> owners) {
+        this.owners = owners;
         return this;
     }
 
