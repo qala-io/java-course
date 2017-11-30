@@ -7,3 +7,5 @@ This is a Maven puzzle. There is a test in `module2`. If you try to run it:
 * But if you run `mvn package` it fails
 
 Figure out exactly why this happens how would you re-write the test to pass in all the cases.
+
+To return back to the course programme checkout `master` branch.
