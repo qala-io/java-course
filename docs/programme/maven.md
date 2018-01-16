@@ -26,11 +26,12 @@ With Ant and Gradle every time you enter a project there is its own custom set o
 * Add a dependency `org.testng:testng:6.10`
 * Add any Java class to your `src/main/java` and an XML file to your `src/main/resources`. And do the same in 
 `src/test/xxx` dirs.
+* After `mvn test-compile` find where in `target/` dir your classes and resources ended up
+* After `mvn package` unpack your JAR file from `target/` dir and find where your classes and resources are
 
 *Check yourself*. You must be able to:
 
 * Run `mvn install` successfully
-* Find where in `target/` dir your compiled classes and resources appeared
 * List all the dependencies that your project has (including transitives) with one command
 * Explore Effective POM and find all the default sections that were applied to your project. Even those that you didn't
 explicitly write.
@@ -39,7 +40,7 @@ explicitly write.
 an issue these 2 tools are there to help. Your IDE probably has means to generate both of them - try to find the 
 shortcuts, you'll need this often.
 
-# Step 2 - Lifecycles, phases, plugins
+# Step 2 - Lifecycle, phases, plugins
 
 * Learn what Plugins are and what is a `goal` ([link](./articles/maven-plugins.md))
 * Read and learn what is a lifecycle and which lifecycles Maven has. Explore which phases each of the lifecycle has.
@@ -75,9 +76,10 @@ dependency.
 * Explain what does "reactor" term mean in Maven 
 
 # Step 4 - Advanced Dependencies
-
-* Find out which scopes can dependency have
+  
 * Read about `dependencyManagement`
+* Find out which scopes can a dependency have ([link](./articles/maven-scopes.md))
+* Come up with examples of libs for each of the scopes (explore SLF4J, Lombok as some interesting examples)
 * Get acquainted with classifiers and types - last parts of dependency coordinates
 * Find your local maven repository, learn which phase and plugin delivers the artifacts there
 * Read about maven repositories and what plugin and phase deploy artifacts there
