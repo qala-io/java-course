@@ -98,9 +98,12 @@ and in `setXxx(xxx)` methods. So why did we chose to inject DataSource into DAO 
    string needs be tested for this attack. If you implemented _Step 2_ as it stated your tests should fail. This means
    that the app is currently vulnerable to one of the most dangerous and primitive attacks existing.
 - Read about `PreparedStatement`. Change methods that pass data to SQL to use `PreparedStatement` instead of `Statement`
-- Explain how `PreparedStatement` works under the hood ([this article](http://articles.javatalks.ru/articles/34) can help)
+- Explain how `PreparedStatement` works under the hood ([this article](http://articles.javatalks.ru/articles/34) may help)
 - Think and research: in which situations can `PreparedStatement` improve performance comparing to `Statement`. 
 In which situations it can worsen the performance?
+- Install Wireshark and one of the standalone DBs (MySQL, PostgreSQL, Oracle XE, etc). Point the code to that DB
+instead of H2 and look at the communication between JDBC and DB to figure out what information is sent by
+PreparedStatements
 
 # Step 4 - DB Migrations
 
