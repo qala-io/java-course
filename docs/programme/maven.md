@@ -101,7 +101,7 @@ dependency.
 * Get acquainted with classifiers and types - last parts of dependency coordinates
 * Find your local maven repository, learn which phase and plugin delivers the artifacts there
 * Read about maven repositories and what plugin and phase deploy artifacts there
-* Try to deploying artifacts of the projects to the local maven repo on file system (not install, but deploy)
+* Deploy artifacts of the project to the local maven repo on file system (not install, but deploy)
 
 *Check yourself*. You must be able to:
 
