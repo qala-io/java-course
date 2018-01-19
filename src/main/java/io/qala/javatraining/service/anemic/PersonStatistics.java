@@ -1,4 +1,4 @@
-package io.qala.javatraining.service.anaemic;
+package io.qala.javatraining.service.anemic;
 
 class PersonStatistics {
     private Person person;

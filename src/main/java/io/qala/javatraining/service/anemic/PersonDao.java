@@ -1,4 +1,4 @@
-package io.qala.javatraining.service.anaemic;
+package io.qala.javatraining.service.anemic;
 
 import io.qala.javatraining.domain.ObjectNotFoundException;
 
