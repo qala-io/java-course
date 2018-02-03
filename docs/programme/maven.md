@@ -68,6 +68,8 @@ it, but can you cancel it in your POM? Hint: you can, but find out how.
 that are run by `maven-surefire-plugin` (hint: look for info about forks in Surefire).
 * Run `mvn install` and pick any random line in the output. Find the source code that prints the output (could be
 Maven core parts or one of plugins). Debug (`mvnDebug` utility that comes with Maven) should help with this.
+* Think: given some code writes something into console, what would be a systematic way of finding which class/method
+does this?
 
 *Tip*: How does Remote Debugging work? This is a client-server interaction where server (JVM that's debugged)
 communicates with the client (IDE) sending the information like current line of code executed in every thread,
