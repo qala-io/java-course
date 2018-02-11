@@ -37,11 +37,11 @@ performant for this kind of job.
 
 # Step 1 - Servlets API core
 
-* Learn what a Servlet is and write a Hello World example
-* Learn what `web.xml` is and declare your servlet there
+* Learn what a Servlet is and write a Hello World example (Head first Servlets and JSP : demestifying servlets)
+* Learn what `web.xml` is and declare your servlet there 
 * Read about `Filter` and create 2 (not one!) simple filters yourself. They should write something to console before 
-the request is coming and after Servlet responds.
-* Read about `Listener` and create one yourself
+the request is coming and after Servlet responds. (http://tutorials.jenkov.com/java-servlets/servlet-filters.html)
+* Read about `Listener` and create one yourself. (https://www.mkyong.com/servlet/what-is-listener-servletcontextlistener-example/)
 
 # Step 2 - Thread Pools
 
