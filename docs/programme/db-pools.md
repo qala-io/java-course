@@ -58,7 +58,7 @@ client code would receive exception anyway.
 - Read about and configure `unreturnedConnectionTimeout`
 - Find an option in C3P0 to debug which code borrowed and didn't return the connection back?
 
-*Tip*: issues related to firewalls `reject`ing packages are valid not only for databases but for any integration that
+*Tip*: issues related to firewalls `deny`ing packages are valid not only for databases but for any integration that
 collaborates over network. Read about Connection Timeout and Socket Timeout to dive into the topic. 
 
 # Step 5 - DB Pools in App Servers
