@@ -47,8 +47,8 @@ shortcuts, you'll need this often.
 ([link](./articles/maven-lifecycles-n-phases.md))
 * Declare `maven-surefire-plugin` and bind its `test` goal to a `test` phase
 * Explore files
-[default-bindings.xml](https://git-wip-us.apache.org/repos/asf?p=maven.git;a=blob;f=maven-core/src/main/resources/META-INF/plexus/default-bindings.xml) and
-[components.xml](https://git-wip-us.apache.org/repos/asf?p=maven.git;a=blob_plain;f=maven-core/src/main/resources/META-INF/plexus/components.xml;hb=HEAD) -
+[default-bindings.xml](https://github.com/apache/maven/blob/master/maven-core/src/main/resources/META-INF/plexus/default-bindings.xml) and
+[components.xml](https://github.com/apache/maven/blob/master/maven-core/src/test/resources/META-INF/plexus/components.xml) -
 these files contain default plugins
 * Ensure that what you see in `default-bindings.xml` is what's listed in your Effective POM
 
