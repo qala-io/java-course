@@ -28,6 +28,11 @@ With Ant and Gradle every time you enter a project there is its own custom set o
   https://maven.apache.org/ref/3.6.0/maven-core/default-bindings.html#Plugin_bindings_for_pom_packaging
 * Add a dependency `org.testng:testng:6.10`
 * Maven profiles https://maven.apache.org/guides/introduction/introduction-to-profiles.html
+* Maven Mirrors https://maven.apache.org/guides/mini/guide-mirror-settings.html
+  http://maven.40175.n5.nabble.com/Setting-Mirror-properties-by-profile-td122815.html
+   
+* Maven Repository http://maven.apache.org/guides/introduction/introduction-to-repositories.html
+  
 * Add any Java class to your `src/main/java` and an XML file to your `src/main/resources`. And do the same in 
 `src/test/xxx` dirs.
 * After `mvn test-compile` find where in `target/` dir your classes and resources ended up
