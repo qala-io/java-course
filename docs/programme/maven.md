@@ -20,10 +20,14 @@ With Ant and Gradle every time you enter a project there is its own custom set o
 
 # Step 1 - Getting Acquainted
 
-* Read about dependencies and transitive dependencies
-* Learn what Super POM is and what Effective POM is
-* Read about `packaging` and create a project with one module that has `packaging=war`
+* Read about dependencies and transitive dependencies 
+  https://maven.apache.org/settings.html#Introduction
+* Learn what Super POM is and what Effective POM is - mvn help:effective-pom
+  https://stackoverflow.com/questions/26114768/what-are-the-difference-between-pom-xml-and-effective-pom-in-apache-maven
+* Read about `packaging` and create a project with one module that has `packaging=war` 
+  https://maven.apache.org/ref/3.6.0/maven-core/default-bindings.html#Plugin_bindings_for_pom_packaging
 * Add a dependency `org.testng:testng:6.10`
+* Maven profiles https://maven.apache.org/guides/introduction/introduction-to-profiles.html
 * Add any Java class to your `src/main/java` and an XML file to your `src/main/resources`. And do the same in 
 `src/test/xxx` dirs.
 * After `mvn test-compile` find where in `target/` dir your classes and resources ended up
