@@ -20,13 +20,12 @@ With Ant and Gradle every time you enter a project there is its own custom set o
 
 # Step 1 - Getting Acquainted
 
-* Read about dependencies and transitive dependencies 
-  https://maven.apache.org/settings.html#Introduction
-* Learn what Super POM is and what Effective POM is - mvn help:effective-pom
-  https://stackoverflow.com/questions/26114768/what-are-the-difference-between-pom-xml-and-effective-pom-in-apache-maven
+* Read about dependencies and transitive dependencies ([link](https://maven.apache.org/settings.html#Introduction))
+* Learn what Super POM is and what Effective POM is - mvn help:effective-pom ([link](https://stackoverflow.com/questions/26114768/what-are-the-difference-between-pom-xml-and-effective-pom-in-apache-maven)
 * Read about `packaging` and create a project with one module that has `packaging=war` 
   https://maven.apache.org/ref/3.6.0/maven-core/default-bindings.html#Plugin_bindings_for_pom_packaging
-* Add a dependency `org.testng:testng:6.10`
+* Add a dependency `org.testng:testng:6.10` 
+  mvn dependency:tree
 * Maven profiles https://maven.apache.org/guides/introduction/introduction-to-profiles.html
 * Maven Mirrors https://maven.apache.org/guides/mini/guide-mirror-settings.html
   http://maven.40175.n5.nabble.com/Setting-Mirror-properties-by-profile-td122815.html
@@ -74,12 +73,12 @@ it, but can you cancel it in your POM? Hint: you can, but find out how.
 # Step 3 - Debugging
 
 * Create a unit test with `assertTrue(true)` statement. Put a breakpoint on this line. Find a way to debug the tests
-that are run by `maven-surefire-plugin` (hint: look for info about forks in Surefire).
+that are run by `maven-surefire-plugin` (hint: look for info about forks in Surefire). ([link](https://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html))
 * Run `mvn install` and pick any random line in the output. Find the source code that prints the output (could be
 Maven core parts or one of plugins). Debug (`mvnDebug` utility that comes with Maven) should help with this.
 * Think: given some code writes something into console, what would be a systematic way of finding which class/method
 does this?
-
+[Steps to debug tests](https://doc.nuxeo.com/corg/how-to-debug-a-test-run-with-maven/)
 *Tip*: How does Remote Debugging work? This is a client-server interaction where server (JVM that's debugged)
 communicates with the client (IDE) sending the information like current line of code executed in every thread,
 variables, etc. Client (IDE) can ask the server to stop the execution of the program and receive some alternatives
@@ -91,6 +90,7 @@ So make sure your binary was built from the sources at hand.
 the source code of the tool. If the code is not simple - debugging becomes a real life saver. Have it as a habit to work
 with the sources of the tools instead of googling - you'll have a much better grip on the technologies.
 
+* Speed up Maven build ([link](https://zeroturnaround.com/rebellabs/your-maven-build-is-slow-speed-it-up/))
 # Step 4 - Inheritance and Aggregation
 
 * Create 3 modules - 1 is parent and the other 2 are included as `<modules>`. Child1 needs to have Child2 as a 
@@ -98,7 +98,7 @@ dependency.
 * Read about reactor in Maven
 * Play with `<parent>` tag - what difference does it make?
 * Find a way to override dependencies and plugins in child modules
-* Research mvn flags like `-pl`, `-am`, `-amd`
+* Research mvn flags like `-pl`, `-am`, `-amd` ([link](https://blog.sonatype.com/2009/10/maven-tips-and-tricks-advanced-reactor-options/))
 
 *Check yourself*. You must be able to:
 
