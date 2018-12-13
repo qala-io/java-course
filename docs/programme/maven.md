@@ -74,11 +74,11 @@ it, but can you cancel it in your POM? Hint: you can, but find out how.
 
 * Create a unit test with `assertTrue(true)` statement. Put a breakpoint on this line. Find a way to debug the tests
 that are run by `maven-surefire-plugin` (hint: look for info about forks in Surefire). ([link](https://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html))
+* [Steps to debug tests](https://doc.nuxeo.com/corg/how-to-debug-a-test-run-with-maven/)
 * Run `mvn install` and pick any random line in the output. Find the source code that prints the output (could be
 Maven core parts or one of plugins). Debug (`mvnDebug` utility that comes with Maven) should help with this.
 * Think: given some code writes something into console, what would be a systematic way of finding which class/method
 does this?
-[Steps to debug tests](https://doc.nuxeo.com/corg/how-to-debug-a-test-run-with-maven/)
 *Tip*: How does Remote Debugging work? This is a client-server interaction where server (JVM that's debugged)
 communicates with the client (IDE) sending the information like current line of code executed in every thread,
 variables, etc. Client (IDE) can ask the server to stop the execution of the program and receive some alternatives
@@ -91,6 +91,7 @@ the source code of the tool. If the code is not simple - debugging becomes a rea
 with the sources of the tools instead of googling - you'll have a much better grip on the technologies.
 
 * Speed up Maven build ([link](https://zeroturnaround.com/rebellabs/your-maven-build-is-slow-speed-it-up/))
+* Find CPU cores ([link](https://stackoverflow.com/questions/1715580/how-to-discover-number-of-logical-cores-on-mac-os-x))
 # Step 4 - Inheritance and Aggregation
 
 * Create 3 modules - 1 is parent and the other 2 are included as `<modules>`. Child1 needs to have Child2 as a 
@@ -108,7 +109,7 @@ dependency.
 
 # Step 5 - Advanced Dependencies
 
-* Read about `dependencyManagement`
+* Read about `dependencyManagement` ([link](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html))
 * Find out which scopes can a dependency have ([link](./articles/maven-scopes.md))
 * Come up with examples of libs for each of the scopes (explore SLF4J, Lombok as some interesting examples)
 * Get acquainted with classifiers and types - last parts of dependency coordinates
