@@ -126,3 +126,6 @@ dependency.
 
 There is a problematic test in branch `puzzle-nBZyIqbL` - it passes in IDE and when you run `mvn test`. But strangely
 it fails when `mvn package` is run. Figure out why.
+
+# Cheat-sheet
+Speed up Jetty plugin ([link](https://stackoverflow.com/questions/30505653/how-to-speed-up-deployment-to-jetty)) 
