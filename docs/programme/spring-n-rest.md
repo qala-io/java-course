@@ -70,6 +70,7 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
 
 # Step 2 - REST Basics
 
+* Learn how RPC is different from REST ([link](./articles/rpc-vs-rest.md))
 * Learn what a Resource is and how it's identified
 * Use a pen and paper to draft URIs and methods for creating, fetching single, listing many, deleting and updating dogs.
 * Take a closer look at PUT and POST - what's the difference between them? How would you apply that difference to the
