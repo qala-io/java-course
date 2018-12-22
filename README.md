@@ -30,7 +30,7 @@ This is a self-paced course. Find the tasks, tackle them, solve puzzles, answer 
 fits you:
 
 * Overview - you just go through the course from the beginning to the end reading articles and implementing the app. 
-It should take 1-3 months - all is up to you.
+It should take 3-6 months - all is up to you.
 * Advanced - for most topics there will be references to the books. You'll read them to fully grasp the topic.
 
 # [Course Programme](docs/programme.md)
