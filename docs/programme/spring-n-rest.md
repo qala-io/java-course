@@ -60,6 +60,9 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
  
 # Step 1 - HTTP
 
+* Learn how network protocols are built on top of lower-layer protocols (HTTP over TCP, TCP over IP) 
+([link](./articles/networking-layers.md))
+* Get the idea of how domain names work ([link](./articles/dns.md))
 * Learn the most widespread HTTP methods: GET, POST, PUT, DELETE, PATCH, HEAD.
 * Learn what's the Mime Type
 * Read about `Content-Type` and `Accept` headers
