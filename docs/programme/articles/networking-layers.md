@@ -1,8 +1,8 @@
 How do network protocols are built on top of other protocols?
 ----
 
-Each networking protocol has its headers and a payload. Headers are needed for the correct routing while 
-payload is the actual data. So the payloads can have anything from that protocol perspective. And this is 
+Each networking protocol has its headers and a payload (body). Headers are needed for the correct routing while 
+payload is the actual data. So payloads can have any byte sequence from the protocol perspective. And this is 
 how higher-layer protocols are built - their own header and body are stored in the payload of the lower-layer
 protocols. It's like russian dolls:
 
