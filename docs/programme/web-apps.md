@@ -37,11 +37,13 @@ performant for this kind of job.
 
 # Step 1 - Servlets API core
 
-* Learn what a Servlet is and write a Hello World example
+* Learn what a Servlet is. [Basics](https://www.javacodegeeks.com/2012/11/basics-about-servlets.html)
+* Write a Hello World example [link](https://medium.com/@backslash112/create-maven-project-with-servlet-in-intellij-idea-2018-be0d673bd9af)
 * Learn what `web.xml` is and declare your servlet there
 * Read about `Filter` and create 2 (not one!) simple filters yourself. They should write something to console before 
 the request is coming and after Servlet responds.
 * Read about `Listener` and create one yourself
+* Everything about Apache Tomcat [link](https://www.mulesoft.com/tcat/understanding-apache-tomcat)
 
 # Step 2 - Thread Pools
 
@@ -84,3 +86,9 @@ going to use down the road.
 
 [Java Concurrency in Practice](http://amzn.to/1jyE5Kx) - one of the most fundamental books on concurrency in Java. 
 One of the "must read" for Java developers.
+
+# TODO
+* Play Framework [link](https://www.lightbend.com/blog/why-is-play-framework-so-fast)
+  
+  
+  
