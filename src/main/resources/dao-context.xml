@@ -86,7 +86,7 @@
             <property name="mappingLocations" value="classpath*:/io/qala/javatraining/domain/*.hbm.xml"/>
             <property name="hibernateProperties">
                 <props>
-                    <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto:validate}</prop>
+                    <prop key="hibernate.hbm2ddl.auto">validate</prop>
                 </props>
             </property>
         </bean>
