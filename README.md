@@ -33,7 +33,18 @@ fits you:
 It should take 3-6 months - all is up to you.
 * Advanced - for most topics there will be references to the books. You'll read them to fully grasp the topic.
 
-# [Course Programme](docs/programme.md)
+# Course Programme
+
+Within the course you're going to have steps to accomplish - most of them will be reading, practicing. There will be
+questions that you should be able to answer (at least to yourself) - please make sure you don't skip this part.
+
+* [Part I: Maven](./docs/programme/maven.md)
+* [Part II: Web and Application Servers](./docs/programme/web-apps.md)
+* [Part III: Spring & REST](./docs/programme/spring-n-rest.md)
+* [Part IV: JDBC & Co.](./docs/programme/jdbc.md)
+* [Part V: Declarative Transactions & AOP](./docs/programme/transactions-n-aop.md)
+* [Part VI: DB Pools](./docs/programme/db-pools.md)
+* [Part VII: Hibernate](./docs/programme/hibernate.md)
 
 # Contact Info
 
