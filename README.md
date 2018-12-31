@@ -2,7 +2,8 @@ Java Professionals Course
 -----------------
 
 Welcome to a self paced course for Java Engineers. It's created for developers who already have some experience but
-don't understand how the code that they copy-paste works. It's for you if:
+don't understand how the code that they copy-paste works (if you're a beginner, consider 
+[Java Beginner course](https://github.com/qala-io/java-beginner-course)). It's for you if:
  
 * You've written at least 1 app with HTTP and DB
 * You don't know which HTTP verbs are idempotent
