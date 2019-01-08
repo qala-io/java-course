@@ -46,6 +46,7 @@ questions that you should be able to answer (at least to yourself) - please make
 * [Part V: Declarative Transactions & AOP](./docs/programme/transactions-n-aop.md)
 * [Part VI: DB Pools](./docs/programme/db-pools.md)
 * [Part VII: Hibernate](./docs/programme/hibernate.md)
+* [Next steps](./docs/programme/next-steps.md)
 
 # Contact Info
 
