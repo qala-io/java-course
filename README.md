@@ -25,19 +25,11 @@ Throughout the course we'll implement a [tiny REST app](./docs/reqs.md) using:
 * Tomcat, Spring MVC, Jackson2
 * TestNG, Unitils, Qala Datagen, MockMvc, RestAssured
 
-# How much efforts will it take
-
-This is a self-paced course. Find the tasks, tackle them, solve puzzles, answer questions. There are 2 modes, whatever 
-fits you:
-
-* Overview - you just go through the course from the beginning to the end reading articles and implementing the app. 
-It should take 3-6 months - all is up to you.
-* Advanced - for most topics there will be references to the books. You'll read them to fully grasp the topic.
-
 # Course Programme
 
 Within the course you're going to have steps to accomplish - most of them will be reading, practicing. There will be
 questions that you should be able to answer (at least to yourself) - please make sure you don't skip this part.
+Typical pace: 15 hours per week, 6 months for the whole course.
 
 * [Part I: Maven](./docs/programme/maven.md)
 * [Part II: Web and Application Servers](./docs/programme/web-apps.md)
