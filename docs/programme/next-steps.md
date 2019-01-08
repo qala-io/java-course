@@ -17,6 +17,6 @@ would be the default.
 But no matter what you choose - you should start getting very deep into the topics. You need to become a 
 go-to person for people around on some specific topics. There are plenty of folks who know a little about 
 everything - this is not completely useless, but it's not particularly helpful either. You need to go further 
-and become an expert in something specific field.
+and become an expert in something specific.
 
 Last but certainly not least: a grown up developer is proud of products that he builds - not technologies that he uses.  
