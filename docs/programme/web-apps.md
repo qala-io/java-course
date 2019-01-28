@@ -37,20 +37,20 @@ performant for this kind of job.
 
 # Step 1 - Servlets API core
 
-* Learn what a Servlet is. [Basics](https://www.javacodegeeks.com/2012/11/basics-about-servlets.html)
+* Learn what a Servlet is. [Basics](https://www.javacodegeeks.com/2012/11/basics-about-servlets.html) 
+  More basics [link](http://tutorials.jenkov.com/java-servlets/index.html)
 * Write a Hello World example [link](https://medium.com/@backslash112/create-maven-project-with-servlet-in-intellij-idea-2018-be0d673bd9af)
-* Learn what `web.xml` is and declare your servlet there
+* Learn what `web.xml` is and declare your servlet there [link](http://tutorials.jenkov.com/java-servlets/web-xml.html)
 * Read about `Filter` and create 2 (not one!) simple filters yourself. They should write something to console before 
 the request is coming and after Servlet responds.
 * Read about `Listener` and create one yourself
-* Everything about Apache Tomcat [link](https://www.mulesoft.com/tcat/understanding-apache-tomcat)
 
 # Step 2 - Thread Pools
 
 * Read what BlockingQueue is, try out some examples
 * Read about states of threads [link1](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.State.html),
 [link2](./articles/threads.md)
-* Read about ThreadPools, Executors. Try to write some sample tasks and submit them to the pool for execution.
+* Read about ThreadPools, Executors. Try to write some sample tasks and submit them to the pool for execution. [link](https://www.baeldung.com/thread-pool-java-and-guava) 
 * Dig into Thread Pools source code and find out how they work internally.
 
 *Tip*: concurrency is a very complicated topic. Problem is - people often learn it as users not as engineers. To really 
@@ -68,6 +68,8 @@ aspects by heart and then forgetting and then re-learning them again.
 * Practice: Write a custom load test for your servlet and Tomcat. The test should submit multiple tasks to a Thread 
 Pool. Each task hits your server multiple times in a separate thread. Find how your configuration changes in Tomcat
 impact the way it responds to the load. Experiment with both - configuration of the test and Tomcat. 
+* Everything about Apache Tomcat [link](https://www.mulesoft.com/tcat/understanding-apache-tomcat)
+* Start - Stop Tomcat [link](https://www.oreilly.com/library/view/tomcat-the-definitive/9780596101060/ch01s02.html)
 
 # Step 4 - Memory Leaks
 
@@ -87,8 +89,10 @@ going to use down the road.
 [Java Concurrency in Practice](http://amzn.to/1jyE5Kx) - one of the most fundamental books on concurrency in Java. 
 One of the "must read" for Java developers.
 
-# TODO
+# Links
 * Play Framework [link](https://www.lightbend.com/blog/why-is-play-framework-so-fast)
-  
+* JMX
+* TCP - HTTP [link](https://www.google.com/url?q=https://www.quora.com/What-is-the-difference-between-HTTP-protocol-and-TCP-protocol&sa=D&source=hangouts&ust=1548764098410000&usg=AFQjCNGaZ8yQMc5tdhpWdqgGkTkL48mdvg)
+* 
   
   
