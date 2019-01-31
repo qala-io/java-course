@@ -2,7 +2,8 @@ Java Professionals Course
 -----------------
 
 Welcome to a self paced course for Java Engineers. It's created for developers who already have some experience but
-don't understand how the code that they copy-paste works. It's for you if:
+don't understand how the code that they copy-paste works (if you're a beginner, consider 
+[Java Beginner course](https://github.com/qala-io/java-beginner-course)). It's for you if:
  
 * You've written at least 1 app with HTTP and DB
 * You don't know which HTTP verbs are idempotent
@@ -24,16 +25,20 @@ Throughout the course we'll implement a [tiny REST app](./docs/reqs.md) using:
 * Tomcat, Spring MVC, Jackson2
 * TestNG, Unitils, Qala Datagen, MockMvc, RestAssured
 
-# How much efforts will it take
+# Course Programme
 
-This is a self-paced course. Find the tasks, tackle them, solve puzzles, answer questions. There are 2 modes, whatever 
-fits you:
+Within the course you're going to have steps to accomplish - most of them will be reading, practicing. There will be
+questions that you should be able to answer (at least to yourself) - please make sure you don't skip this part.
+Typical pace: 15 hours per week, 6 months for the whole course.
 
-* Overview - you just go through the course from the beginning to the end reading articles and implementing the app. 
-It should take 1-3 months - all is up to you.
-* Advanced - for most topics there will be references to the books. You'll read them to fully grasp the topic.
-
-# [Course Programme](docs/programme.md)
+* [Part I: Maven](./docs/programme/maven.md)
+* [Part II: Web and Application Servers](./docs/programme/web-apps.md)
+* [Part III: Spring & REST](./docs/programme/spring-n-rest.md)
+* [Part IV: JDBC & Co.](./docs/programme/jdbc.md)
+* [Part V: Declarative Transactions & AOP](./docs/programme/transactions-n-aop.md)
+* [Part VI: DB Pools](./docs/programme/db-pools.md)
+* [Part VII: Hibernate](./docs/programme/hibernate.md)
+* [Next steps](./docs/programme/next-steps.md)
 
 # Contact Info
 

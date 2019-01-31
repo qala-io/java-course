@@ -60,6 +60,9 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
  
 # Step 1 - HTTP
 
+* Learn how network protocols are built on top of lower-layer protocols (HTTP over TCP, TCP over IP) 
+([link](./articles/networking-layers.md))
+* Get the idea of how domain names work ([link](./articles/dns.md))
 * Learn the most widespread HTTP methods: GET, POST, PUT, DELETE, PATCH, HEAD.
 * Learn what's the Mime Type
 * Read about `Content-Type` and `Accept` headers
@@ -67,6 +70,7 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
 
 # Step 2 - REST Basics
 
+* Learn how RPC is different from REST ([link](./articles/rpc-vs-rest.md))
 * Learn what a Resource is and how it's identified
 * Use a pen and paper to draft URIs and methods for creating, fetching single, listing many, deleting and updating dogs.
 * Take a closer look at PUT and POST - what's the difference between them? How would you apply that difference to the

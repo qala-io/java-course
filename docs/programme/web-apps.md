@@ -96,3 +96,10 @@ One of the "must read" for Java developers.
 * 
   
   
+[Computer Systems: A Programmer's Perspective](https://www.amazon.com/Computer-Systems-Programmers-Perspective-3rd/dp/013409266X) - 
+a book about how things work on lower levels, including concurrency. No matter how high-level
+the language that we use is (Java) - it still is based on low-level mechanisms. Thus to really know programming we
+need to dive into these mechanisms.
+
+[Java Concurrency in Practice](http://amzn.to/1jyE5Kx) - the most popular book on concurrency in Java. But after you 
+read it many things will be forgotten unless you read about low-level concurrency and CPUs.
