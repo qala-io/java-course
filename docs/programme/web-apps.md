@@ -68,12 +68,14 @@ aspects by heart and then forgetting and then re-learning them again.
 * Practice: Write a custom load test for your servlet and Tomcat. The test should submit multiple tasks to a Thread 
 Pool. Each task hits your server multiple times in a separate thread. Find how your configuration changes in Tomcat
 impact the way it responds to the load. Experiment with both - configuration of the test and Tomcat. 
+* Load test Tomcat using JMeter [link](https://dzone.com/articles/how-to-load-test-tomcat-servers)
 * Everything about Apache Tomcat [link](https://www.mulesoft.com/tcat/understanding-apache-tomcat)
 * Start - Stop Tomcat [link](https://www.oreilly.com/library/view/tomcat-the-definitive/9780596101060/ch01s02.html)
 
 # Step 4 - Memory Leaks
 
-* Read about the difference between daemon and non-daemon threads
+* Read about the difference between daemon and non-daemon threads [link](https://beginnersbook.com/2015/01/daemon-thread-in-java-with-example/)
+* Read about volatile keyword in Java [link](https://www.geeksforgeeks.org/volatile-keyword-in-java/)
 * Read about how threads spawn by your code can lead to memory leaks in App Servers
 * Read about how ClassLoaders work and their hierarchy in Java apps
 * Read about ClassLoader Memory Leaks in App Servers
