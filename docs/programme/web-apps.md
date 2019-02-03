@@ -59,7 +59,9 @@ dig into these topics you would find yourself truly understanding multi-threadin
 aspects by heart and then forgetting and then re-learning them again. 
 
 # Step 3 - Application Servers
-
+:
+* Everything about Apache Tomcat [link](https://www.mulesoft.com/tcat/understanding-apache-tomcat)
+* Start - Stop Tomcat [link](https://www.oreilly.com/library/view/tomcat-the-definitive/9780596101060/ch01s02.html)
 * Find out how to configure a Thread Pool for Tomcat
 * Read about how this pool is used by App Servers
 * Read about `acceptCount` configuration in Tomcat's [Http Connectors](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)
@@ -69,8 +71,7 @@ aspects by heart and then forgetting and then re-learning them again.
 Pool. Each task hits your server multiple times in a separate thread. Find how your configuration changes in Tomcat
 impact the way it responds to the load. Experiment with both - configuration of the test and Tomcat. 
 * Load test Tomcat using JMeter [link](https://dzone.com/articles/how-to-load-test-tomcat-servers)
-* Everything about Apache Tomcat [link](https://www.mulesoft.com/tcat/understanding-apache-tomcat)
-* Start - Stop Tomcat [link](https://www.oreilly.com/library/view/tomcat-the-definitive/9780596101060/ch01s02.html)
+* Load testing using JMeter [link](https://dzone.com/articles/jmeter-performance-and-load-testing) [best_practices](https://jmeter.apache.org/usermanual/best-practices.html)
 
 # Step 4 - Memory Leaks
 
