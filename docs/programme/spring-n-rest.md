@@ -65,8 +65,8 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
 * Get the idea of how domain names work ([link](./articles/dns.md))
 * Learn the most widespread HTTP methods: GET, POST, PUT, DELETE, PATCH, HEAD.
 * Learn what's the Mime Type
-* Read about `Content-Type` and `Accept` headers
-* Get a general idea of 2xx, 3xx, 4xx and 5xx response codes (we'll dive deeper into them later)
+* Read about `Content-Type` and `Accept` headers [link](https://webmasters.stackexchange.com/questions/31212/difference-between-the-accept-and-content-type-http-headers)
+* Get a general idea of 2xx, 3xx, 4xx and 5xx response codes (we'll dive deeper into them later) [link](https://www.yeahhub.com/1xx-2xx-3xx-4xx-5xx-http-status-codes/)
 
 # Step 2 - REST Basics
 
@@ -76,7 +76,7 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
 * Take a closer look at PUT and POST - what's the difference between them? How would you apply that difference to the
 Dogs API?
 * Take a closer look at PUT and PATCH - what's the difference between them? How would you apply that difference to the
-Dogs API?
+Dogs API? [link](https://fullstack-developer.academy/restful-api-design-post-vs-put-vs-patch/)
 
 *Tip*: make sure you know by heart which of the popular HTTP methods are idempotent. Usually when you don't know which 
 method to choose for operations - idempotency solves it for you. 
@@ -90,6 +90,7 @@ method to choose for operations - idempotency solves it for you.
 - Try creating multiple contexts and importing one in another
 - Learn about profiles. Research and think about why this is typically a bad practice to use them. Compare them to 
 importing contexts.
+- Spring Core Tutorial [link](https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial)
 
 # Step 4 - Spring MVC
 
@@ -128,3 +129,7 @@ duplication?
 
 [REST in Practice](http://shop.oreilly.com/product/9780596805838.do) - a great book that shows how to build a high 
 quality REST API with caching, events, hypermedia, black jack, hookers.
+
+# Other links
+- CDI [link](https://www.baeldung.com/java-ee-cdi)
+- Microservices [link](https://microservices.io)

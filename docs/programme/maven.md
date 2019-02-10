@@ -70,6 +70,8 @@ Effective POM?
 *Pro*: Note that `maven-compiler-plugin` is declared with `default-compile` execution for `packaging=war`. You inherit
 it, but can you cancel it in your POM? Hint: you can, but find out how.
 
+* Release plugin [link](https://www.baeldung.com/maven-release-nexus)
+
 # Step 3 - Debugging
 
 * Create a unit test with `assertTrue(true)` statement. Put a breakpoint on this line. Find a way to debug the tests
