@@ -91,6 +91,7 @@ method to choose for operations - idempotency solves it for you.
 - Learn about profiles. Research and think about why this is typically a bad practice to use them. Compare them to 
 importing contexts.
 - Spring Core Tutorial [link](https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial)
+- Logging dependencies in Spring [link](https://spring.io/blog/2009/12/04/logging-dependencies-in-spring/)
 
 # Step 4 - Spring MVC
 
