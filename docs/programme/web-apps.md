@@ -72,6 +72,7 @@ Pool. Each task hits your server multiple times in a separate thread. Find how y
 impact the way it responds to the load. Experiment with both - configuration of the test and Tomcat. 
 * Load test Tomcat using JMeter [link](https://dzone.com/articles/how-to-load-test-tomcat-servers)
 * Load testing using JMeter [link](https://dzone.com/articles/jmeter-performance-and-load-testing) [best_practices](https://jmeter.apache.org/usermanual/best-practices.html)
+* Tomcat classpath [link](https://www.mulesoft.com/tcat/tomcat-classpath)
 
 # Step 4 - Memory Leaks
 
