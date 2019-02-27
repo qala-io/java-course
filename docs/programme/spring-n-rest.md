@@ -134,3 +134,6 @@ quality REST API with caching, events, hypermedia, black jack, hookers.
 - CDI [link](https://www.baeldung.com/java-ee-cdi)
 - Microservices [link](https://microservices.io)
 - Slf4J vs JCL [link](https://v4forums.wordpress.com/2008/12/27/slf4j-vs-jcl-dynamic-binding-vs-static-binding/)
+- Commons Logging [link](https://www.logicbig.com/tutorials/misc/java-logging/apache-commons-logging.html)
+- SLF4J [link](https://www.logicbig.com/tutorials/misc/java-logging/slf4j.html)
+
