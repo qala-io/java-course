@@ -97,7 +97,7 @@ One of the "must read" for Java developers.
 * Play Framework [link](https://www.lightbend.com/blog/why-is-play-framework-so-fast)
 * JMX
 * TCP - HTTP [link](https://www.google.com/url?q=https://www.quora.com/What-is-the-difference-between-HTTP-protocol-and-TCP-protocol&sa=D&source=hangouts&ust=1548764098410000&usg=AFQjCNGaZ8yQMc5tdhpWdqgGkTkL48mdvg)
-* 
+* Port 80 vs 8080 [link](https://stackoverflow.com/questions/17313661/apache-httpd-vs-tomcat-7-port-80-vs-port-8080)
   
   
 [Computer Systems: A Programmer's Perspective](https://www.amazon.com/Computer-Systems-Programmers-Perspective-3rd/dp/013409266X) - 
