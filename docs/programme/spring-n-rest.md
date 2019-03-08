@@ -92,6 +92,7 @@ method to choose for operations - idempotency solves it for you.
 importing contexts.
 - Spring Core Tutorial [link](https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial)
 - Logging dependencies in Spring [link](https://spring.io/blog/2009/12/04/logging-dependencies-in-spring/)
+- Web Application Flow [link](https://stackoverflow.com/questions/25904298/why-jsp-files-inside-web-inf-folder-works-but-placed-under-a-folder-under-web)
 
 # Step 4 - Spring MVC
 
