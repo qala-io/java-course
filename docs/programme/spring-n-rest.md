@@ -101,6 +101,8 @@ importing contexts.
 * Make sure you understand the difference between `DispatcherServlet` and 
 `org.springframework.web.context.ContextLoaderListener`
 * Learn the difference between `@RestController` and `@Controller`
+* [Tutorial](https://www.dineshonjava.com/difference-between-applicationcontext-webapplicationcontext-in-spring-mvc/)
+* [Spring MVC](https://www.journaldev.com/2433/spring-mvc-tutorial)
 
 # Step 5 - Create REST app 
 
