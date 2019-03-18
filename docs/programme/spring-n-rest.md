@@ -123,6 +123,7 @@ in static collection in the controller itself. See the [list of fields](../reqs.
 * Write MockMvc tests - these should duplicate your RestAssured tests
 * Think about the difference between RestAssured and MockMvc - which tests should test what. Can we eliminate the 
 duplication?
+* https://semaphoreci.com/community/tutorials/how-to-split-junit-tests-in-a-continuous-integration-environment
 
 # Step 7 - Advanced REST
 
