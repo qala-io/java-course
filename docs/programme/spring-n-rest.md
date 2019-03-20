@@ -116,7 +116,7 @@ in static collection in the controller itself. See the [list of fields](../reqs.
 
 # Step 6 - Validation
 
-* Read about Bean Validation and HibernateValidator
+* Read about Bean Validation and HibernateValidator [java-doc](http://docs.jboss.org/hibernate/validator/4.1/api/org/hibernate/validator/constraints/impl/package-summary.html)
 * Add [validation rules](../reqs.md) to your classes, make sure your API returns correct error codes (see previous steps)
 * Write unit tests to check that validation rules are set up correctly
 * Write RestAssured tests to check that validation rules are getting invoked
