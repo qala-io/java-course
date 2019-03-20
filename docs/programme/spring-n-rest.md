@@ -119,11 +119,11 @@ in static collection in the controller itself. See the [list of fields](../reqs.
 * Read about Bean Validation and HibernateValidator [java-doc](http://docs.jboss.org/hibernate/validator/4.1/api/org/hibernate/validator/constraints/impl/package-summary.html)
 * Add [validation rules](../reqs.md) to your classes, make sure your API returns correct error codes (see previous steps)
 * Write unit tests to check that validation rules are set up correctly
-* Write RestAssured tests to check that validation rules are getting invoked
+* Write RestAssured tests to check that validation rules are getting invoked [Usage](https://github.com/rest-assured/rest-assured/wiki/Usage)
 * Write MockMvc tests - these should duplicate your RestAssured tests
 * Think about the difference between RestAssured and MockMvc - which tests should test what. Can we eliminate the 
 duplication?
-* https://semaphoreci.com/community/tutorials/how-to-split-junit-tests-in-a-continuous-integration-environment
+* Seperating test cases [link](https://semaphoreci.com/community/tutorials/how-to-split-junit-tests-in-a-continuous-integration-environment)
 
 # Step 7 - Advanced REST
 
