@@ -143,4 +143,6 @@ quality REST API with caching, events, hypermedia, black jack, hookers.
 - Slf4J vs JCL [link](https://v4forums.wordpress.com/2008/12/27/slf4j-vs-jcl-dynamic-binding-vs-static-binding/)
 - Commons Logging [link](https://www.logicbig.com/tutorials/misc/java-logging/apache-commons-logging.html)
 - SLF4J [link](https://www.logicbig.com/tutorials/misc/java-logging/slf4j.html)
+- Apache CFX vs Spring REST [link](https://stackoverflow.com/questions/25083045/spring-boot-vs-apache-cxf-for-restful-web-services)
+- Spring REST Basics [link](https://dzone.com/articles/lifecycle-of-a-request-response-process-for-a-spri)
 
