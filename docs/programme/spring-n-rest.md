@@ -128,3 +128,6 @@ duplication?
 
 [REST in Practice](http://shop.oreilly.com/product/9780596805838.do) - a great book that shows how to build a high 
 quality REST API with caching, events, hypermedia, black jack, hookers.
+
+[High Performance Browser Networking](https://hpbn.co/) - describes how web works, which protocols exist, their 
+strengths, weaknesses, pitfalls. Shows how to get everything out of your web infrastructure.
