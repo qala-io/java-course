@@ -3,10 +3,10 @@ Maven
 
 Maven is the most popular build tool for Java apps. What it does:
 
-- Manages dependencies by downloading libraries from repositories
+- Manages dependencies by downloading 3rd party libraries from repositories
 - Compiles the code, runs the tests
 - Distributes your own binaries to remote repositories
-- ... basically you can ask it to do anything
+- .. and much more
 
 Maven is often compared to other tools especially to Ant and Gradle. The best thing about Maven comparing to these 
 tools (especially to Ant) is that it strives for standardization which is good for several important reasons:
