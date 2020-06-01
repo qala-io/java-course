@@ -65,6 +65,8 @@ aspects by heart and then forgetting and then re-learning them again.
 * Find out how to configure a Thread Pool for Tomcat
 * Read about how this pool is used by App Servers
 * Read about `acceptCount` configuration in Tomcat's [Http Connectors](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)
+* Read about `backlog` in `ServerSocket` (which is where `acceptCount` is passed) ([click](https://notes.shichao.io/unp/ch4/#listen-function)). 
+Since this is handled on the OS level the programming language doesn't matter.
 * Think & research: what types of the applications we write in regards to CPU and IO load.
 * Think & research: what value we should set for thread pool's options: max size and accept count?
 * Practice: Write a custom load test for your servlet and Tomcat. The test should submit multiple tasks to a Thread 

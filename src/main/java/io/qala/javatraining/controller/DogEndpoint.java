@@ -1,16 +1,17 @@
 package io.qala.javatraining.controller;
 
+import io.qala.javatraining.domain.Dog;
+import io.qala.javatraining.domain.ObjectNotFoundException;
 import io.qala.javatraining.service.DogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import io.qala.javatraining.domain.Dog;
-import io.qala.javatraining.domain.ObjectNotFoundException;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -33,7 +34,7 @@ public class DogEndpoint {
         return dogService.getAllDogs();
     }
     @GetMapping(value = "/dog/{id}")
-    ResponseEntity getDog(@PathVariable String id) {
+    ResponseEntity<Dog> getDog(@PathVariable String id) {
         return ResponseEntity.ok(dogService.getDog(id));
     }
 
@@ -43,7 +44,7 @@ public class DogEndpoint {
         return dogService.createDog(dog);
     }
     @DeleteMapping(value = "/dog/{id}")
-    ResponseEntity deleteDog(@PathVariable String id) {
+    ResponseEntity<Dog> deleteDog(@PathVariable String id) {
         logger.info("Deleting a dog: [{}]", id);
         dogService.deleteDog(id);
         return ResponseEntity.noContent().build();
@@ -51,11 +52,11 @@ public class DogEndpoint {
 
     //todo: migrate to a separate class
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity processValidationError(MethodArgumentNotValidException e) {
+    public ResponseEntity<List<ValidationRestError>> processValidationError(MethodArgumentNotValidException e) {
         return new ResponseEntity<>(ValidationRestError.fromSpringErrors(e.getBindingResult().getAllErrors()), BAD_REQUEST);
     }
     @ExceptionHandler(ObjectNotFoundException.class)
-    public ResponseEntity processValidationError(ObjectNotFoundException e) {
+    public ResponseEntity<String> processValidationError(ObjectNotFoundException e) {
         return new ResponseEntity<>("{}", NOT_FOUND);
     }
 }

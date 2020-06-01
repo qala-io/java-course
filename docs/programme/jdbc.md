@@ -133,3 +133,12 @@ locking.
 management is not as crucial because every operation is atomic already. But we pretend as if we were working
 with lots of SQL statements in every method.
 - Make sure you utilize `try-catch-finally` to close the connections and rollback transactions in case of errors
+
+Questions ([answers](articles/jdbc-answer-basic-tx.md)):
+
+- If 2 TXs are started and they read the same row, will they block each other?
+- If 1st TX reads and 2nd TX modifies (UPDATE or DELETE) that record, will they block each other?
+- What if both TX write (UPDATE or DELETE)?
+- How long will a transaction wait for rows to be unlocked if such situation occurs?
+- How can you achieve dead locks? Try reproducing your expectations.
+- What can you do to mitigate the risks of deadlocks? 

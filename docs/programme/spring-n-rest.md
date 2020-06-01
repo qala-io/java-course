@@ -145,4 +145,5 @@ quality REST API with caching, events, hypermedia, black jack, hookers.
 - SLF4J [link](https://www.logicbig.com/tutorials/misc/java-logging/slf4j.html)
 - Apache CFX vs Spring REST [link](https://stackoverflow.com/questions/25083045/spring-boot-vs-apache-cxf-for-restful-web-services)
 - Spring REST Basics [link](https://dzone.com/articles/lifecycle-of-a-request-response-process-for-a-spri)
-
+- [High Performance Browser Networking](https://hpbn.co/) - describes how web works, which protocols exist, their 
+strengths, weaknesses, pitfalls. Shows how to get everything out of your web infrastructure.

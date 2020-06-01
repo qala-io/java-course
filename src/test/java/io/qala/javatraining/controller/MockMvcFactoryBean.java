@@ -13,7 +13,7 @@ class MockMvcFactoryBean implements FactoryBean<MockMvc> {
     }
 
     @Override
-    public MockMvc getObject() throws Exception {
+    public MockMvc getObject() {
         return MockMvcBuilders.webAppContextSetup(applicationContext).build();
     }
 
