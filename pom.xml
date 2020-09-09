@@ -155,7 +155,7 @@
                 should measure the real performance metrics and replace it with manual validation if it's really slow-->
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>5.3.4.Final</version>
+                <version>5.3.6.Final</version>
             </dependency>
             <dependency>
                 <!--EL API/Impl is needed at least by Hibernate Validator for message interpolation to work (resolving
