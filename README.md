@@ -38,6 +38,7 @@ Typical pace: 15 hours per week, 6 months for the whole course.
 * [Part V: Declarative Transactions & AOP](./docs/programme/transactions-n-aop.md)
 * [Part VI: DB Pools](./docs/programme/db-pools.md)
 * [Part VII: Hibernate](./docs/programme/hibernate.md)
+* [Part VIII: Monitoring](./docs/programme/monitoring.md)
 * [Next steps](./docs/programme/next-steps.md)
 
 # Contact Info
