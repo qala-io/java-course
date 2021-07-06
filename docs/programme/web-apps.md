@@ -37,8 +37,10 @@ performant for this kind of job.
 
 # Step 1 - Servlets API core
 
-* Learn what a Servlet is and write a Hello World example
-* Learn what `web.xml` is and declare your servlet there
+* Learn what a Servlet is. [Basics](https://www.javacodegeeks.com/2012/11/basics-about-servlets.html) 
+  More basics [link](http://tutorials.jenkov.com/java-servlets/index.html)
+* Write a Hello World example [link](https://medium.com/@backslash112/create-maven-project-with-servlet-in-intellij-idea-2018-be0d673bd9af)
+* Learn what `web.xml` is and declare your servlet there [link](http://tutorials.jenkov.com/java-servlets/web-xml.html)
 * Read about `Filter` and create 2 (not one!) simple filters yourself. They should write something to console before 
 the request is coming and after Servlet responds.
 * Read about `Listener` and create one yourself
@@ -48,7 +50,7 @@ the request is coming and after Servlet responds.
 * Read what BlockingQueue is, try out some examples
 * Read about states of threads [link1](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.State.html),
 [link2](./articles/threads.md)
-* Read about ThreadPools, Executors. Try to write some sample tasks and submit them to the pool for execution.
+* Read about ThreadPools, Executors. Try to write some sample tasks and submit them to the pool for execution. [link](https://www.baeldung.com/thread-pool-java-and-guava) 
 * Dig into Thread Pools source code and find out how they work internally.
 
 *Tip*: concurrency is a very complicated topic. Problem is - people often learn it as users not as engineers. To really 
@@ -57,7 +59,9 @@ dig into these topics you would find yourself truly understanding multi-threadin
 aspects by heart and then forgetting and then re-learning them again. 
 
 # Step 3 - Application Servers
-
+:
+* Everything about Apache Tomcat [link](https://www.mulesoft.com/tcat/understanding-apache-tomcat)
+* Start - Stop Tomcat [link](https://www.oreilly.com/library/view/tomcat-the-definitive/9780596101060/ch01s02.html)
 * Find out how to configure a Thread Pool for Tomcat
 * Read about how this pool is used by App Servers
 * Read about `acceptCount` configuration in Tomcat's [Http Connectors](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)
@@ -68,10 +72,14 @@ Since this is handled on the OS level the programming language doesn't matter.
 * Practice: Write a custom load test for your servlet and Tomcat. The test should submit multiple tasks to a Thread 
 Pool. Each task hits your server multiple times in a separate thread. Find how your configuration changes in Tomcat
 impact the way it responds to the load. Experiment with both - configuration of the test and Tomcat. 
+* Load test Tomcat using JMeter [link](https://dzone.com/articles/how-to-load-test-tomcat-servers)
+* Load testing using JMeter [link](https://dzone.com/articles/jmeter-performance-and-load-testing) [best_practices](https://jmeter.apache.org/usermanual/best-practices.html)
+* Tomcat classpath [link](https://www.mulesoft.com/tcat/tomcat-classpath)
 
 # Step 4 - Memory Leaks
 
-* Read about the difference between daemon and non-daemon threads
+* Read about the difference between daemon and non-daemon threads [link](https://beginnersbook.com/2015/01/daemon-thread-in-java-with-example/)
+* Read about volatile keyword in Java [link](https://www.geeksforgeeks.org/volatile-keyword-in-java/)
 * Read about how threads spawn by your code can lead to memory leaks in App Servers
 * Read about how ClassLoaders work and their hierarchy in Java apps
 * Read about ClassLoader Memory Leaks in App Servers
@@ -84,6 +92,16 @@ that book is written couple of major versions of Servlets API were released but 
 the book. In the end a framework called Struts is going to be demoed - that one was outranked by Spring MVC which we're 
 going to use down the road.
 
+[Java Concurrency in Practice](http://amzn.to/1jyE5Kx) - one of the most fundamental books on concurrency in Java. 
+One of the "must read" for Java developers.
+
+# Links
+* Play Framework [link](https://www.lightbend.com/blog/why-is-play-framework-so-fast)
+* JMX
+* TCP - HTTP [link](https://www.google.com/url?q=https://www.quora.com/What-is-the-difference-between-HTTP-protocol-and-TCP-protocol&sa=D&source=hangouts&ust=1548764098410000&usg=AFQjCNGaZ8yQMc5tdhpWdqgGkTkL48mdvg)
+* Port 80 vs 8080 [link](https://stackoverflow.com/questions/17313661/apache-httpd-vs-tomcat-7-port-80-vs-port-8080)
+  
+  
 [Computer Systems: A Programmer's Perspective](https://www.amazon.com/Computer-Systems-Programmers-Perspective-3rd/dp/013409266X) - 
 a book about how things work on lower levels, including concurrency. No matter how high-level
 the language that we use is (Java) - it still is based on low-level mechanisms. Thus to really know programming we

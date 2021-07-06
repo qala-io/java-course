@@ -65,8 +65,8 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
 * Get the idea of how domain names work ([link](./articles/dns.md))
 * Learn the most widespread HTTP methods: GET, POST, PUT, DELETE, PATCH, HEAD.
 * Learn what's the Mime Type
-* Read about `Content-Type` and `Accept` headers
-* Get a general idea of 2xx, 3xx, 4xx and 5xx response codes (we'll dive deeper into them later)
+* Read about `Content-Type` and `Accept` headers [link](https://webmasters.stackexchange.com/questions/31212/difference-between-the-accept-and-content-type-http-headers)
+* Get a general idea of 2xx, 3xx, 4xx and 5xx response codes (we'll dive deeper into them later) [link](https://www.yeahhub.com/1xx-2xx-3xx-4xx-5xx-http-status-codes/)
 
 # Step 2 - REST Basics
 
@@ -76,7 +76,7 @@ Due to its popularity and integration with Spring IoC we will use Spring MVC fra
 * Take a closer look at PUT and POST - what's the difference between them? How would you apply that difference to the
 Dogs API?
 * Take a closer look at PUT and PATCH - what's the difference between them? How would you apply that difference to the
-Dogs API?
+Dogs API? [link](https://fullstack-developer.academy/restful-api-design-post-vs-put-vs-patch/)
 
 *Tip*: make sure you know by heart which of the popular HTTP methods are idempotent. Usually when you don't know which 
 method to choose for operations - idempotency solves it for you. 
@@ -90,6 +90,9 @@ method to choose for operations - idempotency solves it for you.
 - Try creating multiple contexts and importing one in another
 - Learn about profiles. Research and think about why this is typically a bad practice to use them. Compare them to 
 importing contexts.
+- Spring Core Tutorial [link](https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial)
+- Logging dependencies in Spring [link](https://spring.io/blog/2009/12/04/logging-dependencies-in-spring/)
+- Web Application Flow [link](https://stackoverflow.com/questions/25904298/why-jsp-files-inside-web-inf-folder-works-but-placed-under-a-folder-under-web)
 
 # Step 4 - Spring MVC
 
@@ -98,6 +101,9 @@ importing contexts.
 * Make sure you understand the difference between `DispatcherServlet` and 
 `org.springframework.web.context.ContextLoaderListener`
 * Learn the difference between `@RestController` and `@Controller`
+* Difference between AppContext and WebAppContext [link](https://www.dineshonjava.com/difference-between-applicationcontext-webapplicationcontext-in-spring-mvc/)
+* [Tutorial](https://www.dineshonjava.com/difference-between-applicationcontext-webapplicationcontext-in-spring-mvc/)
+* [Spring MVC](https://www.journaldev.com/2433/spring-mvc-tutorial)
 
 # Step 5 - Create REST app 
 
@@ -106,16 +112,18 @@ with a bean of that class
 * Create methods for creating, getting, updating, deleting dogs. All the messages must be in JSON. All the data is kept 
 in static collection in the controller itself. See the [list of fields](../reqs.md).
 * Write TestNG + RestAssured tests that cover all straight forward and corner cases
+* Jackson Exceptions [link](https://www.baeldung.com/jackson-exception)
 
 # Step 6 - Validation
 
-* Read about Bean Validation and HibernateValidator
+* Read about Bean Validation and HibernateValidator [java-doc](http://docs.jboss.org/hibernate/validator/4.1/api/org/hibernate/validator/constraints/impl/package-summary.html)
 * Add [validation rules](../reqs.md) to your classes, make sure your API returns correct error codes (see previous steps)
 * Write unit tests to check that validation rules are set up correctly
-* Write RestAssured tests to check that validation rules are getting invoked
+* Write RestAssured tests to check that validation rules are getting invoked [Usage](https://github.com/rest-assured/rest-assured/wiki/Usage)
 * Write MockMvc tests - these should duplicate your RestAssured tests
 * Think about the difference between RestAssured and MockMvc - which tests should test what. Can we eliminate the 
 duplication?
+* Seperating test cases [link](https://semaphoreci.com/community/tutorials/how-to-split-junit-tests-in-a-continuous-integration-environment)
 
 # Step 7 - Advanced REST
 
@@ -129,5 +137,13 @@ duplication?
 [REST in Practice](http://shop.oreilly.com/product/9780596805838.do) - a great book that shows how to build a high 
 quality REST API with caching, events, hypermedia, black jack, hookers.
 
-[High Performance Browser Networking](https://hpbn.co/) - describes how web works, which protocols exist, their 
+# Other links
+- CDI [link](https://www.baeldung.com/java-ee-cdi)
+- Microservices [link](https://microservices.io)
+- Slf4J vs JCL [link](https://v4forums.wordpress.com/2008/12/27/slf4j-vs-jcl-dynamic-binding-vs-static-binding/)
+- Commons Logging [link](https://www.logicbig.com/tutorials/misc/java-logging/apache-commons-logging.html)
+- SLF4J [link](https://www.logicbig.com/tutorials/misc/java-logging/slf4j.html)
+- Apache CFX vs Spring REST [link](https://stackoverflow.com/questions/25083045/spring-boot-vs-apache-cxf-for-restful-web-services)
+- Spring REST Basics [link](https://dzone.com/articles/lifecycle-of-a-request-response-process-for-a-spri)
+- [High Performance Browser Networking](https://hpbn.co/) - describes how web works, which protocols exist, their 
 strengths, weaknesses, pitfalls. Shows how to get everything out of your web infrastructure.
