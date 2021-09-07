@@ -17,6 +17,7 @@ import static org.testng.Assert.*;
 
 @MockMvcTest @Test
 public class DogEndpointTest extends AbstractTestNGSpringContextTests {
+    @Autowired private DogEndpoints dogs;
 
     public void createdDog_isReturnedInPostRequest() {
         Dog original = Dog.random();
@@ -67,6 +68,4 @@ public class DogEndpointTest extends AbstractTestNGSpringContextTests {
         }
         fail("Couldn't find error: " + field + ", " + errorCode + ", " + errorMsg + ". Actual errors: " + Arrays.deepToString(errors));
     }
-
-    @Autowired private DogEndpoints dogs;
 }

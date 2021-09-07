@@ -14,8 +14,9 @@
         <targetJdk>1.8</targetJdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.5.RELEASE</spring.version>
-        <rest-assured.version>2.9.0</rest-assured.version>
+        <rest-assured.version>4.4.0</rest-assured.version>
         <slf4j.version>1.7.13</slf4j.version>
+        <jackson.version>2.12.5</jackson.version>
     </properties>
 
     <dependencies>
@@ -96,11 +97,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.jayway.restassured</groupId>
+            <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.jayway.restassured</groupId>
+            <groupId>io.rest-assured</groupId>
             <artifactId>spring-mock-mvc</artifactId>
         </dependency>
 
@@ -131,12 +132,12 @@
                 <!--Is used by Spring MVC to convert objects to/from JSON or XML-->
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.9.10.3</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>2.9.9</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
@@ -254,13 +255,13 @@
                 <version>3.4.3</version>
             </dependency>
             <dependency>
-                <groupId>com.jayway.restassured</groupId>
+                <groupId>io.rest-assured</groupId>
                 <artifactId>rest-assured</artifactId>
                 <version>${rest-assured.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.jayway.restassured</groupId>
+                <groupId>io.rest-assured</groupId>
                 <artifactId>spring-mock-mvc</artifactId>
                 <version>${rest-assured.version}</version>
                 <scope>test</scope>
