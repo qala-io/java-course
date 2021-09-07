@@ -50,6 +50,7 @@ the request is coming and after Servlet responds.
 [link2](./articles/threads.md)
 * Read about ThreadPools, Executors. Try to write some sample tasks and submit them to the pool for execution.
 * Dig into Thread Pools source code and find out how they work internally.
+* Write your own simple fixed-size ThreadPool
 
 *Tip*: concurrency is a very complicated topic. Problem is - people often learn it as users not as engineers. To really 
 grasp the topic you would need to dive much deeper - to the architecture of modern CPUs and Operating Systems. If you
@@ -63,7 +64,7 @@ aspects by heart and then forgetting and then re-learning them again.
 * Read about `acceptCount` configuration in Tomcat's [Http Connectors](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)
 * Read about `backlog` in `ServerSocket` (which is where `acceptCount` is passed) ([click](https://notes.shichao.io/unp/ch4/#listen-function)). 
 Since this is handled on the OS level the programming language doesn't matter.
-* Think & research: what types of the applications we write in regards to CPU and IO load.
+* Think & research: what types of the applications we write in regard to CPU and IO load.
 * Think & research: what value we should set for thread pool's options: max size and accept count?
 * Practice: Write a custom load test for your servlet and Tomcat. The test should submit multiple tasks to a Thread 
 Pool. Each task hits your server multiple times in a separate thread. Find how your configuration changes in Tomcat
