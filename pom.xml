@@ -287,6 +287,18 @@
                         <target>${targetJdk}</target>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
+                    <configuration>
+                        <!-- Since Java9 private fields/methods aren't available even if setAccessible(true). We need to
+                         explicitly export modules' internals to other modules. Since we're not actually using modules yet,
+                          all the code is started in the unnamed module, hence ALL-UNNAMED -->
+                        <argLine>-Duser.language=en -Duser.region=US
+                            --add-opens java.base/java.time=ALL-UNNAMED
+                            --add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
