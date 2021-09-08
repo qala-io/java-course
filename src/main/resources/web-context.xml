@@ -14,7 +14,7 @@
     <bean class="io.qala.javatraining.controller.DogEndpoint"/>
     <bean class="io.qala.javatraining.service.TransactionalDogService">
         <constructor-arg>
-            <bean class="io.qala.javatraining.service.JdbcDogService"/>
+            <bean class="io.qala.javatraining.service.DbDogService"/>
         </constructor-arg>
     </bean>
 </beans>

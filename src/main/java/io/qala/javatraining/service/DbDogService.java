@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
-public class JdbcDogService implements DogService {
-    public JdbcDogService(DogDao dogDao) {
+public class DbDogService implements DogService {
+    public DbDogService(DogDao dogDao) {
         this.dogDao = dogDao;
     }
 
