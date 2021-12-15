@@ -1,6 +1,7 @@
 package io.qala.javatraining.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.qala.javatraining.utils.DateUtil;
 import io.qala.javatraining.utils.Past;
 import io.qala.javatraining.utils.NotBlankSized;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.DecimalMin;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import java.util.Objects;
 import java.util.UUID;
 
 import static io.qala.datagen.RandomShortApi.*;
@@ -35,13 +37,7 @@ public class Dog {
     public static Dog random() {
         Dog dog = new Dog();
         dog.name = alphanumeric(1, 100);
-        // Java8 Time API goes beyond of what DBs can hold so we explicitly generate the dates in the boundaries
-        // that a DB can hold. Which looks like in boundaries of long type.
-        // Also 808 comes presumably from the bug somewhere around Timestamp, Date, Calendar.. For some reason
-        // dates near Long.MIN_VALUE underflow when we convert them to Timestamp. Starting from MIN + 808 they start
-        // to work fine. Looks like another instance of http://bugs.java.com/view_bug.do?bug_id=7000693 Will need to
-        // research at some point. Why don't they use randomized testing in Sun/Oracle..
-        Instant randomInstant = Instant.ofEpochMilli(Long(Long.MIN_VALUE + 808, System.currentTimeMillis()));
+        Instant randomInstant = Instant.ofEpochMilli(Long(DateUtil.beginningOfTime(), System.currentTimeMillis()));
         dog.timeOfBirth = nullOr(OffsetDateTime.ofInstant(randomInstant, ZoneId.systemDefault()));
 
         dog.weight = positiveDouble();
@@ -105,14 +101,12 @@ public class Dog {
     @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Dog dog = (Dog) o;
-
-        return id != null ? id.equals(dog.id) : dog.id == null;
+        return Objects.equals(id, dog.id);
 
     }
 
     @Override public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return Objects.hashCode(id);
     }
 }

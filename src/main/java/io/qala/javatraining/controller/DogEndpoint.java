@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -21,7 +19,6 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @SuppressWarnings(/*Most of the methods are used only by Spring MVC*/"unused")
 @RestController
 public class DogEndpoint {
-    private static ConcurrentMap<String, Dog> ALL_DOGS = new ConcurrentHashMap<>();
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final DogService dogService;
 

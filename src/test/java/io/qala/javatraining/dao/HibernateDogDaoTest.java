@@ -16,7 +16,9 @@ import static io.qala.datagen.RandomShortApi.unicode;
 import static io.qala.datagen.RandomValue.length;
 import static io.qala.datagen.StringModifier.Impls.suffix;
 import static io.qala.javatraining.TestUtils.assertReflectionEquals;
-import static org.testng.Assert.*;
+import static io.qala.javatraining.utils.DateUtil.beginningOfTime;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 @Test @HibernateDaoTest
 public class HibernateDogDaoTest extends AbstractTransactionalTestNGSpringContextTests {
@@ -64,8 +66,7 @@ public class HibernateDogDaoTest extends AbstractTransactionalTestNGSpringContex
     /**This ensures that Java validation and DB constraints are in sync. DB constraints are allowed to be more permissive though.*/
     public void dbCanHoldMaxValues_thatJavaCanHold() {
         Dog original = Dog.random();
-        // For explanation about 808 see Dog.random()
-        original.setTimeOfBirth(OffsetDateTime.ofInstant(Instant.ofEpochMilli(Long.MIN_VALUE + 808), ZoneOffset.MIN))
+        original.setTimeOfBirth(OffsetDateTime.ofInstant(Instant.ofEpochMilli(beginningOfTime()), ZoneOffset.MIN))
                 .setName(unicode(100))
                 .setHeight(Double.MAX_VALUE).setWeight(Double.MAX_VALUE);
         dao.createDog(original);

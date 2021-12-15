@@ -142,7 +142,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>5.2.2.Final</version>
+                <version>5.6.2.Final</version>
                 <exclusions>
                     <exclusion>
                         <!--This dependency is provided by servlet container. And for tests we use Tomcat Embed  implementation-->
@@ -298,6 +298,12 @@
                             --add-opens java.base/java.time=ALL-UNNAMED
                             --add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <!-- Old versions don't work with Java16, so must override it here -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.2</version>
                 </plugin>
             </plugins>
         </pluginManagement>
