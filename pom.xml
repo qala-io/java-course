@@ -10,8 +10,8 @@
     <packaging>war</packaging>
 
     <properties>
-        <sourceJdk>1.8</sourceJdk>
-        <targetJdk>1.8</targetJdk>
+        <sourceJdk>16</sourceJdk>
+        <targetJdk>16</targetJdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.5.RELEASE</spring.version>
         <rest-assured.version>4.4.0</rest-assured.version>
@@ -156,7 +156,7 @@
                 should measure the real performance metrics and replace it with manual validation if it's really slow-->
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>5.3.6.Final</version>
+                <version>5.4.3.Final</version>
             </dependency>
             <dependency>
                 <!--EL API/Impl is needed at least by Hibernate Validator for message interpolation to work (resolving

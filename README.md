@@ -1,7 +1,7 @@
 Java Professionals Course
 -----------------
 
-Welcome to a self paced course for Java Engineers. It's created for developers who already have some experience but
+Welcome to a course for Java Engineers. It's created for developers who already have some experience but
 don't understand how the code that they copy-paste works (if you're a beginner, consider 
 [Java Beginner course](https://github.com/qala-io/java-beginner-course)). It's for you if:
  
@@ -10,6 +10,9 @@ don't understand how the code that they copy-paste works (if you're a beginner, 
 * Configuration of your Thread/DB Pool is based on a guess 
 * For you `@Transactional` is magic that hopefully works
 * Most of your tests use mocking frameworks
+
+You can either go through the material on your own or you can 
+[enroll to the online group](https://github.com/qala-io/java-course/issues/13).
 
 # What you should expect
 
