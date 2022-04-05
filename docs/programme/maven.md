@@ -46,11 +46,8 @@ shortcuts, you'll need this often.
 * Read and learn what is a lifecycle and which lifecycles Maven has. Explore which phases each of the lifecycle has.
 ([link](./articles/maven-lifecycles-n-phases.md))
 * Declare `maven-surefire-plugin` and bind its `test` goal to a `test` phase
-* Explore files
-[default-bindings.xml](https://github.com/apache/maven/blob/master/maven-core/src/main/resources/META-INF/plexus/default-bindings.xml) and
-[components.xml](https://github.com/apache/maven/blob/master/maven-core/src/test/resources/META-INF/plexus/components.xml) -
-these files contain default plugins
-* Ensure that what you see in `default-bindings.xml` is what's listed in your Effective POM
+* Explore Java files in [packaging](https://github.com/apache/maven/tree/master/maven-core/src/main/java/org/apache/maven/lifecycle/providers/packaging) package inside Maven - these files contain default bindings of plugins
+* Ensure that what you see there is what's listed in your Effective POM
 
 *Check yourself*. You must be able to:
 
