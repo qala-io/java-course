@@ -114,8 +114,7 @@ both Connection as well as information about currently running transactions. It 
 in our holder.
 
 - Use Spring AOP & Sprint Tx to define methods that should be transactional
-- Read about Spring Tx ([link1](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/transaction.html),
-[link2](https://www.ibm.com/developerworks/java/library/j-ts1/index.html))
+- Read about Spring Tx ([link1](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/transaction.html))
 - Replace custom `JdbcConnectionHolder` with `org.springframework.jdbc.datasource.DataSourceUtils`. Debug and find
 how it gets the Connections created by `TransactionManager`
 - Remove `TransactionalDogService` proxy as you don't need it anymore 
