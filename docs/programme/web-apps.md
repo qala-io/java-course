@@ -57,20 +57,23 @@ grasp the topic you would need to dive much deeper - to the architecture of mode
 dig into these topics you would find yourself truly understanding multi-threading instead of just learning its
 aspects by heart and then forgetting and then re-learning them again. 
 
-# Step 3 - Application Servers
+# Step 3 - Writing a web server
+
+* [Read](./articles/sockets-n-tcp.md) about `ServerSocket` and `Socket`. Since this is handled on the OS level the programming language doesn't matter.
+* Write your own web server that browser can communicate with over `HTTP/1.0` protocol. So when we type http://localhost:8000/blah in our address bar, we should receive back `<h1>blah</h1>`. Note, that for this you'll need to receive and parse an HTTP request from the browser (this is just text coming within TCP payload). You can look up HTTP spec or articles on the internet that talk about the format.
+
+# Step 4 - Application Servers
 
 * Find out how to configure a Thread Pool for Tomcat
 * Read about how this pool is used by App Servers
 * Read about `acceptCount` configuration in Tomcat's [Http Connectors](https://tomcat.apache.org/tomcat-8.0-doc/config/http.html)
-* Read about `backlog` in `ServerSocket` (which is where `acceptCount` is passed) ([click](https://notes.shichao.io/unp/ch4/#listen-function)). 
-Since this is handled on the OS level the programming language doesn't matter.
 * Think & research: what types of the applications we write in regard to CPU and IO load.
 * Think & research: what value we should set for thread pool's options: max size and accept count?
 * Practice: Write a custom load test for your servlet and Tomcat. The test should submit multiple tasks to a Thread 
 Pool. Each task hits your server multiple times in a separate thread. Find how your configuration changes in Tomcat
 impact the way it responds to the load. Experiment with both - configuration of the test and Tomcat. 
 
-# Step 4 - Memory Leaks
+# Step 5 - Memory Leaks
 
 * Read about the difference between daemon and non-daemon threads
 * Read about how threads spawn by your code can lead to memory leaks in App Servers
