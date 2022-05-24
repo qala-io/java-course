@@ -54,3 +54,10 @@ new ServerSocket(8080, 10)
 ```
 
 So if we `accept`ed 1 connection and we work with it - the other 10 will be queued up. If 11th comes, OS will reply with an error. Well, it's a little more complicated since when we pass 10 - [it may turn into another number by OS](https://notes.shichao.io/unp/ch4/#listen-function).
+
+Because usually we want to work with multiple clients at a time (in different threads) we need not to block accepting new connections while we're processing previous request. That's why we could:
+
+1. Accept the connection
+2. Create a new thread and pass the newly created `Socket` there. In that thread we're processing the request.
+3. And this allows us to quickly return to `accept`ing in the main thread. 
+4. So we now can accept a new connection and create yet another thread and quickly return back to `accept`ing again.
