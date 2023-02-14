@@ -13,7 +13,7 @@
         <sourceJdk>16</sourceJdk>
         <targetJdk>16</targetJdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.3.30.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
         <rest-assured.version>4.4.0</rest-assured.version>
         <slf4j.version>1.7.13</slf4j.version>
         <jackson.version>2.14.2</jackson.version>
