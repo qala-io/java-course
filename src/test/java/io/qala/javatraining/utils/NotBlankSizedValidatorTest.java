@@ -4,7 +4,7 @@ import io.qala.javatraining.utils.NotBlankSized;
 import io.qala.javatraining.utils.NotBlankSizedValidator;
 import org.testng.annotations.Test;
 
-import javax.validation.Payload;
+import jakarta.validation.Payload;
 import java.lang.annotation.Annotation;
 
 import static io.qala.datagen.RandomShortApi.alphanumeric;

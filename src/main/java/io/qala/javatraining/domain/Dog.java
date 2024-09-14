@@ -5,7 +5,7 @@ import io.qala.javatraining.utils.DateUtil;
 import io.qala.javatraining.utils.Past;
 import io.qala.javatraining.utils.NotBlankSized;
 
-import javax.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.DecimalMin;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;

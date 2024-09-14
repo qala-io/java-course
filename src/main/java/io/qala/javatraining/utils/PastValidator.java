@@ -1,7 +1,7 @@
 package io.qala.javatraining.utils;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.time.OffsetDateTime;
 
 public class PastValidator implements ConstraintValidator<Past, OffsetDateTime> {

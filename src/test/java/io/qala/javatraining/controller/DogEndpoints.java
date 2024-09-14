@@ -37,7 +37,7 @@ public class DogEndpoints {
     }
 
     List<Dog> listDogs() {
-        MockMvcResponse response = given().get("/dog/");
+        MockMvcResponse response = given().get("/dog");
         throwIfStatusIsNotSuccess(response);
         return asList(response.andReturn().as(Dog[].class));
     }

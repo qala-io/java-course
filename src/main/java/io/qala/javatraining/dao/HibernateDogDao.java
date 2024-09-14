@@ -8,15 +8,14 @@ import org.hibernate.query.Query;
 
 import java.util.Collection;
 
+@SuppressWarnings("resource")
 public class HibernateDogDao implements DogDao {
     public HibernateDogDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override public Collection<Dog> getAllDogs() {
-        Query query = session().createNamedQuery("getAllDogs");
-        //noinspection unchecked
-        return query.list();
+        return session().createNamedQuery("getAllDogs", Dog.class).list();
     }
 
     @Override public Dog getDog(String id) {
@@ -32,8 +31,8 @@ public class HibernateDogDao implements DogDao {
 
     @Override public boolean deleteDog(String id) {
         try {
-            session().delete(session().load(Dog.class, id));
-        } catch (javax.persistence.EntityNotFoundException e) {//todo: this is a temp (and a very bad) fix
+            session().remove(session().getReference(Dog.class, id));
+        } catch (jakarta.persistence.EntityNotFoundException e) {//todo: this is a temp (and a very bad) fix
             return false;
         }
         return true;

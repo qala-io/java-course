@@ -1,7 +1,7 @@
 package io.qala.javatraining.utils;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = PastValidator.class)
 public @interface Past {
 
-    String message() default "{javax.validation.constraints.Past.message}";
+    String message() default "{jakarta.validation.constraints.Past.message}";
 
     Class<?>[] groups() default {};
 

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class DogEndpoint {
         return dogService.getAllDogs();
     }
     @GetMapping(value = "/dog/{id}")
-    ResponseEntity<Dog> getDog(@PathVariable String id) {
+    ResponseEntity<Dog> getDog(@PathVariable("id") String id) {
         return ResponseEntity.ok(dogService.getDog(id));
     }
 
@@ -41,7 +41,7 @@ public class DogEndpoint {
         return dogService.createDog(dog);
     }
     @DeleteMapping(value = "/dog/{id}")
-    ResponseEntity<Dog> deleteDog(@PathVariable String id) {
+    ResponseEntity<Dog> deleteDog(@PathVariable("id") String id) {
         logger.info("Deleting a dog: [{}]", id);
         dogService.deleteDog(id);
         return ResponseEntity.noContent().build();
