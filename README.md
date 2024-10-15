@@ -11,8 +11,8 @@ don't understand how the code that they copy-paste works (if you're a beginner, 
 * For you `@Transactional` is magic that hopefully works
 * Most of your tests use mocking frameworks
 
-You can either go through the material on your own or you can 
-[enroll to the online group](https://github.com/qala-io/java-course/issues/13).
+This course is rarely read in a group, most of the time you're expected to go through the steps on your own
+at your own pace. But feel free to ask questions in the GitHub Discussions.
 
 # What you should expect
 
@@ -46,5 +46,4 @@ Typical pace: 15 hours per week, 6 months for the whole course.
 # Contact Info
 
 * Should you have questions or suggestions please [file them here](https://github.com/qala-io/java-course/issues/new).
-* Occasional updates are posted in [Twitter](https://twitter.com/Qala_io)
-* [Our blog](http://qala.io/blog.html)
+* [Our blog](http://qala.io/blog.html), and here's [the new one](https://github.com/ctapobep/blog/issues)
